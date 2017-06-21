@@ -8,6 +8,7 @@ public class CharacterScript : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb2d;
     private bool jump;
+    private string currentAnimation = null;
 
     // Use this for initialization
     void Awake()
@@ -18,7 +19,6 @@ public class CharacterScript : MonoBehaviour
 
     //Author: Tjpark
     //http://answers.unity3d.com/questions/801875/mecanim-trigger-getting-stuck-in-true-state.html
-    private string currentAnimation = null;
     void setAnimation(string stringInput)
     {
         Animator anim = transform.GetComponent<Animator>();
@@ -35,10 +35,9 @@ public class CharacterScript : MonoBehaviour
             currentAnimation = stringInput;
         }
     }
-        
-    
+
     // Update is called once per frame
-        void Update()
+    void Update()
     {
 
         var vertical = Input.GetAxis("Vertical");
@@ -47,49 +46,32 @@ public class CharacterScript : MonoBehaviour
         if (vertical > 0)
         {
             setAnimation("up");
-            animator.SetTrigger("forward");
-            Debug.Log("test2");
-            animator.ResetTrigger("left");
-            animator.ResetTrigger("up");
-            animator.ResetTrigger("right");
             rb2d.AddForce(Vector2.up);
         }
         else if (vertical < 0)
         {
-            animator.SetTrigger("forward");
-            Debug.Log("test2");
-            animator.ResetTrigger("left");
-            animator.ResetTrigger("up");
-            animator.ResetTrigger("right");
+            setAnimation("forward");
             rb2d.AddForce(Vector2.down * 10f);
         }
         else if (horizontal > 0)
         {
-            animator.SetTrigger("right");
-            Debug.Log("test3");
-            animator.ResetTrigger("left");
-            animator.ResetTrigger("forward");
-            animator.ResetTrigger("up");
+            setAnimation("right");
             rb2d.AddForce(Vector2.right * 10f);
         }
         else if (horizontal < 0)
         {
-            animator.SetTrigger("left");
-            Debug.Log("test4");
-            animator.ResetTrigger("right");
-            animator.ResetTrigger("forward");
-            animator.ResetTrigger("up");
+            setAnimation("left");
             rb2d.AddForce(Vector2.left * 10f);
         }
+
+
+        //Check IsOnGround to Trigger Jump
         bool grounded = Physics2D.Linecast(transform.position, this.gameObject.transform.Find("GroundCheck").position, 1 << LayerMask.NameToLayer("Ground"));
         if (Input.GetButtonUp("Jump") && grounded)
         {
+            //Set Animation Jump. TODO: Jump animation clip.
             jump = true;
-        }
 
-        if (Input.GetButtonUp("Jump"))
-        {
-            Debug.Log("test???");
         }
     }
 
@@ -104,3 +86,4 @@ public class CharacterScript : MonoBehaviour
         }
 
     }
+}
