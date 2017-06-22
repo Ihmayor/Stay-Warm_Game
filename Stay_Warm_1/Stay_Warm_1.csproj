@@ -93,14 +93,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimTest.cs" />
-    <Compile Include="Assets\CharacterScript.cs" />
     <Compile Include="Assets\Custom\NewScripts\Coin.cs" />
     <Compile Include="Assets\Custom\NewScripts\PlatformFall.cs" />
     <Compile Include="Assets\Custom\NewScripts\SimplePlatformController.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnCoin.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnManager.cs" />
-    <Compile Include="Assets\DeathTrigger.cs" />
+    <Compile Include="Assets\Resources\AnimTest.cs" />
+    <Compile Include="Assets\Resources\CharacterScript.cs" />
+    <Compile Include="Assets\Resources\DeathTrigger.cs" />
+    <Compile Include="Assets\Resources\GeneratePlatform.cs" />
+    <Compile Include="Assets\Resources\NotifyPropScript.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\BackgroundPropSpawner.cs" />
     <Compile Include="Assets\Scripts\Bomb.cs" />

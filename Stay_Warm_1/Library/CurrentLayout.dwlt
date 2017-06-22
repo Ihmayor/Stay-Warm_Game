@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 0
     width: 741
     height: 209
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 204, y: 442}
   m_MaxSize: {x: 4004, y: 8042}
   vertical: 1
-  controlID: 87
+  controlID: 90
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 713}
   m_MaxSize: {x: 14004, y: 18063}
   vertical: 1
-  controlID: 83
+  controlID: 86
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -112,8 +112,8 @@ MonoBehaviour:
     y: 209
     width: 741
     height: 209
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 713}
   m_MaxSize: {x: 14004, y: 18063}
   vertical: 0
-  controlID: 84
+  controlID: 87
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 713}
   m_MaxSize: {x: 10002, y: 18063}
   vertical: 1
-  controlID: 85
+  controlID: 88
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 442}
   m_MaxSize: {x: 8006, y: 8042}
   vertical: 0
-  controlID: 86
+  controlID: 89
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -273,8 +273,8 @@ MonoBehaviour:
     y: 0
     width: 244
     height: 418
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -462,8 +462,8 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 1
-    m_VSlider: 1
+    m_HSlider: 0
+    m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoom: 0
@@ -475,18 +475,18 @@ MonoBehaviour:
       y: 17
       width: 737
       height: 171
-    m_Scale: {x: 1.0568475, y: 1.0568475}
-    m_Translation: {x: 372.62143, y: 83.70933}
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 368.5, y: 85.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -352.57825
-      y: -79.206635
-      width: 697.35706
-      height: 161.80197
+      x: -368.5
+      y: -85.5
+      width: 737
+      height: 171
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
@@ -525,7 +525,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: d8fbffff00000000
+    m_ExpandedIDs: 5667ffffd8fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -575,14 +575,14 @@ MonoBehaviour:
     width: 737
     height: 188
   m_SceneLighting: 1
-  lastFramingTime: 2935.254048101485
+  lastFramingTime: 1773.3121749604159
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 10.317287, y: 3.4757466, z: 0}
+    m_Target: {x: 51.966198, y: 7.865393, z: 0}
     speed: 2
-    m_Value: {x: 10.317287, y: 3.4757466, z: 0}
+    m_Value: {x: 51.966198, y: 7.865393, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -609,9 +609,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.9699717
+    m_Target: 42.43486
     speed: 2
-    m_Value: 6.9699717
+    m_Value: 42.43486
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -649,7 +649,7 @@ MonoBehaviour:
     width: 983
     height: 236
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: cloud
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -659,19 +659,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets
+  - Assets/Resources
   m_LastFoldersGridSize: 71
   m_LastProjectPath: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 70250000
-    m_LastClickedID: 9584
-    m_ExpandedIDs: 0000000070250000082c00002a2c00003e2c0000ea2c0000fc2f00005030000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 89}
+    m_SelectedIDs: 
+    m_LastClickedID: 0
+    m_ExpandedIDs: 000000006c250000042c0000262c00003a2c0000e62c0000f82f000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -699,7 +699,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000070250000082c00002a2c00003e2c0000ea2c0000fc2f000050300000
+    m_ExpandedIDs: 000000006c250000042c0000262c00003a2c0000e62c0000f82f00004c300000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -726,8 +726,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: a654000078cefdff66551000b2220000f6210000f0230000a62200009c220000f80600007206000064230000d4240000d8230000ce2300004c650000522a0000be240000c824000078270000308500004e3800008035000008420000483e0000123500008a2e000000000000da21e2ff502700001ad300005c2c0000063200007a2b0000142f000018270000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: a654000078cefdff66551000b2220000f6210000f0230000a62200009c220000f80600007206000064230000d4240000d8230000ce2300004c650000522a0000be240000c824000078270000308500004e3800008035000008420000483e0000123500008a2e000000000000da21e2ff502700001ad300005c2c0000063200007a2b0000142f00001827000016270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -751,7 +751,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 120}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 71
   m_DirectoriesAreaWidth: 272
 --- !u!114 &21

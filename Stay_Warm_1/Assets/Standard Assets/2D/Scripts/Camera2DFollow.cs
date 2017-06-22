@@ -23,8 +23,7 @@ namespace UnityStandardAssets._2D
             m_OffsetZ = (transform.position - target.position).z;
             transform.parent = null;
         }
-
-
+      
         // Update is called once per frame
         private void Update()
         {
