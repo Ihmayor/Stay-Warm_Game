@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
+    public float MaxSpeed = 1f;
+    public float moveForce = 10f;
 
     private Animator animator;
     private Rigidbody2D rb2d;
@@ -56,13 +58,23 @@ public class CharacterScript : MonoBehaviour
         else if (horizontal > 0)
         {
             setAnimation("right");
-            rb2d.AddForce(Vector2.right * 10f);
         }
         else if (horizontal < 0)
         {
             setAnimation("left");
-            rb2d.AddForce(Vector2.left * 10f);
         }
+
+
+        // If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
+        if (horizontal * rb2d.velocity.x < MaxSpeed)
+            // ... add a force to the player.
+            GetComponent<Rigidbody2D>().AddForce(Vector2.right * horizontal * moveForce);
+
+        // If the player's horizontal velocity is greater than the maxSpeed...
+        if (Mathf.Abs(rb2d.velocity.x) > MaxSpeed)
+            // ... set the player's velocity to the maxSpeed in the x axis.
+            rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * MaxSpeed, rb2d.velocity.y);
+
 
 
         //Check IsOnGround to Trigger Jump
