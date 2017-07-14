@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
+    #region Variables
     public float MaxSpeed = 1f;
     public float moveForce = 10f;
 
@@ -12,30 +13,15 @@ public class CharacterScript : MonoBehaviour
     private bool jump;
     private string currentAnimation = null;
 
+    #endregion
+
+    #region Character Controls
+
     // Use this for initialization
     void Awake()
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-    }
-
-    //Author: Tjpark
-    //http://answers.unity3d.com/questions/801875/mecanim-trigger-getting-stuck-in-true-state.html
-    void setAnimation(string stringInput)
-    {
-        Animator anim = transform.GetComponent<Animator>();
-        if (currentAnimation == stringInput)
-        {
-        }
-        else
-        {
-            if (currentAnimation != null)
-            {
-                anim.ResetTrigger(currentAnimation);
-            }
-            anim.SetTrigger(stringInput);
-            currentAnimation = stringInput;
-        }
     }
 
     // Update is called once per frame
@@ -98,4 +84,25 @@ public class CharacterScript : MonoBehaviour
         }
 
     }
+
+    //Author: Tjpark
+    //http://answers.unity3d.com/questions/801875/mecanim-trigger-getting-stuck-in-true-state.html
+    void setAnimation(string stringInput)
+    {
+        Animator anim = transform.GetComponent<Animator>();
+        if (currentAnimation == stringInput)
+        {
+        }
+        else
+        {
+            if (currentAnimation != null)
+            {
+                anim.ResetTrigger(currentAnimation);
+            }
+            anim.SetTrigger(stringInput);
+            currentAnimation = stringInput;
+        }
+    }
+
+    #endregion
 }

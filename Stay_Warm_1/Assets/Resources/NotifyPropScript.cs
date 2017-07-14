@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class NotifyPropScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -14,6 +15,8 @@ public class NotifyPropScript : MonoBehaviour {
 		
 	}
 
+    #region Trigger Scripts
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -21,6 +24,7 @@ public class NotifyPropScript : MonoBehaviour {
             transform.Find("Exclaim").gameObject.SetActive(true);
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -28,4 +32,8 @@ public class NotifyPropScript : MonoBehaviour {
             transform.Find("Exclaim").gameObject.SetActive(false);
         }
     }
+
+    #endregion
+
+
 }

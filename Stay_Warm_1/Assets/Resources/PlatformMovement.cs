@@ -1,0 +1,164 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlatformMovement : MonoBehaviour {
+
+    #region Variables
+
+    public enum PlatformType
+    {
+        Horizontal,
+        Vertical
+    }
+
+    public PlatformType Type;
+    public bool ReverseDirection;
+    private float MoveDistance; // 1/2 Of Total distance moved by the platform
+    private float MoveSpeed; // Speed of platform movement
+
+    private bool isMovePositive = false;
+    private float MoveNegativeMax = 0;
+    private float MovePositiveMax = 0;
+
+    private float speedDeviation = 0;
+    public float SpeedDeviation { get { return speedDeviation; } }
+
+    #endregion
+
+    #region Init and Movement Functions
+
+    // Use this for initialization
+    void Start()
+    {
+        float CheckAxisVar = GetAxisVar(Type);
+
+        MoveDistance = 0f;
+        MoveSpeed = 100;
+        MoveNegativeMax = gameObject.transform.position.x - MoveDistance;
+        MovePositiveMax = gameObject.transform.position.x + MoveDistance;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 VectorChange = new Vector3(0,0,0); //Hold the Change in Position
+        float CheckAxisVar = GetAxisVar(Type);//Variable Ensures movement doesn't exceed max
+
+        //Check what axis to move the platform
+        if (Type == PlatformType.Horizontal)
+            VectorChange = new Vector3(MoveDistance / MoveSpeed, 0, 0);
+        else if (Type == PlatformType.Vertical)
+            VectorChange = new Vector3(0, MoveDistance / MoveSpeed, 0);
+
+        //Check direction of looped movement along the set axis for the platform type
+        if (CheckReverse(isMovePositive))
+        {
+            if (CheckAxisVar >= MovePositiveMax)
+            {
+                isMovePositive = CheckReverse(false);
+                return;
+            }
+            gameObject.transform.position += VectorChange;
+        }
+        else
+        {
+            if (CheckAxisVar <= MoveNegativeMax)
+            {
+                isMovePositive = CheckReverse(false);
+                return;
+            }
+            gameObject.transform.position -= VectorChange;
+        }
+    }
+
+    #endregion
+
+    #region Outside Access Methods
+
+    /// <summary>
+    /// Set the distance it will move to and fro on the axis for the platform type. 
+    /// [Negative]CurrentAxis -= setDistance, [Positive] CurrentAxis += setDistance
+    /// </summary>
+    /// <param name="setDistance">Float it will move forward and backward</param>
+    public void SetNewDistance(float setDistance)
+    {
+        //Get corresponding position based on the set axis for the platform type
+        float CheckAxisVar = GetAxisVar(Type);
+
+        //Set the distance to move alongside the axis
+        MoveDistance = setDistance;
+        MoveNegativeMax = CheckAxisVar - MoveDistance;
+        MovePositiveMax = CheckAxisVar + MoveDistance;
+    }
+    /// <summary>
+    /// Modify the speed's result with a decrease or increase. Want to avoid setting the actual variable
+    /// </summary>
+    /// <param name="IsIncrease">Increase or decrease speed</param>
+    /// <param name="AmountOfChange">Scale of which to increase or decraese the speed. Reset to Original by setting this to 0</param>
+    public void ChangeSpeed(bool IsIncrease, float AmountOfChange)
+    {
+        //Allow for reset of speed to original
+        if (AmountOfChange == 0)
+        {
+            if (speedDeviation < 0)
+            {
+                MoveSpeed /= SpeedDeviation;
+            }
+            else if (speedDeviation > 0)
+            {
+                MoveSpeed *= SpeedDeviation;
+            }
+            speedDeviation = 0;
+        }
+        else if (IsIncrease)
+        {
+            MoveSpeed /= AmountOfChange;
+            speedDeviation += AmountOfChange;
+        }
+        else
+        {
+            MoveSpeed *= AmountOfChange;
+            speedDeviation -= AmountOfChange;
+        }
+
+    }
+
+    #endregion
+
+    #region Misc Helper Methods
+
+    /// <summary>
+    /// Get the Position Variable on the corresponding axis based on platform type
+    /// </summary>
+    /// <param name="TypeCheck">Platform type to find axis position</param>
+    /// <returns></returns>
+    private float GetAxisVar(PlatformType TypeCheck)
+    {
+        switch (TypeCheck)
+        {
+            case PlatformType.Horizontal:
+                return gameObject.transform.position.x;
+            case PlatformType.Vertical:
+                return gameObject.transform.position.y;
+            default:
+                return 0;
+        }
+    }
+
+    /// <summary>
+    /// Checks if the looped direction order needs to be reversed
+    /// </summary>
+    /// <param name="CheckDirection">Original direction bool</param>
+    /// <returns></returns>
+    private bool CheckReverse(bool CheckDirection)
+    {
+        if (ReverseDirection)
+            return !CheckDirection;
+        else
+            return CheckDirection;
+    }
+
+    #endregion
+
+}
