@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23638805060604092}
   - component: {fileID: 61951238714159780}
   - component: {fileID: 114432151157635124}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HorizontalPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,3 +119,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  ReverseDirection: 0

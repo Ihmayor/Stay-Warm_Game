@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 410a35588f381ea43b8f8f360aad62a7
+timeCreated: 1500135206
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Icons South St
+  fontNames:
+  - Icons South St
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

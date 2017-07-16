@@ -65,7 +65,7 @@ public class PlatformMovement : MonoBehaviour {
         {
             if (CheckAxisVar <= MoveNegativeMax)
             {
-                isMovePositive = CheckReverse(false);
+                isMovePositive = CheckReverse(true);
                 return;
             }
             gameObject.transform.position -= VectorChange;

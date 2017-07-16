@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4813649485787866}
   - component: {fileID: 212322432696679384}
   - component: {fileID: 61810830693795154}
-  m_Layer: 14
+  m_Layer: 12
   m_Name: CratePinkGrid
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

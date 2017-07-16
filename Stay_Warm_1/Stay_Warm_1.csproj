@@ -100,6 +100,7 @@
     <Compile Include="Assets\Custom\NewScripts\SpawnManager.cs" />
     <Compile Include="Assets\DeployFog.cs" />
     <Compile Include="Assets\MenuManager.cs" />
+    <Compile Include="Assets\NotificationManager.cs" />
     <Compile Include="Assets\PlatformManager.cs" />
     <Compile Include="Assets\Resources\2D\Scripts\Camera2DFollow.cs" />
     <Compile Include="Assets\Resources\2D\Scripts\CameraFollow.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Assets\Scripts\ScoreShadow.cs" />
     <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
+    <Compile Include="Assets\Scroll.cs" />
     <Compile Include="Assets\SpawnLog.cs" />
   </ItemGroup>
   <ItemGroup>
