@@ -1,4 +1,12 @@
 Asset Credits: 
 Modified (tree-variations-from-jetrels-wood-tileset) Jetrel, Zabin, and Bertram from OGA 
+
+Audio Clips 
+freesound.org:
 "Piano, Lid Close, A.wav" by InspectorJ of Freesound.org
 "Mouth pop" by jcallison
+
+Fire Particles Used: 
+https://github.com/josemorval/Fire-2D-in-Unity
+josemorval/Fire-2D-in-Unity
+http://quill18.com/unity_tutorials/2d_fire_edge/

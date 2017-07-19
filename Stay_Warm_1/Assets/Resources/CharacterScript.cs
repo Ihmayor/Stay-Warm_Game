@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterScript : MonoBehaviour
 {
     #region Variables
-    public float MaxSpeed = 1f;
+    public float MaxSpeed = 2f;
     public float moveForce = 10f;
 
     private Animator animator;
@@ -27,7 +27,8 @@ public class CharacterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (MenuManager.Instance.GameOver)
+            return;
         var vertical = Input.GetAxis("Vertical");
         var horizontal = Input.GetAxis("Horizontal");
 
@@ -65,11 +66,12 @@ public class CharacterScript : MonoBehaviour
 
         //Check IsOnGround to Trigger Jump
         bool grounded = Physics2D.Linecast(transform.position, this.gameObject.transform.Find("GroundCheck").position, 1 << LayerMask.NameToLayer("Ground"));
-        if (Input.GetButtonUp("Jump") && grounded)
+        bool platformed = Physics2D.Linecast(transform.position, this.gameObject.transform.Find("GroundCheck").position, 1 << LayerMask.NameToLayer("Platform"));
+
+        if (Input.GetButtonUp("Jump") && (grounded || platformed))
         {
             //Set Animation Jump. TODO: Jump animation clip.
             jump = true;
-
         }
     }
 
@@ -103,6 +105,26 @@ public class CharacterScript : MonoBehaviour
             currentAnimation = stringInput;
         }
     }
+    
+    /// <summary>
+    /// Code to stay on platforms
+    /// </summary>
+    /// <param name="other">Platform</param>
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.name.Contains("Platform"))
+        {
+            transform.parent = other.transform;
+        }
+    }
 
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.name.Contains("Platform"))
+        {
+            transform.parent = null;
+
+        }
+    }
     #endregion
 }

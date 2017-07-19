@@ -18,6 +18,10 @@ public class DeathTrigger : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-        { Debug.Log("Test"); SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); }
+        {
+
+            Debug.Log("Test");
+            MenuManager.Instance.ShowGameOver();
+        }
     }
 }

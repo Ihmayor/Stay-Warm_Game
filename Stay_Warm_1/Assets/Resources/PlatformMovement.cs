@@ -14,14 +14,14 @@ public class PlatformMovement : MonoBehaviour {
 
     public PlatformType Type;
     public bool ReverseDirection;
-    private float MoveDistance; // 1/2 Of Total distance moved by the platform
+    public float MoveDistance; // 1/2 Of Total distance moved by the platform
     private float MoveSpeed; // Speed of platform movement
 
-    private bool isMovePositive = false;
-    private float MoveNegativeMax = 0;
-    private float MovePositiveMax = 0;
+    private bool isMovePositive;
+    private float MoveNegativeMax;
+    private float MovePositiveMax;
 
-    private float speedDeviation = 0;
+    private float speedDeviation;
     public float SpeedDeviation { get { return speedDeviation; } }
 
     #endregion
@@ -32,16 +32,17 @@ public class PlatformMovement : MonoBehaviour {
     void Start()
     {
         float CheckAxisVar = GetAxisVar(Type);
-
-        MoveDistance = 0f;
         MoveSpeed = 100;
-        MoveNegativeMax = gameObject.transform.position.x - MoveDistance;
-        MovePositiveMax = gameObject.transform.position.x + MoveDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (MoveDistance == 0)
+        {
+            Debug.Log("Error. Distance not set for: " + GetInstanceID());
+            Debug.Log("MaxDistance" + MoveNegativeMax);
+        }
         Vector3 VectorChange = new Vector3(0,0,0); //Hold the Change in Position
         float CheckAxisVar = GetAxisVar(Type);//Variable Ensures movement doesn't exceed max
 
@@ -83,13 +84,16 @@ public class PlatformMovement : MonoBehaviour {
     /// <param name="setDistance">Float it will move forward and backward</param>
     public void SetNewDistance(float setDistance)
     {
+        Debug.Log("Distance set to: " + setDistance + " for " + GetInstanceID());
+
         //Get corresponding position based on the set axis for the platform type
         float CheckAxisVar = GetAxisVar(Type);
 
         //Set the distance to move alongside the axis
-        MoveDistance = setDistance;
+        this.MoveDistance = setDistance;
         MoveNegativeMax = CheckAxisVar - MoveDistance;
         MovePositiveMax = CheckAxisVar + MoveDistance;
+        Update();
     }
     /// <summary>
     /// Modify the speed's result with a decrease or increase. Want to avoid setting the actual variable

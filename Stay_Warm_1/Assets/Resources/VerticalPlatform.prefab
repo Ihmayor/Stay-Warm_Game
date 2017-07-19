@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 23662368532224446}
   - component: {fileID: 61756242909813468}
   - component: {fileID: 114601002361043694}
-  m_Layer: 12
+  m_Layer: 16
   m_Name: VerticalPlatform
-  m_TagString: Untagged
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,7 +90,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1431027045943438}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5f9c37fb361d64b788498991d3de93d7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -120,3 +120,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   ReverseDirection: 0
+  MoveDistance: 0
