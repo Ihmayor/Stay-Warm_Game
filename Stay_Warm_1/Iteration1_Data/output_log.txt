@@ -1,0 +1,158 @@
+Initialize engine version: 5.6.2f1 (a2913c821e27)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [igdumdim32.dll 21.20.16.4534]
+    Renderer: Intel(R) HD Graphics 520
+    Vendor:   Intel
+    VRAM:     2111 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 NULL=1 RESZ=1 SlowINTZ=0 ATOC=1 BC4=1 BC5=1
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.026 seconds
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\System.dll (this message is harmless)
+WARNING: Shader Unsupported: 'Hidden/VR/BlitCopyFromTexArray' - Pass '' has no vertex shader
+WARNING: Shader Unsupported: 'Hidden/VR/BlitCopyFromTexArray' - Setting to default shader.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+The referenced script on this Behaviour (Game Object 'FireParticle-Yellow') is missing!
+ 
+(Filename:  Line: 1743)
+
+UnloadTime: 1.696853 ms
+Distance set to: 1.2 for -410
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.859992 for -422
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.285036 for -434
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.292963 for -446
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.331804 for -458
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.833941 for -470
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.088143 for -482
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.368488 for -494
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.479112 for -506
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.766098 for -518
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.137212 for -530
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.953605 for -542
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Object 'FireParticle-Red' wasn't spawned from a pool. Destroying it instead.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+The referenced script on this Behaviour (Game Object 'FireParticle-Yellow') is missing!
+ 
+(Filename:  Line: 1743)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.444266 ms
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 659.
+Total: 1.511253 ms (FindLiveObjects: 0.145493 ms CreateObjectMapping: 0.128426 ms MarkObjects: 1.002666 ms  DeleteObjects: 0.226986 ms)
+
+Distance set to: 1.2 for -900
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.621799 for -912
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.569901 for -924
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.219038 for -936
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.104115 for -948
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.020456 for -960
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.914262 for -972
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.877588 for -984
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.747119 for -996
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.461208 for -1008
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.963078 for -1020
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.024537 for -1032
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Object 'FireParticle-Red' wasn't spawned from a pool. Destroying it instead.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 341c -> priority: 1 
+  Thread -> id: 2a08 -> priority: 1 

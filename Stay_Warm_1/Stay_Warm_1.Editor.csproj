@@ -235,7 +235,6 @@
     <None Include="Assets\Fire\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
     <None Include="Assets\Fire\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\TiltShiftHdrLensBlur.shader" />
     <None Include="Assets\Fire\Standard Assets\Effects\ImageEffects\Shaders\frag_ao.cginc" />
-    <None Include="Assets\Fire\Standard Assets\Effects\Projectors\Guidelines.txt" />
     <None Include="Assets\Fire\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />
     <None Include="Assets\Fire\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
     <None Include="Assets\Fire\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />

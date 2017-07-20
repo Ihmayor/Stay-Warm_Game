@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Resources/Intro.unity
+- path: Assets/Resources/Scenes/BlackWhite.unity
   isLoaded: 1
   isActive: 1

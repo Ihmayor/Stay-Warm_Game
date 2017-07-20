@@ -12,6 +12,16 @@ public class PlatformManager : MonoBehaviour {
 
         //Reference this instance as singleton instance
         PlatformManager.Instance = this;
+        //InstantiateAndDemoMovement();
+
+    }
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+    private void InstantiateAndDemoMovement()
+    {
 
         //Instantiate Platforms
         //Ground is 3.3f
@@ -39,31 +49,26 @@ public class PlatformManager : MonoBehaviour {
         for (int i = 0; i <= HozPlatforms; i++)
         {
             GameObject newPlatform = Instantiate(HorizontalPlatform, MainBackgroundParent.transform);
-            newPlatform.transform.position = prevPlatformPosition + new Vector3(Random.Range(0.5f,1f)+ HorizontalPlatform.transform.localScale.x, 0, 0);
-            newPlatform.GetComponent<PlatformMovement>().SetNewDistance(Random.Range(1.5f,2.5f));
+            newPlatform.transform.position = prevPlatformPosition + new Vector3(Random.Range(0.1f, 0.4f) + HorizontalPlatform.transform.localScale.x, 0, 0);
+            newPlatform.GetComponent<PlatformMovement>().SetNewDistance(Random.Range(1.5f, 2.5f));
             if (Random.Range(0, 1) == 1)
             {
                 newPlatform.GetComponent<PlatformMovement>().ReverseDirection = true;
             }
 
-            int SelectSpeed = Random.Range(0,10);
+            int SelectSpeed = Random.Range(0, 10);
             if (SelectSpeed == 5)
             {
-                newPlatform.GetComponent<PlatformMovement>().ChangeSpeed(true, Random.Range(0.3f,0.6f));
+                newPlatform.GetComponent<PlatformMovement>().ChangeSpeed(true, Random.Range(0.3f, 0.6f));
             }
-            else if (SelectSpeed ==7) 
+            else if (SelectSpeed == 7)
             {
                 newPlatform.GetComponent<PlatformMovement>().ChangeSpeed(false, Random.Range(0.3f, 0.6f));
             }
 
             prevPlatformPosition = newPlatform.transform.position;
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 
     private void DemoMovement()
     {

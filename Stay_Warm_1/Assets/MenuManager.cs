@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour {
     private GameObject MainMenuSystem;
     private GameObject InstructionBox;
     private GameObject GameOverText;
+    private GameObject WinMenu;
 
     private float MenuRatio;
     private AudioSource[] AudioSources;
@@ -25,14 +26,14 @@ public class MenuManager : MonoBehaviour {
         MainMenuSystem = GameObject.Find("MenuSystem");
         InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         GameOverText = MainMenuSystem.transform.Find("GameOver").gameObject;
+        WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
         AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
     }
 
     // Update is called once per frame
     void Update () {
-        Debug.Log(Screen.width);
-        Debug.Log(Screen.height);
+        
     }
 
     public void ReplayGame()
@@ -43,6 +44,11 @@ public class MenuManager : MonoBehaviour {
     public void ShowGameOver()
     {
         GameOverText.SetActive(true);
+        GameOver = true;
+    }
+    public void ShowWin()
+    {
+        WinMenu.SetActive(true);
         GameOver = true;
     }
 

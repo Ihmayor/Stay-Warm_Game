@@ -17,8 +17,9 @@ public class NotificationManager : MonoBehaviour {
         NotificationManager.Instance = this;
         //Create all props here with unique ID's 
 
+
         //For now deal with the hardcoded bush
-        GameObject.Find("Background").transform.Find("Bush").GetComponent<NotifyPropScript>().SetNotification("You picked up a 'Glass Heart'");
+        //GameObject.Find("Background").transform.Find("Bush").GetComponent<NotifyPropScript>().SetNotification("You picked up a 'Glass Heart'");
 
     }
 
