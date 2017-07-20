@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterScript : MonoBehaviour
+public class CharacterController : MonoBehaviour
 {
     #region Variables
     public float MaxSpeed = 2f;
