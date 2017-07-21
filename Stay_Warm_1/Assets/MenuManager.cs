@@ -9,49 +9,89 @@ using UnityEngine.UI;
 /// </summary>
 public class MenuManager : MonoBehaviour {
 
-    #region Singleton instance
+    /// <summary>
+    /// Singleton Instance to trigger menu opening elsewhere
+    /// </summary>
     public static MenuManager Instance { private set; get; }
-    #endregion
+
+    /// <summary>
+    /// Global GameOver will be set here
+    /// </summary>
     public bool GameOver { private set; get; }
+
+    /// <summary>
+    /// Menu objects
+    /// </summary>
     private GameObject MainMenuSystem;
     private GameObject InstructionBox;
     private GameObject GameOverText;
     private GameObject WinMenu;
+    private GameObject ThoughtBox;
 
+    /// <summary>
+    /// UI Helper variables for adjusting and making sounds on menus
+    /// </summary>
     private float MenuRatio;
     private AudioSource[] AudioSources;
+    
     // Use this for initialization
     void Start () {
         MenuManager.Instance = this;
         MainMenuSystem = GameObject.Find("MenuSystem");
-        InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         GameOverText = MainMenuSystem.transform.Find("GameOver").gameObject;
         WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
-        AudioSources = InstructionBox.GetComponents<AudioSource>();
+        ThoughtBox = MainMenuSystem.transform.Find("Thoughts").gameObject;
+        
+        //InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
+        // AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
     }
 
     // Update is called once per frame
     void Update () {
-        
     }
 
+    /// <summary>
+    /// Restart current scene/Replay Current Level
+    /// </summary>
     public void ReplayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    /// <summary>
+    /// Show Game Over Menu and disable user input
+    /// </summary>
     public void ShowGameOver()
     {
         GameOverText.SetActive(true);
         GameOver = true;
     }
+
+    /// <summary>
+    /// Show Win Menu and Disable user input. TODO: Load new scene or animation of win scene.
+    /// </summary>
     public void ShowWin()
     {
         WinMenu.SetActive(true);
         GameOver = true;
     }
 
+    /// <summary>
+    /// Changes Contents of thought box. 
+    /// </summary>
+    /// <param name="characterName">Name of Character with the thought</param>
+    /// <param name="thoughtMessage">Thought Content</param>
+    public void SetThought(string characterName, string thoughtMessage)
+    {
+        ThoughtBox.transform.Find("CharacterName").GetComponent<Text>().text = characterName;
+        ThoughtBox.transform.Find("ThoughtText").GetComponent<Text>().text = thoughtMessage;
+    }
+
+    /// <summary>
+    /// Goofy Instruction box from First Iteration. TODO: Re-purpose for _real_ menu system.
+    /// </summary>
+    /// <param name="message"></param>
     public void OpenCuteBox(string message)
     {
         InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
@@ -61,7 +101,10 @@ public class MenuManager : MonoBehaviour {
         StartCoroutine("BiggerMenu");
     }
 
-
+    /// <summary>
+    /// Slowly makes menu bigger for popping effect
+    /// </summary>
+    /// <returns></returns>
     IEnumerator BiggerMenu()
    {
         InstructionBox.SetActive(true);
@@ -75,6 +118,10 @@ public class MenuManager : MonoBehaviour {
         StartCoroutine("CloseInstructionBox");
     }
 
+    /// <summary>
+    /// Slowly shrinks menu for nice close effect
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CloseInstructionBox()
     {
         yield return new WaitForSeconds(3.5f);

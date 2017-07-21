@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
     private bool jump;
     private string currentAnimation = null;
 
+    private float SacrificeFactor;
     #endregion
 
     #region Character Controls
@@ -22,6 +23,14 @@ public class CharacterController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        SacrificeFactor = 0.05f;
+    }
+
+    void SacrificeHealth()
+    {
+        Debug.Log("Sacrificing");
+        this.GetComponent<CharacterStatus>().WarmHeart(SacrificeFactor);
+        this.GetComponent<CharacterStatus>().Hurt(SacrificeFactor);
     }
 
     // Update is called once per frame
@@ -29,14 +38,9 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            this.GetComponent<CharacterStatus>().SetHeartCooling(true);
+            SacrificeHealth();
         }
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            this.GetComponent<CharacterStatus>().SetHeartCooling(false);
-        }
-
-
+        
         if (MenuManager.Instance.GameOver)
             return;
         var vertical = Input.GetAxis("Vertical");

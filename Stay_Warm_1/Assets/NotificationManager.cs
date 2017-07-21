@@ -19,7 +19,7 @@ public class NotificationManager : MonoBehaviour {
 
 
         //For now deal with the hardcoded bush
-        GameObject.Find("Background").transform.Find("Bush").GetComponent<NotifyPropScript>().SetNotification("You picked up a 'Glass Heart'");
+        //GameObject.Find("Background").transform.Find("Bush").GetComponent<NotifyPropScript>().SetNotification("You picked up a 'Glass Heart'");
 
     }
 

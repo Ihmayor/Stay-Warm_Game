@@ -53,6 +53,12 @@ public class CoolingElement : MonoBehaviour {
                 WindPositionChange *= -1;
             collision.gameObject.transform.position -= WindPositionChange;
 
+            //Jitter player if they are fighting against it.
+            Vector3 JitterPositionChange = new Vector3(0, Random.Range(-DriftSpeed, DriftSpeed), 0);
+            var horizontal = Input.GetAxis("Horizontal");
+            if ((horizontal > 0 && !isRightDirection) || (horizontal < 0 && isRightDirection))
+                collision.gameObject.transform.position += JitterPositionChange;
+
             collision.gameObject.GetComponent<CharacterStatus>().IncreaseCoolingStrength();
         }
     }

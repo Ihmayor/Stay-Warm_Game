@@ -31,5 +31,17 @@ public class WarmingElement : MonoBehaviour {
         }
     }
 
-    
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject Character = collision.gameObject;
+            Character.GetComponent<CharacterStatus>().CheckCharacterHealth();
+            Character.GetComponent<CharacterStatus>().FightPlayer();
+            if (Character.GetComponent<CharacterStatus>().isFightingPlayer)
+                Character.transform.position = new Vector3(this.gameObject.transform.position.x, Character.transform.position.y, Character.transform.position.z);
+        }
+    }
+
+
 }
