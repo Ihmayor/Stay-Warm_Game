@@ -1,85 +1,73 @@
 Initialize engine version: 5.6.2f1 (a2913c821e27)
 GfxDevice: creating device client; threaded=1
 Direct3D:
-    Version:  Direct3D 9.0c [igdumdim32.dll 21.20.16.4534]
-    Renderer: Intel(R) HD Graphics 520
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Intel(R) HD Graphics 520 (ID=0x1916)
     Vendor:   Intel
-    VRAM:     2111 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 NULL=1 RESZ=1 SlowINTZ=0 ATOC=1 BC4=1 BC5=1
+    VRAM:     2111 MB
+    Driver:   21.20.16.4534
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
 Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.026 seconds
+- Completed reload, in  0.060 seconds
 Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\User\Documents\Project1_Repo\Stay_Warm_1\Iteration1_Data\Managed\System.dll (this message is harmless)
-WARNING: Shader Unsupported: 'Hidden/VR/BlitCopyFromTexArray' - Pass '' has no vertex shader
-WARNING: Shader Unsupported: 'Hidden/VR/BlitCopyFromTexArray' - Setting to default shader.
-desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initialized touch support.
-The referenced script on this Behaviour (Game Object 'FireParticle-Yellow') is missing!
- 
-(Filename:  Line: 1743)
-
-UnloadTime: 1.696853 ms
-Distance set to: 1.2 for -410
+UnloadTime: 1.655040 ms
+Distance set to: 1.2 for -418
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.859992 for -422
+Distance set to: 2.118861 for -430
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.285036 for -434
+Distance set to: 1.710842 for -442
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.292963 for -446
+Distance set to: 2.318875 for -454
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.331804 for -458
+Distance set to: 1.715457 for -466
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.833941 for -470
+Distance set to: 1.639934 for -478
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.088143 for -482
+Distance set to: 1.861763 for -490
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.368488 for -494
+Distance set to: 1.931497 for -502
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.479112 for -506
+Distance set to: 1.622482 for -514
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.766098 for -518
+Distance set to: 1.824447 for -526
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.137212 for -530
+Distance set to: 1.906937 for -538
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.953605 for -542
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Object 'FireParticle-Red' wasn't spawned from a pool. Destroying it instead.
+Distance set to: 1.946828 for -550
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
@@ -90,69 +78,313 @@ Test
 Test
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-The referenced script on this Behaviour (Game Object 'FireParticle-Yellow') is missing!
- 
-(Filename:  Line: 1743)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 5.444266 ms
+UnloadTime: 10.521600 ms
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 659.
-Total: 1.511253 ms (FindLiveObjects: 0.145493 ms CreateObjectMapping: 0.128426 ms MarkObjects: 1.002666 ms  DeleteObjects: 0.226986 ms)
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 537.
+Total: 0.625920 ms (FindLiveObjects: 0.040106 ms CreateObjectMapping: 0.034133 ms MarkObjects: 0.480000 ms  DeleteObjects: 0.069546 ms)
 
-Distance set to: 1.2 for -900
+Distance set to: 1.2 for -912
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.621799 for -912
+Distance set to: 1.85954 for -924
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.569901 for -924
+Distance set to: 1.887194 for -936
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.219038 for -936
+Distance set to: 2.466279 for -948
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.104115 for -948
+Distance set to: 2.155055 for -960
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.020456 for -960
+Distance set to: 2.270205 for -972
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.914262 for -972
+Distance set to: 2.438996 for -984
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.877588 for -984
+Distance set to: 1.840274 for -996
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.747119 for -996
+Distance set to: 1.816235 for -1008
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.461208 for -1008
+Distance set to: 2.390303 for -1020
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 1.963078 for -1020
+Distance set to: 2.089169 for -1032
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Distance set to: 2.024537 for -1032
+Distance set to: 1.562628 for -1044
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Object 'FireParticle-Red' wasn't spawned from a pool. Destroying it instead.
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.847360 ms
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 537.
+Total: 0.724480 ms (FindLiveObjects: 0.075520 ms CreateObjectMapping: 0.079360 ms MarkObjects: 0.495360 ms  DeleteObjects: 0.071680 ms)
+
+Distance set to: 1.2 for -1396
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.541407 for -1408
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.160219 for -1420
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.905461 for -1432
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.029742 for -1444
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.616986 for -1456
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.711073 for -1468
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.176077 for -1480
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.923855 for -1492
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.933524 for -1504
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.440564 for -1516
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.965351 for -1528
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.742826 ms
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 537.
+Total: 0.418133 ms (FindLiveObjects: 0.039253 ms CreateObjectMapping: 0.020906 ms MarkObjects: 0.292693 ms  DeleteObjects: 0.063573 ms)
+
+Distance set to: 1.2 for -1880
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.148479 for -1892
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.34986 for -1904
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.295289 for -1916
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.770318 for -1928
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.507343 for -1940
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.210585 for -1952
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.609042 for -1964
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.145549 for -1976
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.477471 for -1988
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.267452 for -2000
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.09007 for -2012
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.852053 ms
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 537.
+Total: 0.475306 ms (FindLiveObjects: 0.040533 ms CreateObjectMapping: 0.033280 ms MarkObjects: 0.331946 ms  DeleteObjects: 0.067413 ms)
+
+Distance set to: 1.2 for -2364
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.312207 for -2376
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.50486 for -2388
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.752691 for -2400
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.475941 for -2412
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.028447 for -2424
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.10278 for -2436
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.750365 for -2448
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.351915 for -2460
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.513111 for -2472
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.219795 for -2484
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.005434 for -2496
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.819200 ms
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 537.
+Total: 0.535466 ms (FindLiveObjects: 0.053760 ms CreateObjectMapping: 0.029866 ms MarkObjects: 0.371626 ms  DeleteObjects: 0.077653 ms)
+
+Distance set to: 1.2 for -2848
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.654315 for -2860
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.381256 for -2872
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.049218 for -2884
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.554135 for -2896
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.706031 for -2908
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.469624 for -2920
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.536261 for -2932
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.425786 for -2944
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.95666 for -2956
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 1.798216 for -2968
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Distance set to: 2.078671 for -2980
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Test
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 341c -> priority: 1 
-  Thread -> id: 2a08 -> priority: 1 
+  Thread -> id: 2f54 -> priority: 1 
+  Thread -> id: 26a4 -> priority: 1 

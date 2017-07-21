@@ -17,8 +17,8 @@ public class SpawnLog : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //IterationDemo();
-        Iteration2Demo();
+        IterationDemo();
+     //   Iteration2Demo();
 
 
     }

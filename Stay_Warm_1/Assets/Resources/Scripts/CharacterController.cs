@@ -90,7 +90,7 @@ public class CharacterController : MonoBehaviour
         if (jump)
         {
             //animator.SetTrigger("Jump");
-            float jumpForce = 120f;
+            float jumpForce = 90f;
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
         }
