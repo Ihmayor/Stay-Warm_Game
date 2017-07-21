@@ -27,6 +27,16 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            this.GetComponent<CharacterStatus>().SetHeartCooling(true);
+        }
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            this.GetComponent<CharacterStatus>().SetHeartCooling(false);
+        }
+
+
         if (MenuManager.Instance.GameOver)
             return;
         var vertical = Input.GetAxis("Vertical");

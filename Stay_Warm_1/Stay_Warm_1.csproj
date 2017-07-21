@@ -102,10 +102,12 @@
     <Compile Include="Assets\Resources\Scripts\AnimTest.cs" />
     <Compile Include="Assets\Resources\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Resources\Scripts\CharacterStatus.cs" />
+    <Compile Include="Assets\Resources\Scripts\CoolingElement.cs" />
     <Compile Include="Assets\Resources\Scripts\DeathTrigger.cs" />
     <Compile Include="Assets\Resources\Scripts\GeneratePlatform.cs" />
     <Compile Include="Assets\Resources\Scripts\NotifyPropScript.cs" />
     <Compile Include="Assets\Resources\Scripts\PlatformMovement.cs" />
+    <Compile Include="Assets\Resources\Scripts\WarmingElement.cs" />
     <Compile Include="Assets\Scroll.cs" />
     <Compile Include="Assets\SpawnLog.cs" />
     <Compile Include="Assets\WinTrigger.cs" />

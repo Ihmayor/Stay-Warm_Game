@@ -24,10 +24,10 @@ public class MenuManager : MonoBehaviour {
     void Start () {
         MenuManager.Instance = this;
         MainMenuSystem = GameObject.Find("MenuSystem");
-        InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
+        //InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         GameOverText = MainMenuSystem.transform.Find("GameOver").gameObject;
         WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
-        AudioSources = InstructionBox.GetComponents<AudioSource>();
+       // AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
     }
 

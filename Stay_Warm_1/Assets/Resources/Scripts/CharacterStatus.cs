@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStatus : MonoBehaviour {
 
     private bool isHeartCooling; //Bool to hold if Heart Subject to Cooling
-    private float HeartCoolingFactor;//Amount Heart should cool by.
+    private float HeartCoolingFactor;//Amount Heart should cool by. Centralized as multiple cooling elements can increase its effect
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
 
@@ -17,7 +18,7 @@ public class CharacterStatus : MonoBehaviour {
         InvokeRepeating("CheckHeart", 0, 0.2f);
         HeartCoolingFactor = 0.005f;
         OriginalHeartCoolingFactor = HeartCoolingFactor;
-        CoolStrength = 0.01f;
+        CoolStrength = 0.001f;
         isHeartCooling = false;
     }
 	
@@ -41,19 +42,19 @@ public class CharacterStatus : MonoBehaviour {
     /// <summary>
     /// Heal the Player's Health
     /// </summary>
-    /// <param name="HealthIncrease">Amount to Heal</param>
+    /// <param name="HealthIncrease">Amount to Heal. 1 = 100% </param>
     public void Heal(float HealthIncrease)
     {
-
+        HealthBar.GetComponent<Image>().fillAmount += HealthIncrease;
     }
 
     /// <summary>
     /// Damage the Player's Health
     /// </summary>
-    /// <param name="HealthDecrease">Amount to Damage</param>
+    /// <param name="HealthDecrease">Amount to Damage Range (1,0)</param>
     public void Hurt(float HealthDecrease)
     {
-
+        HealthBar.GetComponent<Image>().fillAmount -= HealthDecrease;
     }
 
     /// <summary>
@@ -99,16 +100,16 @@ public class CharacterStatus : MonoBehaviour {
     /// </summary>
     private void CoolHeart()
     {
-        //Fetch Heart Levels
+        HeartBar.GetComponent<Image>().fillAmount -= HeartCoolingFactor;
     }
 
     /// <summary>
     /// Warm up the heart
     /// </summary>
-    /// <param name="AmountToWarm">Amount to warm heart by</param>
+    /// <param name="AmountToWarm">Amount to warm heart by. 1 = 100%</param>
     public void WarmHeart(float AmountToWarm)
     {
-        //Warm Heart
+        HeartBar.GetComponent<Image>().fillAmount += AmountToWarm;
     }
 
 
