@@ -39,7 +39,7 @@ public class WarmingElement : MonoBehaviour {
             Character.GetComponent<CharacterStatus>().CheckCharacterHealth();
             Character.GetComponent<CharacterStatus>().FightPlayer();
             if (Character.GetComponent<CharacterStatus>().isFightingPlayer)
-                Character.transform.position = new Vector3(this.gameObject.transform.position.x, Character.transform.position.y, Character.transform.position.z);
+                Character.transform.position = new Vector2(this.gameObject.transform.position.x, Character.transform.position.y);
         }
     }
 

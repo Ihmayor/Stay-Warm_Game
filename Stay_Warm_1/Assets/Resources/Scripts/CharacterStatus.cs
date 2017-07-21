@@ -11,6 +11,8 @@ public class CharacterStatus : MonoBehaviour
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
 
+    private float SacrificeFactor;
+
     ///Character fighting against player variables
     public bool isFightingPlayer { private set; get; }
     private int CharacterWill;
@@ -64,6 +66,7 @@ public class CharacterStatus : MonoBehaviour
         isHeartCooling = false;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
+        SacrificeFactor = 0.05f;
         CharacterName = "????";
 
         isFightingPlayer = false;
@@ -152,6 +155,14 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sacrifice Health
+    /// </summary>
+    public void SacrificeHealth()
+    {
+        WarmHeart(SacrificeFactor);
+        Hurt(SacrificeFactor);
+    }
     #endregion
 
     #region Heart Methods

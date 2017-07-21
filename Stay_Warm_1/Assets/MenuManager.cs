@@ -29,7 +29,7 @@ public class MenuManager : MonoBehaviour {
     private GameObject ThoughtBox;
 
     /// <summary>
-    /// UI Helper variables for adjusting and making sounds on menus
+    /// UI Helper variables
     /// </summary>
     private float MenuRatio;
     private AudioSource[] AudioSources;
