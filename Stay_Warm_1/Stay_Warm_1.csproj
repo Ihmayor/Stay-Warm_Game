@@ -110,6 +110,7 @@
     <Compile Include="Assets\Resources\Scripts\WarmingElement.cs" />
     <Compile Include="Assets\Scroll.cs" />
     <Compile Include="Assets\SpawnLog.cs" />
+    <Compile Include="Assets\WarmingElementManager.cs" />
     <Compile Include="Assets\WinTrigger.cs" />
   </ItemGroup>
   <ItemGroup>

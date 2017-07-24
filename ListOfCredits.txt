@@ -5,6 +5,24 @@ Audio Clips
 freesound.org:
 "Piano, Lid Close, A.wav" by InspectorJ of Freesound.org
 "Mouth pop" by jcallison
+"Heartbeat."  by urupin
+"double_cough_01.wav" by joedeshon
+"Wind.wav" by bigmanjoe
+"Crystal Waters" by purple-planet.com
+"Deliberation" by purple-planet.com
+"Heartbeat Sound Effect 01" by https://www.soundjay.com/heartbeat-sound-effect.html	
+
+Perspectives Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+
+Comfortable Mystery 2 Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
+
+Comfortable Mystery 3 Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/
 
 Fire Particles Used: 
 https://github.com/josemorval/Fire-2D-in-Unity

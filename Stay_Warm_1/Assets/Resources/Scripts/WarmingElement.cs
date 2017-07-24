@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WarmingElement : MonoBehaviour {
     public float WarmingFactor;
+    
 
     // Use this for initialization
     void Start () {
@@ -36,10 +38,24 @@ public class WarmingElement : MonoBehaviour {
         if (collision.gameObject.CompareTag("Player"))
         {
             GameObject Character = collision.gameObject;
-            Character.GetComponent<CharacterStatus>().CheckCharacterHealth();
-            Character.GetComponent<CharacterStatus>().FightPlayer();
+
+            Character.GetComponent<CharacterStatus>().CheckCharacterHealth(false);
             if (Character.GetComponent<CharacterStatus>().isFightingPlayer)
+            {
                 Character.transform.position = new Vector2(this.gameObject.transform.position.x, Character.transform.position.y);
+                Character.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+                Character.GetComponent<CharacterStatus>().FightPlayer();
+            }
+
+            if (this.gameObject.GetComponent<SpriteRenderer>().color == Color.white)
+            {
+
+                this.gameObject.GetComponent<SpriteRenderer>().color = WarmingElementManager.Instance.FetchNextColor();
+                this.GetComponent<AudioSource>().PlayOneShot(WarmingElementManager.Instance.FetchRandomChime());
+                this.GetComponent<AudioSource>().loop = false;
+            }
+
+
         }
     }
 

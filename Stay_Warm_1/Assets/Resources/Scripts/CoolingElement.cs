@@ -11,7 +11,7 @@ public class CoolingElement : MonoBehaviour {
     public bool isRightDirection;
 	// Use this for initialization
 	void Start () {
-        FadeFactor = 0.026f;
+        FadeFactor = 0.016f;
         DriftSpeed = 0.01f;
         isRightDirection = false;
     }
@@ -20,7 +20,8 @@ public class CoolingElement : MonoBehaviour {
 	void Update () {
         float exponentIncrease = 1.5f; //How fast it fades. This is the ideal value found.
         Color oldColor = this.GetComponent<SpriteRenderer>().color;
-        if (oldColor.a > 0) {
+        if (oldColor.a > 0)
+        {
             this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, oldColor.a - Mathf.Pow(FadeFactor, exponentIncrease));
             Vector3 WindPositionChange = new Vector3(DriftSpeed, 0, 0);
             if (isRightDirection)
@@ -28,19 +29,17 @@ public class CoolingElement : MonoBehaviour {
             this.gameObject.transform.position -= WindPositionChange;
         }
         else
+        {
             Destroy(gameObject);
+        }
 	}
-
-    private void Fade()
-    {
-        
-    }
-
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<CharacterStatus>().SetHeartCooling(true);
+            this.GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Audio/wind_gust"));
         }
     }
 

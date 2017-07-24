@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CharacterStatus : MonoBehaviour
 {
 
+    private AudioSource audioSource;
+
     private bool isHeartCooling; //Bool to hold if Heart Subject to Cooling
     private float HeartCoolingFactor;//Amount Heart should cool by. Centralized as multiple cooling elements can increase its effect
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
@@ -52,8 +54,8 @@ public class CharacterStatus : MonoBehaviour
         "No. I can make it.",
         "No...I will not give up! I can move my feet a little bit more" };
 
-    public GameObject HeartBar;
-    public GameObject HealthBar;
+    public GameObject HeartBar; //Assigned from the menu in the scene
+    public GameObject HealthBar; //Assigned from the menu in the scene
     public string CharacterName;
 
     #region Init/Repeated Functions
@@ -73,6 +75,8 @@ public class CharacterStatus : MonoBehaviour
         CharacterWill = 5;
         Debate = 2;
         FightCount = 0;
+
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -114,17 +118,18 @@ public class CharacterStatus : MonoBehaviour
     public void Hurt(float HealthDecrease)
     {
         HealthBar.GetComponent<Image>().fillAmount -= HealthDecrease;
-        CheckCharacterHealth();
+        CheckCharacterHealth(true);
     }
 
-    public void CheckCharacterHealth()
+    public void CheckCharacterHealth(bool setThought)
     {
         float HealthAmount = HealthBar.GetComponent<Image>().fillAmount;
         if (HealthAmount <= 0)
             MenuManager.Instance.ShowGameOver();
         else if (HealthAmount <= 0.2f)
         {
-            MenuManager.Instance.SetThought(CharacterName, "There is no point in carrying on. Why bother? I should have never tried in the first place. This was stupid. I am stupid. I cannot believe that I thought that I could ever do this. The pain is far too great.");
+            if (setThought)
+                MenuManager.Instance.SetThought(CharacterName, "There is no point in carrying on. Why bother? I should have never tried in the first place. This was stupid. I am stupid. I cannot believe that I thought that I could ever do this. The pain is far too great.");
 
             //Increase chance of character backtalk
             isFightingPlayer = true;
@@ -133,25 +138,40 @@ public class CharacterStatus : MonoBehaviour
         }
         else if (HealthAmount <= 0.333f)
         {
-            MenuManager.Instance.SetThought(CharacterName, "I don't want to move on.");
-
+            if (setThought)
+                MenuManager.Instance.SetThought(CharacterName, "I don't want to move on.");
             //Character will start fighting player when they try to leave a warming element
             isFightingPlayer = true;
             ResetFightLevels(); //If we have healed from a previous encounter, we don't want to still have the same fight levels
         }
         else if (HealthAmount <= 0.5f)
         {
-            MenuManager.Instance.SetThought(CharacterName, "I'm so exhausted. I don't want to move anymore.");
-
-            //Trigger harsher Coughing sounds
+            if (setThought)
+                MenuManager.Instance.SetThought(CharacterName, "I'm so exhausted. I don't want to move anymore.");
+            if (!audioSource.isPlaying)
+            {
+                AudioClip audio = Resources.Load<AudioClip>("Audio/heartbeat");
+                audioSource.clip = audio;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+            
             //Slow player down
             //Lessen how much healing helps warm the heart
         }
-        else if (HealthAmount <= 0.8f)
+        else if (HealthAmount <= 0.7f)
         {
-            MenuManager.Instance.SetThought(CharacterName, "This is really starting to sting. Why am I even doing this?");
+            if (setThought)
+                MenuManager.Instance.SetThought(CharacterName, "It's getting hard to breathe. Why am I even doing this?");
+            AudioClip audio = Resources.Load<AudioClip>("Audio/double_cough");
+            this.GetComponent<AudioSource>().loop = false;
+            this.GetComponent<AudioSource>().PlayOneShot(audio); 
             //Trigger Coughing sounds
             //Lessen how much healing helps warm the heart
+        }
+        else
+        {
+            this.GetComponent<AudioSource>().Stop();
         }
     }
 

@@ -32,6 +32,10 @@ public class CharacterController : MonoBehaviour
         if (MenuManager.Instance.GameOver)
             return;
 
+        //Lessen how much player is able to move if character is fighting against them.
+        if (this.GetComponent<CharacterStatus>().isFightingPlayer)
+            rb2d.velocity = Vector3.zero;
+
         if (Input.GetKeyDown(KeyCode.K))
         {
             this.GetComponent<CharacterStatus>().SacrificeHealth();
