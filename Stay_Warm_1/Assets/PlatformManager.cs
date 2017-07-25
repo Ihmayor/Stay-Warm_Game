@@ -13,7 +13,7 @@ public class PlatformManager : MonoBehaviour {
         //Reference this instance as singleton instance
         PlatformManager.Instance = this;
       //  InstantiateAndDemoMovement();
-        InvokeRepeating("DemoReviveWind", 0, Random.Range(2f,4f));
+        InvokeRepeating("DemoReviveWind", 0, Random.Range(3f,6f));
     }
 	
 	// Update is called once per frame

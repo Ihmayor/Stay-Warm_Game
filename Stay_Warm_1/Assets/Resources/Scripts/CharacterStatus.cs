@@ -6,14 +6,22 @@ using UnityEngine.UI;
 public class CharacterStatus : MonoBehaviour
 {
 
-    private AudioSource audioSource;
+    #region Heart Cooling Variables
 
     private bool isHeartCooling; //Bool to hold if Heart Subject to Cooling
     private float HeartCoolingFactor;//Amount Heart should cool by. Centralized as multiple cooling elements can increase its effect
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
 
+    #endregion
+
+    #region Health Sacrfice Variables
+
     private float SacrificeFactor;
+
+    #endregion
+
+    #region Character Fighting Variables
 
     ///Character fighting against player variables
     public bool isFightingPlayer { private set; get; }
@@ -54,28 +62,45 @@ public class CharacterStatus : MonoBehaviour
         "No. I can make it.",
         "No...I will not give up! I can move my feet a little bit more" };
 
+    private int matchCount;
+
+    #endregion
+
+    #region UI and Other Scene Interaction Variables
+
+    private AudioSource audioSource;
     public GameObject HeartBar; //Assigned from the menu in the scene
     public GameObject HealthBar; //Assigned from the menu in the scene
     public string CharacterName;
+
+    #endregion
 
     #region Init/Repeated Functions
     // Use this for initialization
     void Start()
     {
-        HeartCoolingFactor = 0.003f;
+        //Init Heart Cooling Factors
+        HeartCoolingFactor = 0.002f;
         OriginalHeartCoolingFactor = HeartCoolingFactor;
-        CoolStrength = 0.001f;
+        CoolStrength = 0.0005f;
         isHeartCooling = false;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
+        //Init sacrifice factor
         SacrificeFactor = 0.05f;
+
+        //Init Character name
         CharacterName = "????";
 
+        //Init character will against player 
         isFightingPlayer = false;
         CharacterWill = 5;
         Debate = 2;
         FightCount = 0;
 
+        matchCount = 3;
+
+        //Get Audio Source for later effect usage
         audioSource = this.GetComponent<AudioSource>();
     }
 
@@ -98,10 +123,11 @@ public class CharacterStatus : MonoBehaviour
     }
 
 
-   
+
     #endregion
 
     #region Health Methods
+
     /// <summary>
     /// Heal the Player's Health
     /// </summary>
@@ -117,8 +143,17 @@ public class CharacterStatus : MonoBehaviour
     /// <param name="HealthDecrease">Amount to Damage Range (1,0)</param>
     public void Hurt(float HealthDecrease)
     {
-        HealthBar.GetComponent<Image>().fillAmount -= HealthDecrease;
-        CheckCharacterHealth(true);
+        if (HealthBar.GetComponent<Image>().fillAmount - HealthDecrease <= 0 && matchCount != 0)
+        {
+            HealthBar.GetComponent<Image>().fillAmount = 0.00000000000000001f;
+            Invoke("TriggerMatchHeal", 1.1f);
+            return;
+        }
+        else
+        {
+            HealthBar.GetComponent<Image>().fillAmount -= HealthDecrease;
+            CheckCharacterHealth(true);
+        }
     }
 
     public void CheckCharacterHealth(bool setThought)
@@ -155,7 +190,7 @@ public class CharacterStatus : MonoBehaviour
                 audioSource.loop = true;
                 audioSource.Play();
             }
-            
+
             //Slow player down
             //Lessen how much healing helps warm the heart
         }
@@ -165,7 +200,7 @@ public class CharacterStatus : MonoBehaviour
                 MenuManager.Instance.SetThought(CharacterName, "It's getting hard to breathe. Why am I even doing this?");
             AudioClip audio = Resources.Load<AudioClip>("Audio/double_cough");
             this.GetComponent<AudioSource>().loop = false;
-            this.GetComponent<AudioSource>().PlayOneShot(audio); 
+            this.GetComponent<AudioSource>().PlayOneShot(audio);
             //Trigger Coughing sounds
             //Lessen how much healing helps warm the heart
         }
@@ -180,12 +215,33 @@ public class CharacterStatus : MonoBehaviour
     /// </summary>
     public void SacrificeHealth()
     {
-        WarmHeart(SacrificeFactor);
+        float HealthAmount = HealthBar.GetComponent<Image>().fillAmount;
+        int SacrificeEfficiency = 1; //It should be less efficient to warm up the heart the lower the health
+        if (HealthAmount <= 0.2f)
+        {
+            SacrificeEfficiency *= 10;
+        }
+        else if (HealthAmount <= 0.333f)
+        {
+            SacrificeEfficiency *= 5;
+        }
+        else if (HealthAmount <= 0.5f)
+        {
+            SacrificeEfficiency *= 3;
+        }
+        else if (HealthAmount <= 0.7f)
+        {
+            SacrificeEfficiency *= 2;
+        }
+
+        WarmHeart(SacrificeFactor / SacrificeEfficiency);
         Hurt(SacrificeFactor);
     }
+
     #endregion
 
     #region Heart Methods
+
     /// <summary>
     /// Toggle the cooling on/off. Reset Cooling Factor is toggled off. 
     /// </summary>
@@ -242,9 +298,11 @@ public class CharacterStatus : MonoBehaviour
     {
         HeartBar.GetComponent<Image>().fillAmount += AmountToWarm;
     }
+
     #endregion
 
-    #region Character Motivation Levels
+    #region Character Motivation Methods
+
     public void FightPlayer()
     {
         if (!isFightingPlayer)
@@ -276,5 +334,18 @@ public class CharacterStatus : MonoBehaviour
         Debate = 2;
         CharacterWill = 5;
     }
+    #endregion
+
+    #region Match System Methods
+
+    private void TriggerMatchHeal()
+    {
+        //Trigger animation
+        Heal(0.75F);
+        MenuManager.Instance.RemoveMatchAt(matchCount);
+        matchCount--;
+        isFightingPlayer = false;
+    }
+
     #endregion
 }

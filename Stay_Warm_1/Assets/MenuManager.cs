@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,8 @@ using UnityEngine.UI;
 /// <summary>
 /// This class handles opening/closing menu systems. It does not set any messages only UI.
 /// </summary>
-public class MenuManager : MonoBehaviour {
+public class MenuManager : MonoBehaviour
+{
 
     /// <summary>
     /// Singleton Instance to trigger menu opening elsewhere
@@ -27,28 +29,32 @@ public class MenuManager : MonoBehaviour {
     private GameObject GameOverText;
     private GameObject WinMenu;
     private GameObject ThoughtBox;
+    private GameObject Status;
 
     /// <summary>
     /// UI Helper variables
     /// </summary>
     private float MenuRatio;
     private AudioSource[] AudioSources;
-    
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         MenuManager.Instance = this;
         MainMenuSystem = GameObject.Find("MenuSystem");
+        Status = MainMenuSystem.transform.Find("StatusCanvas").transform.Find("Status").gameObject;
         GameOverText = MainMenuSystem.transform.Find("GameOver").gameObject;
         WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
         ThoughtBox = MainMenuSystem.transform.Find("Thoughts").gameObject;
-        
+
         //InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         // AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
     }
 
     /// <summary>
@@ -96,7 +102,7 @@ public class MenuManager : MonoBehaviour {
     {
         InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         InstructionBox.transform.Find("Text").gameObject.GetComponent<Text>().text = message;
-        InstructionBox.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
+        InstructionBox.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         MenuRatio = 1 / 0.1f;
         StartCoroutine("BiggerMenu");
     }
@@ -106,7 +112,7 @@ public class MenuManager : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     IEnumerator BiggerMenu()
-   {
+    {
         InstructionBox.SetActive(true);
         AudioSources[0].Play();
         for (float i = 0; i <= MenuRatio; i++)
@@ -126,12 +132,18 @@ public class MenuManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(3.5f);
         AudioSources[1].Play();
-        for (float i = MenuRatio/2; i >= 0; i--)
+        for (float i = MenuRatio / 2; i >= 0; i--)
         {
             yield return new WaitForSeconds(0.01f);
             InstructionBox.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
             yield return null;
         }
         InstructionBox.SetActive(false);
+    }
+
+    internal void RemoveMatchAt(int matchCount)
+    {
+        GameObject matches = Status.transform.Find("Matches").gameObject;
+        matches.transform.Find("Match" + matchCount).gameObject.SetActive(false);
     }
 }

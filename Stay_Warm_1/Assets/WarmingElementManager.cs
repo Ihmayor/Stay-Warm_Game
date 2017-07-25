@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarmingElementManager : MonoBehaviour {
+public class WarmingElementManager : MonoBehaviour
+{
     #region Singleton instance
     public static WarmingElementManager Instance { private set; get; }
     #endregion
@@ -24,16 +25,17 @@ public class WarmingElementManager : MonoBehaviour {
     private List<AudioClip> Chimes = new List<AudioClip>();
 
     private int loopColor;
-    
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         Instance = this;
         loopColor = 0;
-        foreach(string path in AudioChimePaths)
+        foreach (string path in AudioChimePaths)
         {
-           Chimes.Add(Resources.Load<AudioClip>(path));
+            Chimes.Add(Resources.Load<AudioClip>(path));
         }
-	}
+    }
 
     public Color FetchNextColor()
     {
