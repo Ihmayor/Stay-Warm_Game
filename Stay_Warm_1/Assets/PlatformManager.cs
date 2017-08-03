@@ -13,22 +13,12 @@ public class PlatformManager : MonoBehaviour {
         //Reference this instance as singleton instance
         PlatformManager.Instance = this;
       //  InstantiateAndDemoMovement();
-        InvokeRepeating("DemoReviveWind", 0, Random.Range(3f,6f));
     }
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
-    private void DemoReviveWind()
-    {
-        //Instantiate Platforms
-        GameObject Wind = Resources.Load<GameObject>("Prefabs/wind");
-        GameObject PoleStart = GameObject.Find("lightpoleStart");
-        GameObject instance = Instantiate(Wind, null);
-        instance.transform.position = PoleStart.transform.position - new Vector3(0.3f,Random.Range(0.3f, 0.7f),0);
-    }
 
 
     private void InstantiateAndDemoMovement()

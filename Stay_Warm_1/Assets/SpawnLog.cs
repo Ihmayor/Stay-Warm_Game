@@ -6,7 +6,7 @@ public class SpawnLog : MonoBehaviour {
 
     #region Variables
 
-    public int logCount = 5;
+    public int logCount = 1;
     public float minLogDistance = 0.1f;
     public float maxLogDistance = 0.5f;
     public string LogSpriteLocation = "spike";
@@ -29,7 +29,7 @@ public class SpawnLog : MonoBehaviour {
         GameObject ground = GameObject.Find("MainGround");
         GameObject step = Resources.Load<GameObject>("Prefabs/step");
         GameObject spike = Resources.Load<GameObject>(LogSpriteLocation);
-        Vector3 OriginalPosition = new Vector3 (lightpole.transform.position.x+1.5f, ground.transform.position.y+0.32f, 0);
+        Vector3 OriginalPosition = new Vector3 (lightpole.transform.position.x+1.5f, ground.transform.position.y+0.22f, 0);
         //Generate set count of logs going on forward
         for (int i = 0; i <= logCount; i++)
         {
@@ -39,7 +39,7 @@ public class SpawnLog : MonoBehaviour {
         }
 
         OriginalPosition = new Vector3(lightpole.transform.position.x + 0.1f, ground.transform.position.y, 0);
-        for (int i = 0; i<= 18; i++)
+        for (int i = 0; i<= 9; i++)
         {
             GameObject newlyCreated = Instantiate(step, null);
             newlyCreated.transform.position = OriginalPosition + new Vector3(0.3f, 0.06f, 0);

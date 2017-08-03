@@ -113,6 +113,7 @@
     <Compile Include="Assets\SpawnLog.cs" />
     <Compile Include="Assets\WarmingElementManager.cs" />
     <Compile Include="Assets\WinTrigger.cs" />
+    <Compile Include="Assets\WindCreation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NewSurfaceShader.shader" />
