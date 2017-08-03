@@ -32,7 +32,13 @@ public class CharacterController : MonoBehaviour
         if (MenuManager.Instance.GameOver)
             return;
 
+        if (this.GetComponent<CharacterStatus>().isWarming)
+            return;
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+           // setAnimation("notFire");
+        }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -99,7 +105,7 @@ public class CharacterController : MonoBehaviour
 
     //Author: Tjpark
     //http://answers.unity3d.com/questions/801875/mecanim-trigger-getting-stuck-in-true-state.html
-    void setAnimation(string stringInput)
+    public void setAnimation(string stringInput)
     {
         Animator anim = transform.GetComponent<Animator>();
         if (currentAnimation == stringInput)
@@ -112,7 +118,9 @@ public class CharacterController : MonoBehaviour
                 anim.ResetTrigger(currentAnimation);
             }
             anim.SetTrigger(stringInput);
+            Debug.Log("triggered");
             currentAnimation = stringInput;
+            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).IsName("Fire"));
         }
     }
 

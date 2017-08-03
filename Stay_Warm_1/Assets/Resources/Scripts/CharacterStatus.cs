@@ -72,7 +72,7 @@ public class CharacterStatus : MonoBehaviour
     public GameObject HeartBar; //Assigned from the menu in the scene
     public GameObject HealthBar; //Assigned from the menu in the scene
     public string CharacterName;
-
+    public bool isWarming { private set; get; }
     #endregion
 
     #region Init/Repeated Functions
@@ -146,7 +146,9 @@ public class CharacterStatus : MonoBehaviour
         if (HealthBar.GetComponent<Image>().fillAmount - HealthDecrease <= 0 && matchCount != 0)
         {
             HealthBar.GetComponent<Image>().fillAmount = 0.00000000000000001f;
-            Invoke("TriggerMatchHeal", 1.1f);
+            isWarming = true;
+            SwitchCharacterStates();
+            Invoke("TriggerMatchHeal", 5f);
             return;
         }
         else
@@ -314,7 +316,7 @@ public class CharacterStatus : MonoBehaviour
             return;
         }
 
-        int Response = Random.RandomRange(0, CharacterWill);
+        int Response = Random.Range(0, CharacterWill);
         if (Response <= CharacterWill / Debate)
         {
             isFightingPlayer = false;
@@ -340,11 +342,30 @@ public class CharacterStatus : MonoBehaviour
 
     private void TriggerMatchHeal()
     {
-        //Trigger animation
         Heal(0.75F);
         MenuManager.Instance.RemoveMatchAt(matchCount);
         matchCount--;
         isFightingPlayer = false;
+        isWarming = false;
+        SwitchCharacterStates();
+    }
+
+    private void SwitchCharacterStates()
+    {
+        GameObject mainState = GameObject.Find("MainChar");
+        GameObject warmState = GameObject.Find("WarmChar");
+        if (isWarming)
+        {
+            Debug.Log(warmState);
+            warmState.transform.position = new Vector3(mainState.transform.position.x, warmState.transform.position.y, warmState.transform.position.z);
+            mainState.GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 255);
+            warmState.GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 255);
+        }
+        else
+        {
+            mainState.GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 255);
+            warmState.GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 255);
+        }
     }
 
     #endregion
