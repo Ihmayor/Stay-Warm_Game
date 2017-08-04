@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 88bc09362cce5cc41b01f573611e7b14
-timeCreated: 1500871227
+timeCreated: 1501824727
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,7 @@ TextureImporter:
     21300014: NonCharacterSpriteSheet_7
     21300016: NonCharacterSpriteSheet_8
     21300018: NonCharacterSpriteSheet_9
+    21300020: NonCharacterSpriteSheet_10
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -199,6 +200,58 @@ TextureImporter:
         height: 309
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NonCharacterSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 223
+        width: 77
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NonCharacterSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 145
+        width: 71
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NonCharacterSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 592
+        width: 125
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NonCharacterSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 326
+        width: 124
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

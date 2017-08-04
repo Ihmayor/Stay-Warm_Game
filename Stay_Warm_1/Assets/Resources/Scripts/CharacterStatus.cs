@@ -12,7 +12,7 @@ public class CharacterStatus : MonoBehaviour
     private float HeartCoolingFactor;//Amount Heart should cool by. Centralized as multiple cooling elements can increase its effect
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
-
+    private float HeartWait;
     #endregion
 
     #region Health Sacrfice Variables
@@ -73,6 +73,7 @@ public class CharacterStatus : MonoBehaviour
     public GameObject HealthBar; //Assigned from the menu in the scene
     public string CharacterName;
     public bool isWarming { private set; get; }
+    public float PushPower;
     #endregion
 
     #region Init/Repeated Functions
@@ -84,6 +85,7 @@ public class CharacterStatus : MonoBehaviour
         OriginalHeartCoolingFactor = HeartCoolingFactor;
         CoolStrength = 0.0005f;
         isHeartCooling = false;
+        HeartWait = 0.001f;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
         //Init sacrifice factor
@@ -98,7 +100,11 @@ public class CharacterStatus : MonoBehaviour
         Debate = 2;
         FightCount = 0;
 
+        //Amount of Matches to restart life
         matchCount = 3;
+
+        //Amount character can push objects
+        PushPower = 0.3f;
 
         //Get Audio Source for later effect usage
         audioSource = this.GetComponent<AudioSource>();
@@ -111,14 +117,18 @@ public class CharacterStatus : MonoBehaviour
     }
 
     /// <summary>
-    /// Repeatedly cool the heart if heart is near cooling factors
+    /// Repeatedly cool the heart. if heart is near cooling factors, then cool faster
     /// </summary>
     void CheckHeart()
     {
         if (isHeartCooling)
         {
-            CoolHeart();
+            CoolHeart(HeartCoolingFactor);
             //Lower Heart Health
+        }
+        else if (!isWarming)
+        {
+            CoolHeart(HeartWait);
         }
     }
 
@@ -285,9 +295,9 @@ public class CharacterStatus : MonoBehaviour
     /// <summary>
     /// Cool Heart according to heart cooling factor
     /// </summary>
-    private void CoolHeart()
+    private void CoolHeart(float CoolFactor)
     {
-        HeartBar.GetComponent<Image>().fillAmount -= HeartCoolingFactor;
+        HeartBar.GetComponent<Image>().fillAmount -= CoolFactor;
         if (HeartBar.GetComponent<Image>().fillAmount <= 0)
             MenuManager.Instance.ShowGameOver();
     }

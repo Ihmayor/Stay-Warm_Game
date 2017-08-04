@@ -32,12 +32,10 @@ public class AreaEffects : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("AAAAA");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("WHAAAAAA");  
         float currentTime = Time.fixedTime;
         if (collision.gameObject.tag.Contains("Player"))
         {
@@ -53,9 +51,9 @@ public class AreaEffects : MonoBehaviour
             float timeDifference = currentTime - SinceLastThought;
 
             //Check if we have any thoughts
-            if (ThoughtCount >= 0 && timeDifference > 3)
+            if (ThoughtCount >= 0 && timeDifference > 10)
             {
-                MenuManager.Instance.SetThought(player.GetComponent<CharacterStatus>()., ThoughtsInArea[ThoughtCount]);
+                MenuManager.Instance.SetThought(player.GetComponent<CharacterStatus>().CharacterName, ThoughtsInArea[ThoughtCount]);
 
                 if (ThoughtCount + 1 < ThoughtsInArea.Length)
                     ThoughtCount++;
