@@ -87,6 +87,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AreaEffects.cs" />
     <Compile Include="Assets\Custom\NewScripts\Coin.cs" />
     <Compile Include="Assets\Custom\NewScripts\PlatformFall.cs" />
     <Compile Include="Assets\Custom\NewScripts\SimplePlatformController.cs" />
