@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D rb2d;
     private bool jump;
     private string currentAnimation = null;
+    private float jumpForce;
 
     #endregion
 
@@ -22,6 +23,7 @@ public class CharacterController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        jumpForce = 200f;
     }
 
 
@@ -96,7 +98,6 @@ public class CharacterController : MonoBehaviour
         if (jump)
         {
             //animator.SetTrigger("Jump");
-            float jumpForce = 90f;
             rb2d.AddForce(new Vector2(0f, jumpForce));
             jump = false;
         }

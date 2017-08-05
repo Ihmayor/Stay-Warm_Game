@@ -13,6 +13,7 @@ public class CharacterStatus : MonoBehaviour
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
     private float HeartWait;
+    public bool isFirstCooling { get; private set; }
     #endregion
 
     #region Health Sacrfice Variables
@@ -73,6 +74,7 @@ public class CharacterStatus : MonoBehaviour
     public GameObject HealthBar; //Assigned from the menu in the scene
     public string CharacterName;
     public bool isWarming { private set; get; }
+    public bool isFirstWarming { get; private set; }
     public float PushPower;
     #endregion
 
@@ -80,6 +82,10 @@ public class CharacterStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //Init First Pass Variables
+        isFirstWarming = true;
+        isFirstCooling = true;
+
         //Init Heart Cooling Factors
         HeartCoolingFactor = 0.002f;
         OriginalHeartCoolingFactor = HeartCoolingFactor;
@@ -110,12 +116,6 @@ public class CharacterStatus : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     /// <summary>
     /// Repeatedly cool the heart. if heart is near cooling factors, then cool faster
     /// </summary>
@@ -132,6 +132,17 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
+    public void ToggleOffFirstWarming()
+    {
+        MenuManager.Instance.SetThought(CharacterName, "Huh, it's really nice here. I should stay a little while to warm up.");
+        isFirstWarming = false;
+    }
+
+    public void ToggleOffFirstCooling()
+    {
+        MenuManager.Instance.SetThought(CharacterName, "It's cold. I shouldn't stay in this for too long.");
+        isFirstCooling = false;
+    }
 
 
     #endregion

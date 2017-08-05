@@ -11,6 +11,9 @@ freesound.org:
 "Crystal Waters" by purple-planet.com
 "Deliberation" by purple-planet.com
 "Heartbeat Sound Effect 01" by https://www.soundjay.com/heartbeat-sound-effect.html	
+"paper flip 3.wav" by gynation
+"Moving with table" by nitramdoh
+
 
 Perspectives Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License

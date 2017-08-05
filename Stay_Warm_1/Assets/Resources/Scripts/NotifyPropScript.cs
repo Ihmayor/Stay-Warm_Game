@@ -13,7 +13,7 @@ public class NotifyPropScript : MonoBehaviour {
 	void Update () {
 		if (transform.Find("Exclaim").gameObject.activeSelf && Input.GetKeyDown(KeyCode.J))
         {
-            MenuManager.Instance.OpenCuteBox(notificationMessage);
+            MenuManager.Instance.OpenInteractionMenu(notificationMessage);
             Destroy(transform.Find("Exclaim").gameObject);
             Destroy(this);
         }

@@ -24,11 +24,17 @@ public class WarmingElement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            CharacterStatus charStatus = collision.gameObject.GetComponent<CharacterStatus>();
+            
+            //If this is the first encounter, character should react accordingly
+            if (charStatus.isFirstWarming)
+                charStatus.ToggleOffFirstWarming();
+
             //Lessen how much player is able to move if character is fighting against them.
-            if (collision.gameObject.GetComponent<CharacterStatus>().isFightingPlayer)
+            if (charStatus.isFightingPlayer)
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
-            collision.gameObject.GetComponent<CharacterStatus>().SetHeartCooling(false);
+            charStatus.SetHeartCooling(false);
         }
     }
 

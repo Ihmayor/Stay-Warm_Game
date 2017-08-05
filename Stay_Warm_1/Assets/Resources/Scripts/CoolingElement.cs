@@ -38,6 +38,10 @@ public class CoolingElement : MonoBehaviour {
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //If this is the first encounter, character should act differently
+            if (collision.gameObject.GetComponent<CharacterStatus>().isFirstCooling)
+                collision.gameObject.GetComponent<CharacterStatus>().ToggleOffFirstCooling();
+
             collision.gameObject.GetComponent<CharacterStatus>().SetHeartCooling(true);
             this.GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Audio/wind_gust"));
         }

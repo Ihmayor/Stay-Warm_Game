@@ -16,12 +16,14 @@ public class PushableElement : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Contains("Player"))
+        if (collision.gameObject.tag.Contains("Player") && (collision.otherCollider is CircleCollider2D))
         {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Prefabs/NonCharacterSpriteSheet");
             this.GetComponent<SpriteRenderer>().sprite = sprites[9];
+            if (!this.GetComponent<AudioSource>().isPlaying)
+                this.GetComponent<AudioSource>().Play();
         }
-       
+
     }
 
     private void OnCollisionStay2D(Collision2D collision)

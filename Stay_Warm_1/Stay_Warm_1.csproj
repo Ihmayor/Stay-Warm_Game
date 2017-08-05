@@ -96,6 +96,7 @@
     <Compile Include="Assets\DeployFog.cs" />
     <Compile Include="Assets\MenuManager.cs" />
     <Compile Include="Assets\NotificationManager.cs" />
+    <Compile Include="Assets\Pickup.cs" />
     <Compile Include="Assets\PlatformManager.cs" />
     <Compile Include="Assets\PushableElement.cs" />
     <Compile Include="Assets\Resources\2D\Scripts\Camera2DFollow.cs" />

@@ -16,10 +16,8 @@ public class NotificationManager : MonoBehaviour {
     void Start () {
         NotificationManager.Instance = this;
         //Create all props here with unique ID's 
+        GameObject.Find("PaperStart").GetComponent<NotifyPropScript>().SetNotification("Picked up 'Note #1'");
 
-
-        //For now deal with the hardcoded bush
-        //GameObject.Find("Background").transform.Find("Bush").GetComponent<NotifyPropScript>().SetNotification("You picked up a 'Glass Heart'");
 
     }
 

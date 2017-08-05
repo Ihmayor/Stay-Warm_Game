@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
     /// Menu objects
     /// </summary>
     private GameObject MainMenuSystem;
-    private GameObject InstructionBox;
+    private GameObject InteractionBox;
     private GameObject GameOverText;
     private GameObject WinMenu;
     private GameObject ThoughtBox;
@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
     /// <summary>
     /// UI Helper variables
     /// </summary>
-    private float MenuRatio;
+    private float MenuSlideLength;
     private AudioSource[] AudioSources;
 
     // Use this for initialization
@@ -42,6 +42,7 @@ public class MenuManager : MonoBehaviour
     {
         MenuManager.Instance = this;
         MainMenuSystem = GameObject.Find("MenuSystem");
+
         Status = MainMenuSystem.transform.Find("StatusCanvas").transform.Find("Status").gameObject;
         GameOverText = MainMenuSystem.transform.Find("GameOver").gameObject;
         WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
@@ -98,47 +99,37 @@ public class MenuManager : MonoBehaviour
     /// Goofy Instruction box from First Iteration. TODO: Re-purpose for _real_ menu system.
     /// </summary>
     /// <param name="message"></param>
-    public void OpenCuteBox(string message)
+    public void OpenInteractionMenu(string message)
     {
-        InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
-        InstructionBox.transform.Find("Text").gameObject.GetComponent<Text>().text = message;
-        InstructionBox.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        MenuRatio = 1 / 0.1f;
-        StartCoroutine("BiggerMenu");
+        InteractionBox = MainMenuSystem.transform.Find("PickupMenu").transform.Find("PickupPanel").gameObject;
+        var InteractionBoxText = InteractionBox.transform.Find("PickupText").gameObject;
+        InteractionBoxText.GetComponent<Text>().text = message;
+        MenuSlideLength = 30f;
+        StartCoroutine("SlideMenuIn");
     }
 
-    /// <summary>
-    /// Slowly makes menu bigger for popping effect
-    /// </summary>
-    /// <returns></returns>
-    IEnumerator BiggerMenu()
+    IEnumerator SlideMenuIn()
     {
-        InstructionBox.SetActive(true);
-        AudioSources[0].Play();
-        for (float i = 0; i <= MenuRatio; i++)
+        InteractionBox.SetActive(true);
+        for (float i = 0; i <= MenuSlideLength; i++)
         {
-            yield return new WaitForSeconds(0.01f);
-            InstructionBox.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            yield return new WaitForSeconds(0.0001f);
+            InteractionBox.transform.position -= new Vector3(20f,0, 0);
             yield return null;
         }
-        StartCoroutine("CloseInstructionBox");
+        yield return new WaitForSeconds(3.4f);
+        StartCoroutine("SlideMenuOut");
     }
 
-    /// <summary>
-    /// Slowly shrinks menu for nice close effect
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator CloseInstructionBox()
+    IEnumerator SlideMenuOut()
     {
-        yield return new WaitForSeconds(3.5f);
-        AudioSources[1].Play();
-        for (float i = MenuRatio / 2; i >= 0; i--)
+        for (float i = 0; i <= MenuSlideLength; i++)
         {
-            yield return new WaitForSeconds(0.01f);
-            InstructionBox.transform.localScale -= new Vector3(0.2f, 0.2f, 0.2f);
+            yield return new WaitForSeconds(0.0001f);
+            InteractionBox.transform.position += new Vector3(20f, 0, 0);
             yield return null;
         }
-        InstructionBox.SetActive(false);
+        InteractionBox.SetActive(false);
     }
 
     internal void RemoveMatchAt(int matchCount)
