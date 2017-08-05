@@ -14,6 +14,7 @@ public class CharacterStatus : MonoBehaviour
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
     private float HeartWait;
     public bool isFirstCooling { get; private set; }
+    public bool hasHeart;
     #endregion
 
     #region Health Sacrfice Variables
@@ -85,6 +86,7 @@ public class CharacterStatus : MonoBehaviour
         //Init First Pass Variables
         isFirstWarming = true;
         isFirstCooling = true;
+        hasHeart = false;
 
         //Init Heart Cooling Factors
         HeartCoolingFactor = 0.002f;
@@ -121,12 +123,12 @@ public class CharacterStatus : MonoBehaviour
     /// </summary>
     void CheckHeart()
     {
-        if (isHeartCooling)
+        if (isHeartCooling && hasHeart)
         {
             CoolHeart(HeartCoolingFactor);
             //Lower Heart Health
         }
-        else if (!isWarming)
+        else if (!isWarming && hasHeart)
         {
             CoolHeart(HeartWait);
         }
@@ -271,7 +273,7 @@ public class CharacterStatus : MonoBehaviour
     /// <param name="heartCooling"></param>
     public void SetHeartCooling(bool heartCooling)
     {
-        isHeartCooling = heartCooling;
+        isHeartCooling = heartCooling;  
         if (!heartCooling)
             ResetCoolingStrength();
     }

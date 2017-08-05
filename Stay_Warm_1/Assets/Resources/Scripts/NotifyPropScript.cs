@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NotifyPropScript : MonoBehaviour {
     private string notificationMessage = "";
+
     // Use this for initialization
     void Start () {
-		
 	}
 	
 	// Update is called once per frame

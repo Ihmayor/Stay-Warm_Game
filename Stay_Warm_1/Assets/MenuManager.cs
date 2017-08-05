@@ -137,4 +137,10 @@ public class MenuManager : MonoBehaviour
         GameObject matches = Status.transform.Find("Matches").gameObject;
         matches.transform.Find("Match" + matchCount).gameObject.SetActive(false);
     }
+
+    public void ActivateHeartMeter()
+    {
+        Status.transform.Find("HeartElement").gameObject.SetActive(true);
+        Destroy(GameObject.Find("Block"));
+    }
 }
