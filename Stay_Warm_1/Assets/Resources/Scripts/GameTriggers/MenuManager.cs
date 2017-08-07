@@ -35,6 +35,7 @@ public class MenuManager : MonoBehaviour
     /// UI Helper variables
     /// </summary>
     private float MenuSlideLength;
+    private bool isSlideMenuInFrame;
     private AudioSource[] AudioSources;
 
     // Use this for initialization
@@ -120,6 +121,11 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator SlideMenuIn()
     {
+        while (isSlideMenuInFrame)
+        {
+            yield return new WaitForSeconds(3.5f);
+        }
+        isSlideMenuInFrame = true;
         InteractionBox.SetActive(true);
         for (float i = 0; i <= MenuSlideLength; i++)
         {
@@ -133,6 +139,7 @@ public class MenuManager : MonoBehaviour
 
     IEnumerator SlideMenuOut()
     {
+        isSlideMenuInFrame = false;
         for (float i = 0; i <= MenuSlideLength; i++)
         {
             yield return new WaitForSeconds(0.0001f);

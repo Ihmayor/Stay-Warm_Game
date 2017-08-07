@@ -129,7 +129,6 @@ public class CharacterStatus : MonoBehaviour
         if (isHeartCooling && hasHeart)
         {
             CoolHeart(HeartCoolingFactor);
-            //Lower Heart Health
         }
         else if (!isWarmingWithMatches && !isHeartWarming && hasHeart)
         {
@@ -137,6 +136,9 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggered Player First Encounters
+    /// </summary>
     public void ToggleOffFirstWarming()
     {
         MenuManager.Instance.SetThought(CharacterName, "Huh, it's really nice here. I should stay a little while to warm up.");

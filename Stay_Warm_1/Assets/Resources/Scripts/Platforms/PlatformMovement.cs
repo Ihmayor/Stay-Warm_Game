@@ -18,11 +18,10 @@ public class PlatformMovement : MonoBehaviour {
     private float MoveSpeed; // Speed of platform movement
 
     private bool isMovePositive;
-    private float MoveNegativeMax;
-    private float MovePositiveMax;
+    public float MoveNegativeMax { get; private set; }
+    public float MovePositiveMax { get; private set; }
 
-    private float speedDeviation;
-    public float SpeedDeviation { get { return speedDeviation; } }
+    public float SpeedDeviation { get; private set; }
 
     #endregion
 
@@ -54,7 +53,8 @@ public class PlatformMovement : MonoBehaviour {
         else if (Type == PlatformType.Vertical)
             VectorChange = new Vector3(0, MoveDistance / MoveSpeed, 0);
 
-        //Check direction of looped movement along the set axis for the platform type
+        //Check the direction of which to mvoe the platform, revert if platform is set to move negative first then positive
+        //Compare it to the proper axis specified by the type of platform
         if (CheckReverse(isMovePositive))
         {
             if (CheckAxisVar >= MovePositiveMax)
@@ -107,29 +107,29 @@ public class PlatformMovement : MonoBehaviour {
         //Allow for reset of speed to original
         if (AmountOfChange == 0)
         {
-            if (speedDeviation < 0)
+            if (SpeedDeviation < 0)
             {
                 MoveSpeed /= SpeedDeviation;
             }
-            else if (speedDeviation > 0)
+            else if (SpeedDeviation > 0)
             {
                 MoveSpeed *= SpeedDeviation;
             }
-            speedDeviation = 0;
+            SpeedDeviation = 0;
         }
         else if (IsIncrease)
         {
             if (AmountOfChange == 0)
                 return;
             MoveSpeed /= AmountOfChange;
-            speedDeviation += AmountOfChange;
+            SpeedDeviation += AmountOfChange;
         }
         else
         {
             if (AmountOfChange == 0)
                 return;
             MoveSpeed *= AmountOfChange;
-            speedDeviation -= AmountOfChange;
+            SpeedDeviation -= AmountOfChange;
         }
 
     }
@@ -167,6 +167,19 @@ public class PlatformMovement : MonoBehaviour {
             return !CheckDirection;
         else
             return CheckDirection;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Contains("Player"))
+            collision.gameObject.gameObject.transform.parent = this.gameObject.transform;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.collider.tag.Contains("Player"))
+            collision.collider.gameObject.transform.parent = null;
     }
 
     #endregion

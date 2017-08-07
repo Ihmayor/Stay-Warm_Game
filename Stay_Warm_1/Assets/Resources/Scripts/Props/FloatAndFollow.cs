@@ -5,24 +5,28 @@ using UnityEngine;
 public class FloatAndFollow : MonoBehaviour
 {
 
+    //Modified Code from: https://www.youtube.com/watch?v=iFAyb6x-a3Q 2D Flocking with Unity Part 1/2 by Holistic3d
+
     private Vector2 velocity;
     private float neighbourDistance;
     private bool turnBack;
     private Rigidbody2D rb2d;
     private Vector2 location;
     private Vector2 currentForce;
+
     // Use this for initialization
     void Start()
     {
+        gameObject.transform.parent = null;
+        gameObject.GetComponent<TrailRenderer>().enabled = true;
         velocity = new Vector2(Random.Range(0.01f, 0.1f), Random.Range(0.01f, 0.1f));
         rb2d = gameObject.AddComponent<Rigidbody2D>();
         rb2d.gravityScale = 0;
         currentForce = new Vector2(0.01f, 0.002f);
         //   gameObject.AddComponent<CircleCollider2D>();
         location = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        //        turnBack = false;
 
-            StartCoroutine("FloatObject");
+        StartCoroutine("FloatObject");
     }
 
     IEnumerator FloatObject()
@@ -31,13 +35,13 @@ public class FloatAndFollow : MonoBehaviour
         for (float i = 0; i <= 2f; i += 0.01f)
         {
             yield return new WaitForSeconds(0.1f);
-            rb2d.AddForce(Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y + 0.0004f) - location)).normalized);
+            rb2d.AddForce(Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y + 0.002f) - location)).normalized);
         }
 
         for (float i = 0; i <= 2f; i += 0.01f)
         {
             yield return new WaitForSeconds(0.1f);
-            rb2d.AddForce(Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y - 0.0004f) - location)).normalized);
+            rb2d.AddForce(Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y - 0.002f) - location)).normalized);
         }
         yield return new WaitForSeconds(0.3f);
         StartCoroutine("FloatObject");
@@ -57,7 +61,6 @@ public class FloatAndFollow : MonoBehaviour
             rb2d.velocity = rb2d.velocity.normalized;
             rb2d.velocity *= FollowManager.Instance.maxVelocity;
         }
-        Debug.DrawRay(this.transform.position, force, Color.white);
     }
 
     Vector2 Align()
