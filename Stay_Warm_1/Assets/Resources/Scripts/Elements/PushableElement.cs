@@ -18,7 +18,7 @@ public class PushableElement : MonoBehaviour {
     {
         if (collision.gameObject.tag.Contains("Player") && (collision.otherCollider is CircleCollider2D))
         {
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Prefabs/NonCharacterSpriteSheet");
+            Sprite[] sprites = Resources.LoadAll<Sprite>("Prefabs/Sprites/NonCharacterSpriteSheet");
             this.GetComponent<SpriteRenderer>().sprite = sprites[9];
             if (!this.GetComponent<AudioSource>().isPlaying)
                 this.GetComponent<AudioSource>().Play();
@@ -40,7 +40,7 @@ public class PushableElement : MonoBehaviour {
     {
         if (collision.gameObject.tag.Contains("Player"))
         {
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Prefabs/NonCharacterSpriteSheet");
+            Sprite[] sprites = Resources.LoadAll<Sprite>("Prefabs/Sprites/NonCharacterSpriteSheet");
             this.GetComponent<SpriteRenderer>().sprite = sprites[10];
         }
     }

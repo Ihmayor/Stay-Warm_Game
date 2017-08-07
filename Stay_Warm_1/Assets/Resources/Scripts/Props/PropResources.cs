@@ -9,9 +9,16 @@ public static class PropResources
         Heart
     }
 
-    public static Dictionary<PropType, Action> PickupActions = new Dictionary<PropType, Action>()
+    public static Dictionary<string, string> PropThoughts = new Dictionary<string, string>() {
+        {"Note #1","There's nothing on it, but it feels warm. ... Oh!"},
+        {"Note #2","Another one..."},
+        {"Note #3","It's nice not being alone."},
+        {"Glass Heart","This...heart. It feels important. I...I should take care of it."}
+    };
+
+    public static Dictionary<PropType, Action<Collider2D>> PickupActions = new Dictionary<PropType, Action<Collider2D>> ()
     {
-        { PropType.Paper, ()=> {} } ,
+        { PropType.Paper, PickupPaper } ,
         { PropType.Heart, PickUpHeart}
     };
 
@@ -20,15 +27,33 @@ public static class PropResources
         switch (proptype)
         {
             case PropType.Paper:
-                return Resources.Load<AudioClip>("Audio/paperflip3.wav");
+                return Resources.Load<AudioClip>("Audio/paperflip");
+            case PropType.Heart:
+                return Resources.Load<AudioClip>("Audio/insepctorj_ambient_chimes");
             default:
                 return null;
         }
     }
 
-    static void PickUpHeart()
+    static void PickupPaper(Collider2D collider)
     {
+        collider.GetComponent<CharacterStatus>().WarmHeart(0.01f);
+        Collider2D[] nearby = new Collider2D[10];
+        collider.GetContacts(nearby);
+        foreach(Collider2D c in nearby)
+        {
+            if (c == null)
+                break;
+            if (c.GetComponent<Pickup>() != null)
+                c.gameObject.AddComponent<FloatAndFollow>();
+        }
+    }
+
+    static void PickUpHeart(Collider2D collider)
+    {
+        collider.gameObject.GetComponent<CharacterStatus>().hasHeart = true;
         MenuManager.Instance.ActivateHeartMeter();
     }
+
 
 }

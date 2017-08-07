@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class CharacterStatus : MonoBehaviour
     #region Heart Cooling Variables
 
     private bool isHeartCooling; //Bool to hold if Heart Subject to Cooling
+    public bool isHeartWarming { set; private get; } //Bool to hold if Heart Subject to warming
     private float HeartCoolingFactor;//Amount Heart should cool by. Centralized as multiple cooling elements can increase its effect
     private float CoolStrength;//Level of cooling strength. Amount to increase or decrease by. 
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
@@ -27,6 +29,7 @@ public class CharacterStatus : MonoBehaviour
 
     ///Character fighting against player variables
     public bool isFightingPlayer { private set; get; }
+
     private int CharacterWill;
     private int Debate;
     private int FightCount;
@@ -74,7 +77,7 @@ public class CharacterStatus : MonoBehaviour
     public GameObject HeartBar; //Assigned from the menu in the scene
     public GameObject HealthBar; //Assigned from the menu in the scene
     public string CharacterName;
-    public bool isWarming { private set; get; }
+    public bool isWarmingWithMatches { private set; get; }
     public bool isFirstWarming { get; private set; }
     public float PushPower;
     #endregion
@@ -93,7 +96,7 @@ public class CharacterStatus : MonoBehaviour
         OriginalHeartCoolingFactor = HeartCoolingFactor;
         CoolStrength = 0.0005f;
         isHeartCooling = false;
-        HeartWait = 0.001f;
+        HeartWait = 0.007f;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
         //Init sacrifice factor
@@ -128,7 +131,7 @@ public class CharacterStatus : MonoBehaviour
             CoolHeart(HeartCoolingFactor);
             //Lower Heart Health
         }
-        else if (!isWarming && hasHeart)
+        else if (!isWarmingWithMatches && !isHeartWarming && hasHeart)
         {
             CoolHeart(HeartWait);
         }
@@ -145,7 +148,6 @@ public class CharacterStatus : MonoBehaviour
         MenuManager.Instance.SetThought(CharacterName, "It's cold. I shouldn't stay in this for too long.");
         isFirstCooling = false;
     }
-
 
     #endregion
 
@@ -169,7 +171,7 @@ public class CharacterStatus : MonoBehaviour
         if (HealthBar.GetComponent<Image>().fillAmount - HealthDecrease <= 0 && matchCount != 0)
         {
             HealthBar.GetComponent<Image>().fillAmount = 0.00000000000000001f;
-            isWarming = true;
+            isWarmingWithMatches = true;
             SwitchCharacterStates();
             Invoke("TriggerMatchHeal", 5f);
             return;
@@ -311,8 +313,20 @@ public class CharacterStatus : MonoBehaviour
     private void CoolHeart(float CoolFactor)
     {
         HeartBar.GetComponent<Image>().fillAmount -= CoolFactor;
-        if (HeartBar.GetComponent<Image>().fillAmount <= 0)
-            MenuManager.Instance.ShowGameOver();
+        float HeartAmount = HeartBar.GetComponent<Image>().fillAmount;
+        if (!isWarmingWithMatches)
+        {
+            if (HeartBar.GetComponent<Image>().fillAmount <= 0)
+                MenuManager.Instance.ShowGameOver();
+            else if (HeartAmount <= 0.1f && UnityEngine.Random.Range(0,20) <= 0)
+            {
+                MenuManager.Instance.SetThought(CharacterName, "The heart is getting so cold. Isn't there anything I can do?");
+            }
+            else if (HeartAmount <= 0.5f && UnityEngine.Random.Range(0, 35) <= 0)
+            {
+                MenuManager.Instance.SetThought(CharacterName, "The heart is getting really cold. I should find someplace warm soon.");
+            }
+        }
     }
 
     /// <summary>
@@ -339,19 +353,19 @@ public class CharacterStatus : MonoBehaviour
             return;
         }
 
-        int Response = Random.Range(0, CharacterWill);
+        int Response = UnityEngine.Random.Range(0, CharacterWill);
         if (Response <= CharacterWill / Debate)
         {
             isFightingPlayer = false;
             FightCount = 0;
-            Heal(Random.Range(0.01f, 0.2f));
-            MenuManager.Instance.SetThought(CharacterName, CannedMotivationResponses[Random.Range(0, CannedMotivationResponses.Length - 1)]);
+            Heal(UnityEngine.Random.Range(0.01f, 0.2f));
+            MenuManager.Instance.SetThought(CharacterName, CannedMotivationResponses[UnityEngine.Random.Range(0, CannedMotivationResponses.Length - 1)]);
             return;
         }
         FightCount++;
 
         //Character responds to player
-        MenuManager.Instance.SetThought(CharacterName, CannedFightResponses[Random.Range(0, CannedFightResponses.Length - 1)]);
+        MenuManager.Instance.SetThought(CharacterName, CannedFightResponses[UnityEngine.Random.Range(0, CannedFightResponses.Length - 1)]);
     }
 
     private void ResetFightLevels()
@@ -369,7 +383,7 @@ public class CharacterStatus : MonoBehaviour
         MenuManager.Instance.RemoveMatchAt(matchCount);
         matchCount--;
         isFightingPlayer = false;
-        isWarming = false;
+        isWarmingWithMatches = false;
         SwitchCharacterStates();
     }
 
@@ -377,7 +391,7 @@ public class CharacterStatus : MonoBehaviour
     {
         GameObject mainState = GameObject.Find("MainChar");
         GameObject warmState = GameObject.Find("WarmChar");
-        if (isWarming)
+        if (isWarmingWithMatches)
         {
             Debug.Log(warmState);
             warmState.transform.position = new Vector3(mainState.transform.position.x, warmState.transform.position.y, warmState.transform.position.z);

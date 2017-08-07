@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class AreaEffects : MonoBehaviour
 {
-
-
     public float test = 0f;
     public string[] ThoughtsInArea;
+    public float ThoughtDelayTime = 40;
     private int ThoughtCount = -1;
 
     private float SinceLastThought;
@@ -22,13 +21,6 @@ public class AreaEffects : MonoBehaviour
             ThoughtCount = 0;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,7 +43,7 @@ public class AreaEffects : MonoBehaviour
             float timeDifference = currentTime - SinceLastThought;
 
             //Check if we have any thoughts
-            if (ThoughtCount >= 0 && timeDifference > 10)
+            if (ThoughtCount >= 0 && timeDifference > ThoughtDelayTime)
             {
                 MenuManager.Instance.SetThought(player.GetComponent<CharacterStatus>().CharacterName, ThoughtsInArea[ThoughtCount]);
 
@@ -67,6 +59,7 @@ public class AreaEffects : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-
+        Destroy(this.gameObject);
+        Destroy(this);
     }
 }

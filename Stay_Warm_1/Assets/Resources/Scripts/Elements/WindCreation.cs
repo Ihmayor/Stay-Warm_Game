@@ -20,14 +20,10 @@ public class WindCreation : MonoBehaviour {
     private void LoopWind()
     {
         //Instantiate Platforms
-        GameObject Wind = Resources.Load<GameObject>("Prefabs/wind");
+        GameObject Wind = Resources.Load<GameObject>("Prefabs/Elements/wind");
         GameObject SourceStart = this.gameObject;
         GameObject instance = Instantiate(Wind, null);
         instance.transform.position = SourceStart.transform.position - new Vector3(0.3f, Random.Range(HeightVariationMin, HeightVariationMax), 0);
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
 }

@@ -53,11 +53,6 @@ public class MenuManager : MonoBehaviour
         Screen.SetResolution(965, 600, false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     /// <summary>
     /// Restart current scene/Replay Current Level
     /// </summary>
@@ -91,14 +86,29 @@ public class MenuManager : MonoBehaviour
     /// <param name="thoughtMessage">Thought Content</param>
     public void SetThought(string characterName, string thoughtMessage)
     {
+        if (ThoughtBox.transform.Find("ThoughtText").GetComponent<Text>().text != "")
+        {
+            StartCoroutine(Delay(10));
+        }
         ThoughtBox.transform.Find("CharacterName").GetComponent<Text>().text = characterName;
         ThoughtBox.transform.Find("ThoughtText").GetComponent<Text>().text = thoughtMessage;
+        Invoke("ClearThought", 10f);
+    }
+
+    private IEnumerator Delay(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+    }
+
+    private void ClearThought()
+    {
+        ThoughtBox.transform.Find("ThoughtText").GetComponent<Text>().text = "";
     }
 
     /// <summary>
-    /// Goofy Instruction box from First Iteration. TODO: Re-purpose for _real_ menu system.
+    /// Open Interaction Box
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="message">Message to pop-in</param>
     public void OpenInteractionMenu(string message)
     {
         InteractionBox = MainMenuSystem.transform.Find("PickupMenu").transform.Find("PickupPanel").gameObject;
@@ -141,6 +151,6 @@ public class MenuManager : MonoBehaviour
     public void ActivateHeartMeter()
     {
         Status.transform.Find("HeartElement").gameObject.SetActive(true);
-        Destroy(GameObject.Find("Block"));
+        Destroy(GameObject.Find("Block").gameObject);
     }
 }

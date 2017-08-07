@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NotifyPropScript : MonoBehaviour {
-    private string notificationMessage = "";
+    public string notificationMessage = "";
 
     // Use this for initialization
     void Start () {

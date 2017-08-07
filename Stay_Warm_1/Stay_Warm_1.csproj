@@ -92,7 +92,7 @@
     <Compile Include="Assets\Custom\NewScripts\SimplePlatformController.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnCoin.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnManager.cs" />
-    <Compile Include="Assets\Resources\Scripts\Character\AnimTest.cs" />
+    <Compile Include="Assets\FollowManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\Camera2DFollow.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\CharacterController.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\CharacterStatus.cs" />
@@ -109,6 +109,7 @@
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\SpawnLog.cs" />
+    <Compile Include="Assets\Resources\Scripts\Props\FloatAndFollow.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\NotificationManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\NotifyPropScript.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\Pickup.cs" />

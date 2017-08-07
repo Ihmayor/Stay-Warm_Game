@@ -30,7 +30,8 @@ public class CoolingElement : MonoBehaviour {
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject.GetComponent<Collider2D>());
+            Destroy(gameObject, Resources.Load<AudioClip>("Audio/wind_gust").length);
         }
 	}
    

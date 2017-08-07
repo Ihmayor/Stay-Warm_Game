@@ -35,6 +35,15 @@ public class WarmingElement : MonoBehaviour
                 collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
             charStatus.SetHeartCooling(false);
+            charStatus.isHeartWarming = true;
+
+            if (this.gameObject.GetComponent<SpriteRenderer>().color == Color.white)
+            {
+
+                this.gameObject.GetComponent<SpriteRenderer>().color = WarmingElementManager.Instance.FetchNextColor();
+                this.GetComponent<AudioSource>().PlayOneShot(WarmingElementManager.Instance.FetchRandomChime());
+                this.GetComponent<AudioSource>().loop = false;
+            }
         }
     }
 
@@ -55,24 +64,16 @@ public class WarmingElement : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             GameObject Character = collision.gameObject;
+            CharacterStatus charStatus = Character.GetComponent<CharacterStatus>();
 
-            Character.GetComponent<CharacterStatus>().CheckCharacterHealth(false);
-            if (Character.GetComponent<CharacterStatus>().isFightingPlayer)
+            charStatus.CheckCharacterHealth(false);
+            if (charStatus.isFightingPlayer)
             {
                 Character.transform.position = new Vector2(this.gameObject.transform.position.x, Character.transform.position.y);
                 Character.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-                Character.GetComponent<CharacterStatus>().FightPlayer();
+                charStatus.FightPlayer();
             }
-
-            if (this.gameObject.GetComponent<SpriteRenderer>().color == Color.white)
-            {
-
-                this.gameObject.GetComponent<SpriteRenderer>().color = WarmingElementManager.Instance.FetchNextColor();
-                this.GetComponent<AudioSource>().PlayOneShot(WarmingElementManager.Instance.FetchRandomChime());
-                this.GetComponent<AudioSource>().loop = false;
-            }
-
-
+            charStatus.isHeartWarming = false;
         }
     }
 
