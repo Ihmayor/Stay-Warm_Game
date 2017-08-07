@@ -12,7 +12,7 @@ public class PlatformManager : MonoBehaviour {
 
         //Reference this instance as singleton instance
         PlatformManager.Instance = this;
-      //  InstantiateAndDemoMovement();
+        Puzzle1(GameObject.Find("lightpoleBridge").transform.position + new Vector3(4f, 1.5f, 0));
     }
 	
 	// Update is called once per frame
@@ -20,6 +20,42 @@ public class PlatformManager : MonoBehaviour {
 		
 	}
 
+    private void Puzzle1(Vector3 StartPosition)
+    {
+        List<GameObject> Platforms = new List<GameObject>();
+        GameObject VerticalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/VerticalPlatform");
+        GameObject HorizontalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/HorizontalPlatform");
+
+        int HozPlatforms = 15;
+
+        //Create A Vertical Platform to start
+        Platforms.Add(CreatePlatform(VerticalPlatform, StartPosition, null, 1.5f, 500, false));
+
+        //Previous platform position. Adjust such that we are at the height of the starter vertical platform
+        Vector3 prevPlatformPosition = Platforms[Platforms.Count-1].transform.position + new Vector3(1.1f, 1f, 0);
+
+        //Start Horizontal Platform bridge across the sky.
+        for (int i = 0; i <= HozPlatforms; i++)
+        {
+            float DistanceMovementVariance = Random.Range(1, 3);
+            Vector3 DistanceVariance = new Vector3(Random.Range(DistanceMovementVariance, DistanceMovementVariance+0.1f),0,0);
+            Vector3 PlatformPosition = prevPlatformPosition + DistanceVariance;
+            float SpeedVariance = Random.Range(10, 30);
+            bool DirectionVariance = Random.value < 0.5f;
+            Platforms.Add(CreatePlatform(HorizontalPlatform, PlatformPosition, null, DistanceMovementVariance, SpeedVariance, DirectionVariance));
+            prevPlatformPosition = PlatformPosition;
+        }
+    }
+
+    private GameObject CreatePlatform(GameObject prefab, Vector3 position, Transform parentTransform, float distance, float speed, bool reverseDirection )
+    {
+        GameObject instance = Instantiate(prefab, parentTransform);
+        instance.transform.position = position;
+        instance.GetComponent<PlatformMovement>().SetNewDistance(distance);
+        instance.GetComponent<PlatformMovement>().ChangeSpeed(true, speed);
+        instance.GetComponent<PlatformMovement>().ReverseDirection = reverseDirection;
+        return instance;
+    }
 
     private void InstantiateAndDemoMovement()
     {

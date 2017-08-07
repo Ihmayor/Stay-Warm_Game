@@ -86,7 +86,7 @@ public class PlatformMovement : MonoBehaviour {
     /// <param name="setDistance">Float it will move forward and backward</param>
     public void SetNewDistance(float setDistance)
     {
-        Debug.Log("Distance set to: " + setDistance + " for " + GetInstanceID());
+       // Debug.Log("Distance set to: " + setDistance + " for " + GetInstanceID());
 
         //Get corresponding position based on the set axis for the platform type
         float CheckAxisVar = GetAxisVar(Type);

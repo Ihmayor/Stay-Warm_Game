@@ -96,7 +96,7 @@ public class CharacterStatus : MonoBehaviour
         OriginalHeartCoolingFactor = HeartCoolingFactor;
         CoolStrength = 0.0005f;
         isHeartCooling = false;
-        HeartWait = 0.007f;
+        HeartWait = 0.003f;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
         //Init sacrifice factor

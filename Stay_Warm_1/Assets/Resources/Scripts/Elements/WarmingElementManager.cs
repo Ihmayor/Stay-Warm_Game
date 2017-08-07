@@ -39,14 +39,12 @@ public class WarmingElementManager : MonoBehaviour
 
     public Color FetchNextColor()
     {
-        Debug.Log(loopColor % ColorsToChangeTo.Length);
         Color c = ColorsToChangeTo[loopColor++ % ColorsToChangeTo.Length];
         return c;
     }
 
     public AudioClip FetchRandomChime()
     {
-        Debug.Log(Chimes.Count);
         return Chimes[Random.Range(0, Chimes.Count)];
     }
 }
