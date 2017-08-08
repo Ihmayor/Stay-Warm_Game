@@ -382,6 +382,7 @@ public class CharacterStatus : MonoBehaviour
     private void TriggerMatchHeal()
     {
         Heal(0.75F);
+        WarmHeart(1);
         MenuManager.Instance.RemoveMatchAt(matchCount);
         matchCount--;
         isFightingPlayer = false;

@@ -32,13 +32,13 @@ public class PlatformManager : MonoBehaviour {
         Platforms.Add(CreatePlatform(VerticalPlatform, StartPosition, null, 2f, 1000, false));
 
         //Previous platform position. Instantiate following platforms within reach of it previous one. 
-        Vector3 prevPlatformPosition = Platforms[Platforms.Count - 1].transform.position + new Vector3(1f, 1.5f,0);
+        Vector3 prevPlatformPosition = Platforms[Platforms.Count - 1].transform.position + new Vector3(0, 1.5f,0);
 
         //Start Horizontal Platform bridge across the sky.
         for (int i = 0; i <= HozPlatforms; i++)
         {
             bool DirectionVariance = Random.value < 0.5f;
-            float DistanceMovementVariance = Random.Range(1, 3);
+            float DistanceMovementVariance = Random.Range(0,1.1f);
 
             Vector3 DistanceVariance = new Vector3(DistanceMovementVariance, 0, 0);
             if (!DirectionVariance)
@@ -47,12 +47,11 @@ public class PlatformManager : MonoBehaviour {
             float SpeedVariance = Random.Range(2000, 7000);
             GameObject newPlatform = CreatePlatform(HorizontalPlatform, PlatformPosition, null, DistanceMovementVariance, SpeedVariance, DirectionVariance);
             Platforms.Add(newPlatform);
-            Debug.Log(prevPlatformPosition + "," + newPlatform.GetComponent<PlatformMovement>().MoveNegativeMax + "," + newPlatform.GetComponent<PlatformMovement>().MovePositiveMax);
             //Give one of the platforms a piece of paper
             if (i == HozPlatforms - 2)
             {
                 GameObject PaperInstance =Instantiate(Resources.Load<GameObject>("Prefabs/PropsAndNots/Paper"), Platforms[Platforms.Count - 1].transform);
-                PaperInstance.GetComponent<Pickup>().PickupName = "Note #2";
+                PaperInstance.GetComponent<Pickup>().PickupName = "Note #3";
             }
 
             prevPlatformPosition = PlatformPosition+new Vector3(DistanceMovementVariance, 0);

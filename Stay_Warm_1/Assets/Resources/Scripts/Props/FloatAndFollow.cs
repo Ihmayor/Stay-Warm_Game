@@ -15,35 +15,51 @@ public class FloatAndFollow : MonoBehaviour
     private Vector2 currentForce;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         gameObject.transform.parent = null;
         gameObject.GetComponent<TrailRenderer>().enabled = true;
-        velocity = new Vector2(Random.Range(0.01f, 0.1f), Random.Range(0.01f, 0.1f));
-        rb2d = gameObject.AddComponent<Rigidbody2D>();
+        velocity = new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
+        if (gameObject.GetComponent<Rigidbody2D>() == null)
+            rb2d = gameObject.AddComponent<Rigidbody2D>();
+        else
+            rb2d = gameObject.GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 0;
         currentForce = new Vector2(0.01f, 0.002f);
         //   gameObject.AddComponent<CircleCollider2D>();
         location = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+        try
+        {
 
-        StartCoroutine("FloatObject");
+        }
+        catch (System.Exception ex)
+        {
+            StartCoroutine("FloatObject");
+        }
     }
 
     IEnumerator FloatObject()
     {
-        yield return new WaitForSeconds(1.5f);
+        while (transform.position == FollowManager.Instance.Target.transform.position)
+            yield return null;
+
+        yield return new WaitForSeconds(Random.Range(1, 1.5f));
+        float floatingFactor = Random.Range(0.001f, 0.003f);
         for (float i = 0; i <= 2f; i += 0.01f)
         {
             yield return new WaitForSeconds(0.1f);
-            rb2d.AddForce(Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y + 0.002f) - location)).normalized);
+            Vector2 varianceGoal = Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y + floatingFactor) - location)).normalized;
+            ApplyForce(varianceGoal);
         }
 
         for (float i = 0; i <= 2f; i += 0.01f)
         {
             yield return new WaitForSeconds(0.1f);
-            rb2d.AddForce(Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y - 0.002f) - location)).normalized);
+            Vector2 varianceGoal = Seek((new Vector2(0, FollowManager.Instance.Target.transform.position.y - floatingFactor) - location)).normalized;
+            ApplyForce(varianceGoal);
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(Random.Range(0.3f, 2f));
+
         StartCoroutine("FloatObject");
     }
 
@@ -89,7 +105,7 @@ public class FloatAndFollow : MonoBehaviour
             Vector2 steer = sum - velocity;
             return steer;
         }
-        return Vector2.zero;
+        return new Vector2(0.0000000001f, 0.00000001f);
     }
 
     Vector2 Cohesion()
@@ -116,7 +132,7 @@ public class FloatAndFollow : MonoBehaviour
             sum /= count;
             return Seek(sum);
         }
-        return Vector2.zero;
+        return new Vector2(0.0000000001f, 0.00000001f);
     }
 
     Vector2 Seek(Vector2 target)
@@ -128,19 +144,21 @@ public class FloatAndFollow : MonoBehaviour
     {
         location = this.transform.position;
         velocity = rb2d.velocity;
-        currentForce = new Vector2(0.3f, 0.5f);
         Vector2 gl = Seek(FollowManager.Instance.Target.transform.position);
         Vector2 align = Align();
         Vector2 cohesion = Cohesion();
-        currentForce = gl + align + cohesion;
+        currentForce = gl + align + cohesion + new Vector2(Random.Range(-0.4f, 0.4f), Random.Range(-0.3f, 0.3f));
         currentForce = currentForce.normalized;
         ApplyForce(currentForce);
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Flock();
+        if (transform.position != FollowManager.Instance.Target.transform.position)
+            Flock();
+        else
+            Debug.Log("screeech");
     }
+    
 }

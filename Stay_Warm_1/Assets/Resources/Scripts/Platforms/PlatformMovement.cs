@@ -173,14 +173,14 @@ public class PlatformMovement : MonoBehaviour {
     {
         if (collision.gameObject.tag.Contains("Player"))
             collision.gameObject.gameObject.transform.parent = this.gameObject.transform;
-    }
+      }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
 
         if (collision.collider.tag.Contains("Player"))
             collision.collider.gameObject.transform.parent = null;
-    }
+     }
 
     #endregion
 

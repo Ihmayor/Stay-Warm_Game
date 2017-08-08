@@ -30,7 +30,7 @@ public class Pickup : MonoBehaviour {
                     Destroy(this.gameObject, this.GetComponent<AudioSource>().clip.length);
                 }
             }
-            else
+            else if (this.prop != PropResources.PropType.Paper)
                 Destroy(this.gameObject);
             Destroy(this);
         }

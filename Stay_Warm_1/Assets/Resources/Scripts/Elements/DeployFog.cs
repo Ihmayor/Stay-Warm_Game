@@ -50,9 +50,9 @@ public class DeployFog : MonoBehaviour {
 
     private void FogDelete()
     {
-        Debug.Log("here??44");
-        Destroy(Fog);
-        Fog = null;
+    //    Debug.Log("here??44");
+    //    Destroy(Fog);
+    //    Fog = null;
     }
 
 

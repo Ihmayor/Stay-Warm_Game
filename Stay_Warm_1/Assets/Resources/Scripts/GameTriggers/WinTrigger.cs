@@ -18,8 +18,6 @@ public class WinTrigger : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
-            Debug.Log("Test");
             MenuManager.Instance.ShowWin();
         }
     }

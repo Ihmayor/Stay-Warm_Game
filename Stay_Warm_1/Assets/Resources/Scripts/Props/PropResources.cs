@@ -29,7 +29,7 @@ public static class PropResources
             case PropType.Paper:
                 return Resources.Load<AudioClip>("Audio/paperflip");
             case PropType.Heart:
-                return Resources.Load<AudioClip>("Audio/insepctorj_ambient_chimes");
+                return Resources.Load<AudioClip>("Audio/124546__cubix__waterdrop");
             default:
                 return null;
         }

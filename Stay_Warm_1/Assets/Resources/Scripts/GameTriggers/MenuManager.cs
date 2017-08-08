@@ -113,33 +113,34 @@ public class MenuManager : MonoBehaviour
     public void OpenInteractionMenu(string message)
     {
         InteractionBox = MainMenuSystem.transform.Find("PickupMenu").transform.Find("PickupPanel").gameObject;
-        var InteractionBoxText = InteractionBox.transform.Find("PickupText").gameObject;
-        InteractionBoxText.GetComponent<Text>().text = message;
+        StartCoroutine("SlideMenuIn", message);
+
         MenuSlideLength = 30f;
-        StartCoroutine("SlideMenuIn");
     }
 
-    IEnumerator SlideMenuIn()
+    IEnumerator SlideMenuIn(string message)
     {
         while (isSlideMenuInFrame)
         {
-            yield return new WaitForSeconds(3.5f);
+            yield return new WaitForSeconds(1.5f);
         }
+        var InteractionBoxText = InteractionBox.transform.Find("PickupText").gameObject;
+        InteractionBoxText.GetComponent<Text>().text = message;
         isSlideMenuInFrame = true;
         InteractionBox.SetActive(true);
         for (float i = 0; i <= MenuSlideLength; i++)
         {
             yield return new WaitForSeconds(0.0001f);
-            InteractionBox.transform.position -= new Vector3(20f,0, 0);
+            InteractionBox.transform.position -= new Vector3(20f, 0, 0);
             yield return null;
         }
         yield return new WaitForSeconds(3.4f);
         StartCoroutine("SlideMenuOut");
     }
 
+
     IEnumerator SlideMenuOut()
     {
-        isSlideMenuInFrame = false;
         for (float i = 0; i <= MenuSlideLength; i++)
         {
             yield return new WaitForSeconds(0.0001f);
@@ -147,6 +148,8 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
         InteractionBox.SetActive(false);
+        InteractionBox.transform.Find("PickupText").GetComponent<Text>().text = "";
+        isSlideMenuInFrame = false;
     }
 
     internal void RemoveMatchAt(int matchCount)
