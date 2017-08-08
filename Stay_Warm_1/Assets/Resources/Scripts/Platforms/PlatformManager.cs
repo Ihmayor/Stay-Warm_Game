@@ -7,11 +7,19 @@ public class PlatformManager : MonoBehaviour {
     #region Singleton instance
     public static PlatformManager Instance { private set; get; }
     #endregion
+
+    private GameObject VerticalPlatform;
+    private GameObject HorizontalPlatform;
+    private GameObject Step;
+
     // Use this for initialization
     void Start () {
-
+        VerticalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/VerticalPlatform");
+        HorizontalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/HorizontalPlatform");
+        Step = Resources.Load<GameObject>("Prefabs/Platforms/step");
         //Reference this instance as singleton instance
         PlatformManager.Instance = this;
+        Puzzle0(GameObject.Find("PlatformWhiteSprite").transform.position + new Vector3(6f, -1.45f, 0));
         Puzzle1(GameObject.Find("lightpoleBridge").transform.position + new Vector3(4f, 1.5f, 0));
     }
 	
@@ -20,12 +28,60 @@ public class PlatformManager : MonoBehaviour {
 		
 	}
 
+    private void Puzzle0(Vector3 StartPosition)
+    {
+
+        //CreateStepTower(StartPosition, 2);
+        GameObject step = Instantiate(Step, null);
+        step.transform.position = StartPosition;
+        Vector3 PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+
+
+        step = Instantiate(Step, null);
+        step.transform.position = StartPosition + new Vector3(3f,0);
+
+        //CreateStepTower(StartPosition + Vector3(3f,0), 5);
+        PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+        step = Instantiate(Step, null);
+        step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+        PrevPosition = step.transform.position;
+    }
+
+    private void CreateStepTower(Vector3 position, int stepCount)
+    {
+        GameObject step = Instantiate(Step, null);
+        step.transform.position = position;
+        Vector3 PrevPosition = step.transform.position;
+        for (int i = 0; i< stepCount; i++)
+        {
+            step = Instantiate(Step, null);
+            step.transform.position = position + new Vector3(0, 0.2124999f);
+            PrevPosition = step.transform.position;
+        }
+    }
+
     private void Puzzle1(Vector3 StartPosition)
     {
         List<GameObject> Platforms = new List<GameObject>();
-        GameObject VerticalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/VerticalPlatform");
-        GameObject HorizontalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/HorizontalPlatform");
-
+      
         int HozPlatforms = 15;
 
         //Create A Vertical Platform to start
@@ -56,6 +112,7 @@ public class PlatformManager : MonoBehaviour {
 
             prevPlatformPosition = PlatformPosition+new Vector3(DistanceMovementVariance, 0);
         }
+        //Maintain Platforms
     }
 
     private GameObject CreatePlatform(GameObject prefab, Vector3 position, Transform parentTransform, float distance, float speed, bool reverseDirection )
