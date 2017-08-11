@@ -31,8 +31,8 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MenuManager.Instance.GameOver)
-            return;
+        //if (MenuManager.MenuManager.Instance.GameOver)
+        //    return;
 
         if (this.GetComponent<CharacterStatus>().isWarmingWithMatches)
             return;

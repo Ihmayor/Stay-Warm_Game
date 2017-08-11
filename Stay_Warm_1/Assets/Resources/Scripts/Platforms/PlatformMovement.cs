@@ -20,8 +20,19 @@ public class PlatformMovement : MonoBehaviour {
     private bool isMovePositive;
     public float MoveNegativeMax { get; private set; }
     public float MovePositiveMax { get; private set; }
-
     public float SpeedDeviation { get; private set; }
+    public float AxisOffset { get
+        {
+            if (gameObject == null)
+                return 0;
+            if (Type == PlatformType.Horizontal)
+                return gameObject.transform.localScale.x;
+            else if (Type == PlatformType.Vertical)
+                return gameObject.transform.localScale.y;
+            else
+                return 0;
+        }
+    }
 
     #endregion
 

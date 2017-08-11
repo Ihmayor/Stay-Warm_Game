@@ -102,7 +102,17 @@ public class PlatformManager : MonoBehaviour {
         //Maintain Platforms
     }
 
-    private GameObject CreatePlatform(GameObject prefab, Vector3 position, Transform parentTransform, float distance, float speed, bool reverseDirection )
+    /// <summary>
+    /// Create a Platform at x point that moves distance +- foward/backwards
+    /// </summary>
+    /// <param name="prefab">GameObject Prefab of Moving Platform</param>
+    /// <param name="position">Position platform should be instantiated at</param>
+    /// <param name="parentTransform">Parent Transform of instantiated platform object</param>
+    /// <param name="distance">Distance platform travels +-</param>
+    /// <param name="speed">Speed of platform movement</param>
+    /// <param name="reverseDirection">Reverse the order of direction (moving backwards first then forwards)</param>
+    /// <returns>Instantiated Platform</returns>
+    private GameObject CreatePlatform(GameObject prefab, Vector3 position, Transform parentTransform, float distance, float speed, bool reverseDirection)
     {
         GameObject instance = Instantiate(prefab, parentTransform);
         instance.transform.position = position;
@@ -110,6 +120,33 @@ public class PlatformManager : MonoBehaviour {
         instance.GetComponent<PlatformMovement>().ChangeSpeed(true, speed);
         instance.GetComponent<PlatformMovement>().ReverseDirection = reverseDirection;
         return instance;
+    }
+
+    /// <summary>
+    /// Creates moving platform between two given points
+    /// </summary>
+    /// <param name="prefab">Moving Platform Prefab</param>
+    /// <param name="StartPoint">Start Point that the platform must reach</param>
+    /// <param name="EndPoint">End Point that the platform must reach</param>
+    /// <param name="Gap">Gap Between the two reach points</param>
+    /// <param name="parentTransform">Parent Tranform of instantiated platform object</param>
+    /// <param name="speed">Speed of platform movement</param>
+    /// <param name="reverseDirection">Reverse the order of direction (moving backwards first then forwards)</param>
+    /// <returns>Instantiated Platform</returns>
+    private GameObject CreatePlatform(GameObject prefab, Vector3 StartPoint, Vector3 EndPoint, float Gap, Transform parentTransform, float speed, bool reverseDirection)
+    {
+        Vector3 MidPoint = (StartPoint + EndPoint) / 2;
+
+        //Calcualte Offsets
+        float OffsetStartPoint = StartPoint.x + prefab.GetComponent<PlatformMovement>().AxisOffset / 2; //offset dependent on platform size
+        float OffsetEndPoint = EndPoint.x - prefab.GetComponent<PlatformMovement>().AxisOffset / 2;//offset dependent on platform size
+
+        //Adjust a gap for the platform to reach then find midpoint 
+        OffsetStartPoint += Gap;
+        OffsetEndPoint -= Gap;
+        float OffsetMidPoint = (OffsetEndPoint - OffsetStartPoint) / 2;
+
+        return CreatePlatform(prefab, MidPoint, parentTransform, OffsetMidPoint, speed, reverseDirection);
     }
 
     private void InstantiateAndDemoMovement()

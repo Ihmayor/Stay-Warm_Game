@@ -80,6 +80,7 @@ public class CharacterStatus : MonoBehaviour
     public bool isWarmingWithMatches { private set; get; }
     public bool isFirstWarming { get; private set; }
     public float PushPower;
+    public bool GameOver { private set; get; }
     #endregion
 
     #region Init/Repeated Functions
