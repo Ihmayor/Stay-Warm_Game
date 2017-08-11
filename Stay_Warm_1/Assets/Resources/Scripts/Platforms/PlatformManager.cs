@@ -15,12 +15,13 @@ public class PlatformManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        PlatformManager.Instance = this;
+
         VerticalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/VerticalPlatform");
         HorizontalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/HorizontalPlatform");
         Step = Resources.Load<GameObject>("Prefabs/Platforms/step");
         Spike = Resources.Load<GameObject>("Prefabs/Platforms/Spike");
         //Reference this instance as singleton instance
-        PlatformManager.Instance = this;
         Puzzle0(GameObject.Find("PlatformWhiteSprite").transform.position + new Vector3(6f, -1.45f, 0));
         Puzzle1(GameObject.Find("lightpoleBridge").transform.position + new Vector3(4f, 1.5f, 0));
     }
@@ -30,14 +31,18 @@ public class PlatformManager : MonoBehaviour {
 		
 	}
 
-    private void Puzzle0(Vector3 StartPosition)
+    private void Puzzle0(Vector3 GroundedStartPosition)
     {
-        CreateStepTower(StartPosition, 2);
-        Vector3 LastPosition = CreateStepTower(StartPosition+ new Vector3(1,0), 2);
-        LastPosition = CreateStepTower(LastPosition + new Vector3(1.8f,0), 3);
-        LastPosition = CreateStepTower(LastPosition + new Vector3(1.5f, 0), 3);
-        LastPosition = CreateStepTower(LastPosition + new Vector3(3f, 0), 4);
-        
+        CreateStepTower(GroundedStartPosition, 2);
+        Vector3 LastPosition = CreateStepTower(GroundedStartPosition+ new Vector3(1,0), 2);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x,GroundedStartPosition.y) + new Vector3(1.6f,0), 3);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(1.5f, 0), 3);
+        Debug.Log("Tower1: " + LastPosition);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(0.5f, 0), 1);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4.5f, 0), 6);
+        Debug.Log("Tower2: " + LastPosition);
+        CreatePlatform(HorizontalPlatform, LastPosition- new Vector3(2.5f,0,0), null, 1.3f, 400, false);
+        Debug.Log("Horizontal Platform: "+(LastPosition - new Vector3(2.5f, 0, 0)));
     }
 
     /// <summary>
@@ -57,7 +62,7 @@ public class PlatformManager : MonoBehaviour {
             step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
             PrevPosition = step.transform.position;
         }
-        return new Vector3(PrevPosition.x, position.y, position.z);
+        return PrevPosition;
     }
 
     private void Puzzle1(Vector3 StartPosition)

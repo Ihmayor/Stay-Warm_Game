@@ -26,16 +26,10 @@ public class FloatAndFollow : MonoBehaviour
             rb2d = gameObject.GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 0;
         currentForce = new Vector2(0.01f, 0.002f);
-        //   gameObject.AddComponent<CircleCollider2D>();
+        CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
+        gameObject.layer = LayerMask.NameToLayer("Floating");
         location = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        try
-        {
-
-        }
-        catch (System.Exception ex)
-        {
-            StartCoroutine("FloatObject");
-        }
+        StartCoroutine("FloatObject");
     }
 
     IEnumerator FloatObject()
@@ -153,6 +147,7 @@ public class FloatAndFollow : MonoBehaviour
 
     }
 
+
     void Update()
     {
         if (transform.position != FollowManager.Instance.Target.transform.position)
@@ -160,5 +155,5 @@ public class FloatAndFollow : MonoBehaviour
         else
             Debug.Log("screeech");
     }
-    
+
 }
