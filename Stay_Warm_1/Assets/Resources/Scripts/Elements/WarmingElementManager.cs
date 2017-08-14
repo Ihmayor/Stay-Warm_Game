@@ -35,6 +35,9 @@ public class WarmingElementManager : MonoBehaviour
         {
             Chimes.Add(Resources.Load<AudioClip>(path));
         }
+
+
+
     }
 
     public Color FetchNextColor()

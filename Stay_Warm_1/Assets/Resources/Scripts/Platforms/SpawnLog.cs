@@ -16,7 +16,7 @@ public class SpawnLog : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        SpawnInitialSpikeObstacle();
+    //    SpawnInitialSpikeObstacle();
     }
 
     private void SpawnInitialSpikeObstacle()

@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour {
     public string PickupName;
-    public PropResources.PropType prop;
+    internal AudioClip Sound;
 
-	// Use this for initialization
-	void Start () {
+
+    public static Dictionary<string, string> PropThoughts = new Dictionary<string, string>() {
+        {"Note #1","There's nothing on it, but it feels warm. ... Oh!"},
+        {"Note #2","Another one..."},
+        {"Note #3","It's nice not being alone."},
+        {"Glass Heart","This...heart. It feels important. I...I should take care of it."}
+    };
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -16,23 +24,28 @@ public class Pickup : MonoBehaviour {
         if (collision.tag.Contains("Player"))
         {
             MenuManager.Instance.OpenInteractionMenu("Picked up '" + PickupName + "'");
-            MenuManager.Instance.SetThought(collision.GetComponent<CharacterStatus>().CharacterName, PropResources.PropThoughts[PickupName]);
-            PropResources.PickupActions[this.prop](collision);
-            AudioClip PickupSound = PropResources.GetPickupAudio(this.prop);
-            this.GetComponent<AudioSource>().clip = PickupSound;
-            this.GetComponent<AudioSource>().Play();
-            if (PickupSound != null)
+            MenuManager.Instance.SetThought(collision.GetComponent<CharacterStatus>().CharacterName, PropThoughts[PickupName]);
+            PickUpAction(new object[] { collision });
+             if (Sound != null)
             {
                 Destroy(this.gameObject.GetComponent<BoxCollider2D>());
-                if (this.prop  != PropResources.PropType.Paper)
-                {
-                    this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-                    Destroy(this.gameObject, this.GetComponent<AudioSource>().clip.length);
-                }
+                DestroyPickupObject();
             }
-            else if (this.prop != PropResources.PropType.Paper)
+            else
                 Destroy(this.gameObject);
             Destroy(this);
         }
     }
+
+    public virtual void PickUpAction(object[] arg){
+        this.GetComponent<AudioSource>().clip = Sound;
+        this.GetComponent<AudioSource>().Play();
+    }
+
+    public virtual void DestroyPickupObject(){
+        this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        Destroy(this.gameObject, this.GetComponent<AudioSource>().clip.length);
+    }
+
+
 }

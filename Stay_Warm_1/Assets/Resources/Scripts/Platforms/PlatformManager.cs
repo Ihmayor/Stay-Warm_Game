@@ -34,15 +34,14 @@ public class PlatformManager : MonoBehaviour {
     private void Puzzle0(Vector3 GroundedStartPosition)
     {
         CreateStepTower(GroundedStartPosition, 2);
-        Vector3 LastPosition = CreateStepTower(GroundedStartPosition+ new Vector3(1,0), 2);
+        Vector3 LastPosition = CreateStepTower(GroundedStartPosition+ new Vector3(1.55f,0), 2);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(1.55f, 0), 2);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(1.55f, 0), 2);
         LastPosition = CreateStepTower(new Vector3(LastPosition.x,GroundedStartPosition.y) + new Vector3(1.6f,0), 3);
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(1.5f, 0), 3);
-        Debug.Log("Tower1: " + LastPosition);
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(0.5f, 0), 1);
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4.5f, 0), 6);
-        Debug.Log("Tower2: " + LastPosition);
         CreatePlatform(HorizontalPlatform, LastPosition- new Vector3(2.5f,0,0), null, 1.3f, 400, false);
-        Debug.Log("Horizontal Platform: "+(LastPosition - new Vector3(2.5f, 0, 0)));
     }
 
     /// <summary>
@@ -69,7 +68,7 @@ public class PlatformManager : MonoBehaviour {
     {
         List<GameObject> Platforms = new List<GameObject>();
       
-        int HozPlatforms = 15;
+        int HozPlatforms = 10;
 
         //Create A Vertical Platform to start
         Platforms.Add(CreatePlatform(VerticalPlatform, StartPosition, null, 2f, 1000, false));
@@ -80,13 +79,10 @@ public class PlatformManager : MonoBehaviour {
         //Start Horizontal Platform bridge across the sky.
         for (int i = 0; i <= HozPlatforms; i++)
         {
-            bool DirectionVariance = Random.value < 0.5f;
-            float DistanceMovementVariance = Random.Range(0,1.1f);
-
+            bool DirectionVariance = false;
+            float DistanceMovementVariance = Random.Range(0,1f);
             Vector3 DistanceVariance = new Vector3(DistanceMovementVariance, 0, 0);
-            if (!DirectionVariance)
-                DistanceVariance += new Vector3(DistanceMovementVariance, 0, 0);
-            Vector3 PlatformPosition = prevPlatformPosition + DistanceVariance;
+            Vector3 PlatformPosition = prevPlatformPosition + DistanceVariance + new Vector3(0.9f,0,0);
             float SpeedVariance = Random.Range(2000, 7000);
             GameObject newPlatform = CreatePlatform(HorizontalPlatform, PlatformPosition, null, DistanceMovementVariance, SpeedVariance, DirectionVariance);
             Platforms.Add(newPlatform);
@@ -97,7 +93,7 @@ public class PlatformManager : MonoBehaviour {
                 PaperInstance.GetComponent<Pickup>().PickupName = "Note #3";
             }
 
-            prevPlatformPosition = PlatformPosition+new Vector3(DistanceMovementVariance, 0);
+            prevPlatformPosition = PlatformPosition+new Vector3(DistanceMovementVariance, 0)+new Vector3(0.9f,0,0);
         }
         //Maintain Platforms
     }
@@ -115,7 +111,7 @@ public class PlatformManager : MonoBehaviour {
     private GameObject CreatePlatform(GameObject prefab, Vector3 position, Transform parentTransform, float distance, float speed, bool reverseDirection)
     {
         GameObject instance = Instantiate(prefab, parentTransform);
-        instance.transform.position = position;
+        instance.transform.position = position + new Vector3(0,0,-1);
         instance.GetComponent<PlatformMovement>().SetNewDistance(distance);
         instance.GetComponent<PlatformMovement>().ChangeSpeed(true, speed);
         instance.GetComponent<PlatformMovement>().ReverseDirection = reverseDirection;

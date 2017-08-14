@@ -17,6 +17,7 @@ public class CharacterStatus : MonoBehaviour
     private float HeartWait;
     public bool isFirstCooling { get; private set; }
     public bool hasHeart;
+    public bool isBehindCoolingBlock;
     #endregion
 
     #region Health Sacrfice Variables
@@ -125,7 +126,7 @@ public class CharacterStatus : MonoBehaviour
     /// <summary>
     /// Repeatedly cool the heart. if heart is near cooling factors, then cool faster
     /// </summary>
-    void CheckHeart()
+    private void CheckHeart()
     {
         if (isHeartCooling && hasHeart)
         {
@@ -340,6 +341,7 @@ public class CharacterStatus : MonoBehaviour
     {
         HeartBar.GetComponent<Image>().fillAmount += AmountToWarm;
     }
+
 
     #endregion
 

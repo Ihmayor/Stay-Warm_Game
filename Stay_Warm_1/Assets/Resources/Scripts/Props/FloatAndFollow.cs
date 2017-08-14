@@ -28,6 +28,7 @@ public class FloatAndFollow : MonoBehaviour
         currentForce = new Vector2(0.01f, 0.002f);
         CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
         gameObject.layer = LayerMask.NameToLayer("Floating");
+        collider.radius = 0.15f;
         location = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         StartCoroutine("FloatObject");
     }

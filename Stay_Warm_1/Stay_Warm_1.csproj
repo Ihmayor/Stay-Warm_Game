@@ -104,18 +104,21 @@
     <Compile Include="Assets\Resources\Scripts\Elements\WarmingElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WindCreation.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\DeathTrigger.cs" />
+    <Compile Include="Assets\Resources\Scripts\GameTriggers\LevelManager.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\MenuManager.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\WinTrigger.cs" />
     <Compile Include="Assets\Resources\Scripts\PlatformTestScript.cs" />
+    <Compile Include="Assets\Resources\Scripts\Platforms\HorizontalPlatformMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\SpawnLog.cs" />
+    <Compile Include="Assets\Resources\Scripts\Platforms\VerticalPlatformMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\FloatAndFollow.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\FollowManager.cs" />
-    <Compile Include="Assets\Resources\Scripts\Props\NotificationManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\NotifyPropScript.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\Pickup.cs" />
-    <Compile Include="Assets\Resources\Scripts\Props\PropResources.cs" />
+    <Compile Include="Assets\Resources\Scripts\Props\PickupHeart.cs" />
+    <Compile Include="Assets\Resources\Scripts\Props\PickupPaper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Materials\Postpro.shader" />

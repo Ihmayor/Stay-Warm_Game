@@ -22,6 +22,7 @@ public class PushableElement : MonoBehaviour {
             this.GetComponent<SpriteRenderer>().sprite = sprites[9];
             if (!this.GetComponent<AudioSource>().isPlaying)
                 this.GetComponent<AudioSource>().Play();
+            collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = true;
         }
 
     }
@@ -32,6 +33,7 @@ public class PushableElement : MonoBehaviour {
         {
             Rigidbody2D rb2d = this.GetComponent<Rigidbody2D>();
             rb2d.AddForce(Vector2.one*collision.gameObject.GetComponent<CharacterStatus>().PushPower);
+            collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = true;
         }
 
     }
@@ -42,6 +44,14 @@ public class PushableElement : MonoBehaviour {
         {
             Sprite[] sprites = Resources.LoadAll<Sprite>("Prefabs/Sprites/NonCharacterSpriteSheet");
             this.GetComponent<SpriteRenderer>().sprite = sprites[10];
+            StartCoroutine(MomentaryCoolImmunity(collision));
         }
     }
+
+    private IEnumerator MomentaryCoolImmunity(Collision2D collision)
+    {
+        yield return new WaitForSeconds(0.7f);
+        collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = false;
+    }
+
 }

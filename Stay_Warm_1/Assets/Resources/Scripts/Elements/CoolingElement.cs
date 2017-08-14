@@ -37,7 +37,8 @@ public class CoolingElement : MonoBehaviour {
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && 
+            !collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock)
         {
             //If this is the first encounter, character should act differently
             if (collision.gameObject.GetComponent<CharacterStatus>().isFirstCooling)
@@ -50,7 +51,8 @@ public class CoolingElement : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") &&
+           !collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock)
         {
             Vector3 WindPositionChange = new Vector3(DriftSpeed*4f, 0, 0);
             if (isRightDirection)

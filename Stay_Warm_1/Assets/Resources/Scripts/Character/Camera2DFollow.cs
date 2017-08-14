@@ -49,5 +49,6 @@ namespace UnityStandardAssets._2D
 
             m_LastTargetPosition = target.position + new Vector3(0, lookAboveFactor, 0);
         }
+
     }
 }
