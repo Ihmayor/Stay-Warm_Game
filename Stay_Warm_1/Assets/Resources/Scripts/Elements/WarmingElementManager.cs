@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class WarmingElementManager : MonoBehaviour
 {
-    #region Singleton instance
+    #region Static instance based on gameobject in scene
     public static WarmingElementManager Instance { private set; get; }
     #endregion
+
+    private GameObject LightPolePrefab;
+    private GameObject FlowerShowerPrefab;
 
     private Color[] ColorsToChangeTo = {
         new Color(0.90588235294f,0.41176470588f,0.30196078431f),
@@ -30,24 +33,63 @@ public class WarmingElementManager : MonoBehaviour
     void Start()
     {
         Instance = this;
+        LightPolePrefab = Resources.Load<GameObject>("Elements/lightpole");
+        FlowerShowerPrefab = Resources.Load<GameObject>("Platforms/Particles/FlowerShower");
         loopColor = 0;
         foreach (string path in AudioChimePaths)
         {
             Chimes.Add(Resources.Load<AudioClip>(path));
         }
+    }
 
+    #region Puzzle Methods
 
+    public void Puzzle0(Vector3 PuzzleStartPosition)
+    {
+        GameObject gObj = Instantiate(LightPolePrefab, null);
+        gObj.transform.position = PuzzleStartPosition + new Vector3(10f, 0, 0);
+        Instantiate(FlowerShowerPrefab, gObj.transform);
+    }
+
+    public void Puzzle1(Vector3 PuzzleStartPosition)
+    {
 
     }
 
-    public Color FetchNextColor()
+    public void Puzzle2(Vector3 PuzzleStartPosition)
+    {
+
+    }
+
+    public void Puzzle3(Vector3 PuzzleStartPosition)
+    {
+
+    }
+
+    public void Puzzle4(Vector3 PuzzleStartPosition)
+    {
+
+    }
+
+    public void Puzzle5(Vector3 PuzzleStartPosition)
+    {
+
+    }
+
+    #endregion
+
+    #region Misc Helper Methods
+
+    private Color FetchNextColor()
     {
         Color c = ColorsToChangeTo[loopColor++ % ColorsToChangeTo.Length];
         return c;
     }
 
-    public AudioClip FetchRandomChime()
+    private AudioClip FetchRandomChime()
     {
         return Chimes[Random.Range(0, Chimes.Count)];
     }
+
+    #endregion
 }

@@ -12,8 +12,6 @@ public class WindCreation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        //Reference this instance as singleton instance
-        //  InstantiateAndDemoMovement();
         InvokeRepeating("LoopWind", 0, Random.Range(repeatMin, repeatMax));
     }
 

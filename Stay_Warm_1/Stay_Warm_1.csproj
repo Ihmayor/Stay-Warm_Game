@@ -98,8 +98,10 @@
     <Compile Include="Assets\Resources\Scripts\Character\CharacterStatus.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\AreaEffects.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\CoolingElement.cs" />
+    <Compile Include="Assets\Resources\Scripts\Elements\CoolingElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\DeployFog.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\PushableElement.cs" />
+    <Compile Include="Assets\Resources\Scripts\Elements\PushableElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WarmingElement.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WarmingElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WindCreation.cs" />

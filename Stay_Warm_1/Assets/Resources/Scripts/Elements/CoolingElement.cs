@@ -23,10 +23,10 @@ public class CoolingElement : MonoBehaviour {
         if (oldColor.a > 0)
         {
             this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, oldColor.a - Mathf.Pow(FadeFactor, exponentIncrease));
-            Vector3 WindPositionChange = new Vector3(DriftSpeed, 0, 0);
+            Vector3 PositionChange = new Vector3(DriftSpeed, 0, 0);
             if (isRightDirection)
-                WindPositionChange *= -1;
-            this.gameObject.transform.position -= WindPositionChange;
+                PositionChange *= -1;
+            this.gameObject.transform.position -= PositionChange;
         }
         else
         {

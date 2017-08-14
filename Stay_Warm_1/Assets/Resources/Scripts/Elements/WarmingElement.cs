@@ -6,18 +6,13 @@ using UnityEngine;
 public class WarmingElement : MonoBehaviour
 {
     public float WarmingFactor;
-
+    public AudioClip Sound;
+    public UnityEngine.Color color;
 
     // Use this for initialization
     void Start()
     {
         WarmingFactor = 0.004f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,9 +34,8 @@ public class WarmingElement : MonoBehaviour
 
             if (this.gameObject.GetComponent<SpriteRenderer>().color == Color.white)
             {
-
-                this.gameObject.GetComponent<SpriteRenderer>().color = WarmingElementManager.Instance.FetchNextColor();
-                this.GetComponent<AudioSource>().PlayOneShot(WarmingElementManager.Instance.FetchRandomChime());
+                this.gameObject.GetComponent<SpriteRenderer>().color = color;
+                this.GetComponent<AudioSource>().PlayOneShot(Sound);
                 this.GetComponent<AudioSource>().loop = false;
             }
         }
