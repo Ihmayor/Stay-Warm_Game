@@ -1,0 +1,10 @@
+What can we do? 
+
+1) Remove Float and Follow Mechanic. This should be the other version of this game where the player must collect
+as many of these from puzzles as they can to complete a piece of a heart. 
+
+Essentially WarmHeart(+0.1) where Heart Meter is 0 and goal is 1
+
+ 
+
+2) w
