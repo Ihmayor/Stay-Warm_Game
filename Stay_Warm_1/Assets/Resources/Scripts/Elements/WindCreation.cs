@@ -6,13 +6,13 @@ public class WindCreation : MonoBehaviour {
 
     public float HeightVariationMin = 0.3f;
     public float HeightVariationMax = 0.7f;
-    public float repeatMin = 3f;
-    public float repeatMax = 6f;
+    public float repeatMinTime = 3f;
+    public float repeatMaxTime = 6f;
 
 	// Use this for initialization
 	void Start () {
 
-        InvokeRepeating("LoopWind", 0, Random.Range(repeatMin, repeatMax));
+        InvokeRepeating("LoopWind", 0, Random.Range(repeatMinTime, repeatMaxTime));
     }
 
     private void LoopWind()

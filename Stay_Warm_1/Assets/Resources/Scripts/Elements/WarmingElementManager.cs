@@ -1,15 +1,15 @@
-﻿using System.Collections;
+﻿using Assets.Resources.Scripts.GameTriggers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WarmingElementManager : MonoBehaviour
+public class WarmingElementManager : PuzzleManager
 {
-    #region Static instance based on gameobject in scene
-    public static WarmingElementManager Instance { private set; get; }
-    #endregion
-
     private GameObject LightPolePrefab;
     private GameObject FlowerShowerPrefab;
+    private GameObject CurrentLightPole;
+    private List<GameObject> AllMidPointPoles;
+    public bool IsNextLevel;
 
     private Color[] ColorsToChangeTo = {
         new Color(0.90588235294f,0.41176470588f,0.30196078431f),
@@ -29,56 +29,106 @@ public class WarmingElementManager : MonoBehaviour
 
     private int loopColor;
 
-    // Use this for initialization
-    void Start()
+    public WarmingElementManager()
     {
-        Instance = this;
-        LightPolePrefab = Resources.Load<GameObject>("Elements/lightpole");
-        FlowerShowerPrefab = Resources.Load<GameObject>("Platforms/Particles/FlowerShower");
+        LightPolePrefab = Resources.Load<GameObject>("Prefabs/Elements/lightpole");
+        FlowerShowerPrefab = Resources.Load<GameObject>("Prefabs/Platforms/Particles/FlowerShower");
         loopColor = 0;
+        AllMidPointPoles = new List<GameObject>();
         foreach (string path in AudioChimePaths)
         {
             Chimes.Add(Resources.Load<AudioClip>(path));
         }
+        IsNextLevel = false;
     }
 
     #region Puzzle Methods
 
-    public void Puzzle0(Vector3 PuzzleStartPosition)
+    public override void Puzzle0(Vector3 PuzzleStartPosition)
     {
-        GameObject gObj = Instantiate(LightPolePrefab, null);
-        gObj.transform.position = PuzzleStartPosition + new Vector3(10f, 0, 0);
-        Instantiate(FlowerShowerPrefab, gObj.transform);
+        Vector3 LastPosition = CreateEndPoint(PuzzleStartPosition + new Vector3(40f, 0, 0));
+        CreateMidPoint(LastPosition + new Vector3(20f, 0));
     }
 
-    public void Puzzle1(Vector3 PuzzleStartPosition)
-    {
-
-    }
-
-    public void Puzzle2(Vector3 PuzzleStartPosition)
+    public override void Puzzle1(Vector3 PuzzleStartPosition)
     {
 
     }
 
-    public void Puzzle3(Vector3 PuzzleStartPosition)
+    public override void Puzzle2(Vector3 PuzzleStartPosition)
     {
 
     }
 
-    public void Puzzle4(Vector3 PuzzleStartPosition)
+    public override void Puzzle3(Vector3 PuzzleStartPosition)
     {
 
     }
 
-    public void Puzzle5(Vector3 PuzzleStartPosition)
+    public override void Puzzle4(Vector3 PuzzleStartPosition)
+    {
+
+    }
+
+    public override void Puzzle5(Vector3 PuzzleStartPosition)
     {
 
     }
 
     #endregion
 
+    #region Creation Methods
+    public Vector3 CreateEndPoint(Vector3 GroundedStartPosition)
+    {
+        GameObject gObj = MonoBehaviour.Instantiate(LightPolePrefab, null);
+        gObj.transform.position = GroundedStartPosition  + new Vector3(0, 0.681f, 0);
+        gObj.GetComponent<WarmingElement>().color = FetchNextColor();
+        gObj.GetComponent<WarmingElement>().Sound = FetchRandomChime();
+        MonoBehaviour.Instantiate(FlowerShowerPrefab, gObj.transform);
+        if (CurrentLightPole == null)
+            CurrentLightPole = gObj;
+        else
+        {
+            MonoBehaviour.Destroy(CurrentLightPole);
+            CurrentLightPole = gObj;
+            foreach(GameObject midPoint in AllMidPointPoles)
+            {
+                MonoBehaviour.Destroy(midPoint);
+            }
+            ToggleIsNextLevel();
+        }
+        return GroundedStartPosition;
+    }
+
+    public Vector3 CreateMidPoint(Vector3 GroundedStartPosition)
+    {
+        GameObject gObj = MonoBehaviour.Instantiate(LightPolePrefab, null);
+        gObj.transform.position = GroundedStartPosition + new Vector3(0, 0.681f, 0);
+        gObj.GetComponent<WarmingElement>().color = FetchNextColor();
+        gObj.GetComponent<WarmingElement>().Sound = FetchRandomChime();
+        AllMidPointPoles.Add(gObj);
+        return GroundedStartPosition;
+    }
+
+    //TODO AFTER YOU HAVE FINISHED ALL THE PUZZLES AND/OR IF IT REALLY IS REALLY REALLY SLOW.
+    public void CreateObjectPool()
+    {
+        //Load and Instantiate
+    }
+
+    //TODO AFTER YOU HAVE FINISHED ALL THE PUZZLES AND/OR IF IT REALLY IS REALLY REALLY SLOW.
+    public Vector3 CreateEndPointOptimized(Vector3 GroundedStartPosition)
+    {
+        return Vector3.zero;
+    }
+
+    #endregion
+
     #region Misc Helper Methods
+    public void ToggleIsNextLevel()
+    {
+        IsNextLevel = !IsNextLevel;
+    }
 
     private Color FetchNextColor()
     {

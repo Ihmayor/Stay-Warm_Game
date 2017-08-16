@@ -1,14 +1,10 @@
-﻿using System.Collections;
+﻿using Assets.Resources.Scripts.GameTriggers;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class PlatformManager : MonoBehaviour {
-
-    #region Static instance based on single GameObject Manager
-
-    public static PlatformManager Instance { private set; get; }
-    
-    #endregion
+public class PlatformManager: PuzzleManager{
     
     #region Variables
 
@@ -20,10 +16,9 @@ public class PlatformManager : MonoBehaviour {
 
     #endregion
 
-    // Use this for initialization/Resourcing Loading
-    void Start () {
-        PlatformManager.Instance = this;
-
+    public PlatformManager()
+    {
+        Platforms = new List<GameObject>();
         VerticalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/VerticalPlatform");
         HorizontalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/HorizontalPlatform");
         Step = Resources.Load<GameObject>("Prefabs/Platforms/step");
@@ -32,7 +27,7 @@ public class PlatformManager : MonoBehaviour {
 
     #region Puzzle/Level Setup Methods
 
-    public void Puzzle0(Vector3 GroundedStartPosition)
+    public override void Puzzle0(Vector3 GroundedStartPosition)
     {
         CreateStepTower(GroundedStartPosition, 2);
         Vector3 LastPosition = CreateStepTower(GroundedStartPosition+ new Vector3(1.55f,0), 2);
@@ -45,7 +40,7 @@ public class PlatformManager : MonoBehaviour {
         CreatePlatform(HorizontalPlatform, LastPosition- new Vector3(2.5f,0,0), null, 1.3f, 400, false);
     }
 
-    public void Puzzle1(Vector3 GroundedStartPosition)
+    public override void Puzzle1(Vector3 GroundedStartPosition)
     {
         List<GameObject> Platforms = new List<GameObject>();
 
@@ -61,35 +56,35 @@ public class PlatformManager : MonoBehaviour {
         for (int i = 0; i <= HozPlatforms; i++)
         {
             bool DirectionVariance = false;
-            float DistanceMovementVariance = Random.Range(0,1f);
+            float DistanceMovementVariance = UnityEngine.Random.Range(0,1f);
             Vector3 DistanceVariance = new Vector3(DistanceMovementVariance, 0, 0);
             Vector3 PlatformPosition = prevPlatformPosition + DistanceVariance + new Vector3(0.9f,0,0);
-            float SpeedVariance = Random.Range(2000, 7000);
+            float SpeedVariance = UnityEngine.Random.Range(2000, 7000);
             CreatePlatform(HorizontalPlatform, PlatformPosition, null, DistanceMovementVariance, SpeedVariance, DirectionVariance);
             prevPlatformPosition = PlatformPosition+new Vector3(DistanceMovementVariance, 0)+new Vector3(0.9f,0,0);
         }
     }
 
     //TODO:
-    public void Puzzle2(Vector3 GroundedStartPosition)
+    public override void Puzzle2(Vector3 GroundedStartPosition)
     {
 
     }
 
     //TODO:
-    public void Puzzle3(Vector3 GroundedStartPosition)
+    public override void Puzzle3(Vector3 GroundedStartPosition)
     {
 
     }
 
     //TODO:
-    public void Puzzle4(Vector3 GroundedStartPosition)
+    public override void Puzzle4(Vector3 GroundedStartPosition)
     {
 
     }
 
     //TODO:
-    public void Puzzle5(Vector3 GroundedStartPosition)
+    public override void Puzzle5(Vector3 GroundedStartPosition)
     {
 
     }
@@ -106,17 +101,17 @@ public class PlatformManager : MonoBehaviour {
     /// <returns>Latest Position of Tower</returns>
     private Vector3 CreateStepTower(Vector3 position, int stepCount)
     {
-        GameObject step = Instantiate(Step, null);
+        GameObject step = MonoBehaviour.Instantiate(Step, null);
         step.transform.position = position;
         Vector3 PrevPosition = step.transform.position;
         for (int i = 0; i < stepCount; i++)
         {
-            step = Instantiate(Step, null);
+            step = MonoBehaviour.Instantiate(Step, null);
             step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
             PrevPosition = step.transform.position;
+            Platforms.Add(step);//Keep Track of ALl platforms for later puzzle clearence
         }
 
-        Platforms.Add(step);//Keep Track of ALl platforms for later puzzle clearence
 
         return PrevPosition;
     }
@@ -133,7 +128,7 @@ public class PlatformManager : MonoBehaviour {
     /// <returns>Instantiated Platform</returns>
     private void CreatePlatform(GameObject prefab, Vector3 position, Transform parentTransform, float distance, float speed, bool reverseDirection)
     {
-        GameObject instance = Instantiate(prefab, parentTransform);
+        GameObject instance = MonoBehaviour.Instantiate(prefab, parentTransform);
         instance.transform.position = position + new Vector3(0,0,-1);
         instance.GetComponent<PlatformMovement>().SetNewDistance(distance);
         instance.GetComponent<PlatformMovement>().ChangeSpeed(true, speed);
@@ -166,14 +161,16 @@ public class PlatformManager : MonoBehaviour {
         float OffsetMidPoint = (OffsetEndPoint - OffsetStartPoint) / 2;
     }
 
-    public void ClearAllPlatforms()
+    public void Clear()
     {
         foreach(GameObject platform in Platforms)
         {
-            Destroy(platform);
+            MonoBehaviour.Destroy(platform);
         }
         Platforms = new List<GameObject>();
     }
+
+   
     #endregion
 
 }

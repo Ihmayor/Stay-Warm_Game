@@ -149,7 +149,7 @@ public class CharacterStatus : MonoBehaviour
 
     public void ToggleOffFirstCooling()
     {
-        MenuManager.Instance.SetThought(CharacterName, "It's cold. I shouldn't stay in this for too long.");
+        MenuManager.Instance.SetThought(CharacterName, "It's cold. I shouldn't stay in this for too long. Maybe if I could find some cover...");
         isFirstCooling = false;
     }
 

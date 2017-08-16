@@ -34,6 +34,7 @@ public class CoolingElement : MonoBehaviour {
             Destroy(gameObject, Resources.Load<AudioClip>("Audio/wind_gust").length);
         }
 	}
+
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
