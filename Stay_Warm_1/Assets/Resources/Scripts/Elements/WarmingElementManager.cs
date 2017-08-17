@@ -46,7 +46,7 @@ public class WarmingElementManager : PuzzleManager
 
     public override void Puzzle0(Vector3 PuzzleStartPosition)
     {
-        Vector3 LastPosition = CreateEndPoint(PuzzleStartPosition + new Vector3(40f, 0, 0));
+        Vector3 LastPosition = CreateEndPoint(PuzzleStartPosition + new Vector3(44f, 0, 0));
         CreateMidPoint(LastPosition + new Vector3(20f, 0));
     }
 
@@ -82,9 +82,12 @@ public class WarmingElementManager : PuzzleManager
     {
         GameObject gObj = MonoBehaviour.Instantiate(LightPolePrefab, null);
         gObj.transform.position = GroundedStartPosition  + new Vector3(0, 0.681f, 0);
-        gObj.GetComponent<WarmingElement>().color = FetchNextColor();
-        gObj.GetComponent<WarmingElement>().Sound = FetchRandomChime();
+        WarmingElement warmingScript = gObj.GetComponent<WarmingElement>();
+        warmingScript.Color = FetchNextColor();
+        warmingScript.Sound = FetchRandomChime();
+        warmingScript.FirstVisit += WarmingScript_FirstVisit;
         MonoBehaviour.Instantiate(FlowerShowerPrefab, gObj.transform);
+        
         if (CurrentLightPole == null)
             CurrentLightPole = gObj;
         else
@@ -95,16 +98,25 @@ public class WarmingElementManager : PuzzleManager
             {
                 MonoBehaviour.Destroy(midPoint);
             }
-            ToggleIsNextLevel();
         }
         return GroundedStartPosition;
+    }
+
+    /// <summary>
+    /// Both Sender and Arguments will be null
+    /// </summary>
+    /// <param name="sender">Null do not use</param>
+    /// <param name="e">Null do not use</param>
+    private void WarmingScript_FirstVisit(object sender, System.EventArgs e)
+    {
+        ToggleIsNextLevel();
     }
 
     public Vector3 CreateMidPoint(Vector3 GroundedStartPosition)
     {
         GameObject gObj = MonoBehaviour.Instantiate(LightPolePrefab, null);
         gObj.transform.position = GroundedStartPosition + new Vector3(0, 0.681f, 0);
-        gObj.GetComponent<WarmingElement>().color = FetchNextColor();
+        gObj.GetComponent<WarmingElement>().Color = FetchNextColor();
         gObj.GetComponent<WarmingElement>().Sound = FetchRandomChime();
         AllMidPointPoles.Add(gObj);
         return GroundedStartPosition;

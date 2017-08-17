@@ -42,13 +42,12 @@ public class PlatformManager: PuzzleManager{
 
     public override void Puzzle1(Vector3 GroundedStartPosition)
     {
-        List<GameObject> Platforms = new List<GameObject>();
+        Platforms = new List<GameObject>();
 
         int HozPlatforms = 10;
-
+        GroundedStartPosition += new Vector3(0, 3.35f);
         //Create A Vertical Platform to start
-        CreatePlatform(VerticalPlatform, GroundedStartPosition, null, 2f, 1000, false);
-
+       CreatePlatform(VerticalPlatform, GroundedStartPosition, null, 2f, 1000, false);
         //Previous platform position. Instantiate following platforms within reach of it previous one. 
         Vector3 prevPlatformPosition = Platforms[Platforms.Count - 1].transform.position + new Vector3(0, 1.5f,0);
 

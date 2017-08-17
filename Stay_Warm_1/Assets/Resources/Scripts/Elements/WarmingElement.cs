@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,8 @@ public class WarmingElement : MonoBehaviour
 {
     public float WarmingFactor;
     public AudioClip Sound;
-    public UnityEngine.Color color;
+    public UnityEngine.Color Color;
+    public event EventHandler FirstVisit; 
 
     // Use this for initialization
     void Start()
@@ -34,9 +36,10 @@ public class WarmingElement : MonoBehaviour
 
             if (this.gameObject.GetComponent<SpriteRenderer>().color == Color.white)
             {
-                this.gameObject.GetComponent<SpriteRenderer>().color = color;
+                this.gameObject.GetComponent<SpriteRenderer>().color = Color;
                 this.GetComponent<AudioSource>().PlayOneShot(Sound);
                 this.GetComponent<AudioSource>().loop = false;
+                FirstVisit(null,null);
             }
         }
     }

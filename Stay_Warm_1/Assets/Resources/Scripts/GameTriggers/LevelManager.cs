@@ -27,15 +27,16 @@ public class LevelManager : MonoBehaviour {
         Managers.Add(WarmManager);
         WarmManager.Puzzle0(StartPosition);
 
-        PushableElementManager PushableManager = new PushableElementManager();
+        PushableManager = new PushableElementManager();
         PushableManager.Puzzle0(StartPosition);
+        Managers.Add(PlatformManager);
 
         //Store Level Setup
         LevelQueue = new Queue<Action>();
 
         //Puzzle 1
         LevelQueue.Enqueue(() => {
-            StartPosition += new Vector3(65f, 0);
+            StartPosition += new Vector3(50f, 0);
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle1(StartPosition);

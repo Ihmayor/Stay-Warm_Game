@@ -11,20 +11,44 @@ public class PushableElementManager : PuzzleManager
 
     public PushableElementManager()
     {
-        Pushable = Resources.Load<GameObject>("Prefabs/Platforms/PushableBlock");
+        Pushables = new List<GameObject>();
+        Pushable = Resources.Load<GameObject>("Prefabs/Platforms/PushableBox");
     }
 
     //Start Position of puzzle area 
     public override void Puzzle0(Vector3 StartPosition)
     {
-        GameObject Pushable = MonoBehaviour.Instantiate(this.Pushable, null);
-        Pushable.transform.position = StartPosition + new Vector3(17, 0, 0);
-         Pushable = MonoBehaviour.Instantiate(this.Pushable, null);
-        Pushable.transform.position = StartPosition + new Vector3(17, 0, 0);
-         Pushable = MonoBehaviour.Instantiate(this.Pushable, null);
-        Pushable.transform.position = StartPosition + new Vector3(17, 0, 0);
-         Pushable = MonoBehaviour.Instantiate(this.Pushable, null);
-        Pushable.transform.position = StartPosition + new Vector3(17, 0, 0);
+        GameObject pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(16, 2f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(17f, 0.5f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(15, 1.2f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(15.5f, 1.5f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(35.5f, 3f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(35.5f, 4f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(35.5f, 0.5f, 0);
+        Pushables.Add(pushObj);
+
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(35.5f, 5f, 0);
+        Pushables.Add(pushObj);
 
     }
 
