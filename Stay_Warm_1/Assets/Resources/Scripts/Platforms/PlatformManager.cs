@@ -45,7 +45,7 @@ public class PlatformManager: PuzzleManager{
         Platforms = new List<GameObject>();
 
         int HozPlatforms = 10;
-        GroundedStartPosition += new Vector3(0, 3.35f);
+        GroundedStartPosition += new Vector3(0, 2.1f);
         //Create A Vertical Platform to start
        CreatePlatform(VerticalPlatform, GroundedStartPosition, null, 2f, 1000, false);
         //Previous platform position. Instantiate following platforms within reach of it previous one. 
