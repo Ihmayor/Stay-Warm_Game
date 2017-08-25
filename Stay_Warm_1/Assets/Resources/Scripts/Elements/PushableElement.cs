@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PushableElement : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    private Collision2D PlayerCollision = null;
+
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -50,8 +53,18 @@ public class PushableElement : MonoBehaviour {
 
     private IEnumerator MomentaryCoolImmunity(Collision2D collision)
     {
+        PlayerCollision = collision;
         yield return new WaitForSeconds(0.7f);
         collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = false;
+        PlayerCollision = null;
     }
+
+    private void OnDestroy()
+    {
+        //If we complete the level while still touching a pushable object
+        if (PlayerCollision != null)
+            PlayerCollision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = false;
+    }
+
 
 }

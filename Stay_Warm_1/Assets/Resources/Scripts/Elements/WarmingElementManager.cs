@@ -8,6 +8,7 @@ public class WarmingElementManager : PuzzleManager
     private GameObject LightPolePrefab;
     private GameObject FlowerShowerPrefab;
     private GameObject CurrentLightPole;
+    private GameObject PrevLightPole;
     private List<GameObject> AllMidPointPoles;
     public bool IsNextLevel;
 
@@ -46,18 +47,21 @@ public class WarmingElementManager : PuzzleManager
 
     public override void Puzzle0(Vector3 PuzzleStartPosition)
     {
-        Vector3 LastPosition = CreateEndPoint(PuzzleStartPosition + new Vector3(44f, 0, 0));
-        CreateMidPoint(LastPosition + new Vector3(20f, 0));
+        Vector3 LastPosition = CreateMidPoint(PuzzleStartPosition + new Vector3(20f, 0));
+        CreateEndPoint(LastPosition + new Vector3(24f, 0, 0));
     }
 
     public override void Puzzle1(Vector3 PuzzleStartPosition)
     {
-
+        CreateEndPoint(PuzzleStartPosition + new Vector3(35f, 0, 0));
     }
 
     public override void Puzzle2(Vector3 PuzzleStartPosition)
     {
+        Vector3 LastPosition = CreateMidPoint(PuzzleStartPosition + new Vector3(21.31f, 2.08f));
+        CreateMidPoint(LastPosition + new Vector3(25f, -2.08f, 0));
 
+        CreateEndPoint(PuzzleStartPosition + new Vector3(65f, 0, 0));
     }
 
     public override void Puzzle3(Vector3 PuzzleStartPosition)
@@ -81,22 +85,34 @@ public class WarmingElementManager : PuzzleManager
     public Vector3 CreateEndPoint(Vector3 GroundedStartPosition)
     {
         GameObject gObj = MonoBehaviour.Instantiate(LightPolePrefab, null);
-        gObj.transform.position = GroundedStartPosition  + new Vector3(0, 0.681f, 0);
+        gObj.tag = "EndPoint";
+        gObj.transform.position = GroundedStartPosition + new Vector3(0, 0.681f, 0);
         WarmingElement warmingScript = gObj.GetComponent<WarmingElement>();
         warmingScript.Color = FetchNextColor();
         warmingScript.Sound = FetchRandomChime();
         warmingScript.FirstVisit += WarmingScript_FirstVisit;
         MonoBehaviour.Instantiate(FlowerShowerPrefab, gObj.transform);
-        
+
         if (CurrentLightPole == null)
             CurrentLightPole = gObj;
+        else if (PrevLightPole == null)
+        {
+            PrevLightPole = CurrentLightPole;
+            PrevLightPole.gameObject.tag = "Untagged";
+            CurrentLightPole = gObj;
+        }
         else
         {
-            MonoBehaviour.Destroy(CurrentLightPole);
+
+            MonoBehaviour.Destroy(PrevLightPole);
+            PrevLightPole = CurrentLightPole;
+            PrevLightPole.gameObject.tag = "Untagged";
             CurrentLightPole = gObj;
-            foreach(GameObject midPoint in AllMidPointPoles)
+
+            foreach (GameObject midPoint in AllMidPointPoles)
             {
-                MonoBehaviour.Destroy(midPoint);
+                if (midPoint.transform.position.x > PrevLightPole.transform.position.x)
+                    MonoBehaviour.Destroy(midPoint);
             }
         }
         return GroundedStartPosition;

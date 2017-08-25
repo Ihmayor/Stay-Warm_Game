@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
     //Managers
     private PlatformManager PlatformManager;
     private WarmingElementManager WarmManager;
+    private CoolingElementManager CoolManager;
     private PushableElementManager PushableManager;
     private List<PuzzleManager> Managers;
     private Queue<Action> LevelQueue;
@@ -29,7 +30,12 @@ public class LevelManager : MonoBehaviour {
 
         PushableManager = new PushableElementManager();
         PushableManager.Puzzle0(StartPosition);
-        Managers.Add(PlatformManager);
+        Managers.Add(PushableManager);
+
+        CoolManager = new CoolingElementManager();
+        CoolManager.Puzzle0(StartPosition);
+        Managers.Add(CoolManager); 
+
 
         //Store Level Setup
         LevelQueue = new Queue<Action>();
@@ -45,7 +51,8 @@ public class LevelManager : MonoBehaviour {
 
         //Puzzle 2
         LevelQueue.Enqueue(() => {
-            StartPosition += new Vector3(65f, 0);
+            StartPosition += new Vector3(35f, 0);
+           // Instantiate(Resources.Load<GameObject>("Prefabs/PropsAndNots/Exclaim")).transform.position = StartPosition;
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle2(StartPosition);
@@ -98,6 +105,12 @@ public class LevelManager : MonoBehaviour {
             WarmManager.ToggleIsNextLevel();
             NextArea();
         }
+
+        //For Debugging Only
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameObject.Find("MainChar").transform.position = GameObject.FindGameObjectWithTag("EndPoint").transform.position;
+        }
 		//Start Time of 15 minutes if still in warming element
         //Activate Chaser
         //Check if Next Level Reached
@@ -114,6 +127,9 @@ public class LevelManager : MonoBehaviour {
         //Destroy/Deactivate all previous game objects
         PlatformManager.Clear();
         PushableManager.Clear();
+        CoolManager.Clear();
+
+
         LevelQueue.Dequeue()();//Execute Level Set up
 
         //Instantiate Block => Area Effect "I can't go back" 

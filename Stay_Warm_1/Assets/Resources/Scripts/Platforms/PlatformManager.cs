@@ -13,6 +13,8 @@ public class PlatformManager: PuzzleManager{
     private GameObject Step;
     private GameObject Spike;
     private List<GameObject> Platforms;
+    private readonly float StepGapMin = 0.3f;
+    private readonly float StepGapMax = 0.53f;
 
     #endregion
 
@@ -42,8 +44,7 @@ public class PlatformManager: PuzzleManager{
 
     public override void Puzzle1(Vector3 GroundedStartPosition)
     {
-        Platforms = new List<GameObject>();
-
+  
         int HozPlatforms = 10;
         GroundedStartPosition += new Vector3(0, 2.1f);
         //Create A Vertical Platform to start
@@ -64,28 +65,38 @@ public class PlatformManager: PuzzleManager{
         }
     }
 
-    //TODO:
     public override void Puzzle2(Vector3 GroundedStartPosition)
     {
+        Vector3 LastPosition = CreateStaircase(GroundedStartPosition + new Vector3(2.5f, 0), 10, 4, false);
+        LastPosition = CreateSpike(LastPosition + new Vector3(0.2f, 0, 0), 2);
+        LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 4, 2, true);
+        LastPosition = CreateStaircase(LastPosition + new Vector3(-0.5f, 0), 6, 3, false);
+        LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 7, 4, true);
+        LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 9, 4, false);
+        LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 8, 5, true);
+        LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 6, 6, false);
 
+        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(0.5f,1.2f), null,1, 500, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(4f, 1.5f), null, 1.5f, 200, true);
+        LastPosition = CreateSpike(LastPosition + new Vector3(2f, 0, 0), 5);
+        LastPosition += new Vector3(0.9f, 0);
+        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(1.5f, 1.2f), null, 1, 500, false);
     }
 
     //TODO:
     public override void Puzzle3(Vector3 GroundedStartPosition)
     {
-
     }
 
     //TODO:
     public override void Puzzle4(Vector3 GroundedStartPosition)
     {
-
     }
 
     //TODO:
     public override void Puzzle5(Vector3 GroundedStartPosition)
     {
-
+        Clear();
     }
 
     #endregion
@@ -102,6 +113,7 @@ public class PlatformManager: PuzzleManager{
     {
         GameObject step = MonoBehaviour.Instantiate(Step, null);
         step.transform.position = position;
+        Platforms.Add(step);
         Vector3 PrevPosition = step.transform.position;
         for (int i = 0; i < stepCount; i++)
         {
@@ -113,6 +125,48 @@ public class PlatformManager: PuzzleManager{
 
 
         return PrevPosition;
+    }
+
+    private Vector3 CreateStaircase(Vector3 GroundPosition, int height, float width, bool isDecayed)
+    {
+        if (height == 0)
+        {
+            Debug.Log("Error. Height is 0. Cannot Produce Stairs");
+            return Vector3.zero;
+        }
+
+        Vector3 EndPosition = GroundPosition + new Vector3(width, 0, 0);
+        float stepGap = (EndPosition.x - GroundPosition.x) / height;
+
+        if (stepGap < StepGapMin )
+        {
+            Debug.Log("Gap not large enough for player, given height width ratio");
+            Debug.Log(height / width);
+            return Vector3.zero;
+        }
+        else if (stepGap > StepGapMax)
+        {
+            stepGap = StepGapMax;
+        }
+
+        Vector3 CurrentPosition = GroundPosition;
+        if (isDecayed)
+        {
+            for (int i = height; i > 0; i--)
+            {
+                CreateStepTower(CurrentPosition, i);
+                CurrentPosition += new Vector3(stepGap, 0);
+            }
+        }
+        else
+        {
+            for (int i = 0; i <= height; i++)
+            {
+                CreateStepTower(CurrentPosition, i);
+                CurrentPosition += new Vector3(stepGap, 0);
+            }
+        }
+        return CurrentPosition;
     }
 
     /// <summary>
@@ -159,6 +213,26 @@ public class PlatformManager: PuzzleManager{
         OffsetEndPoint -= Gap;
         float OffsetMidPoint = (OffsetEndPoint - OffsetStartPoint) / 2;
     }
+
+    private Vector3 CreateSpike(Vector3 GroundPosition, int count)
+    {
+        GroundPosition += new Vector3(0, 0.11f);
+        GameObject spike = MonoBehaviour.Instantiate(Spike);
+        spike.transform.position = GroundPosition;
+        Platforms.Add(spike);
+        Vector3 PrevPosition = spike.transform.position;
+        for(int i = 0; i< count; i++)
+        {
+            spike = MonoBehaviour.Instantiate(Spike);
+            spike.transform.position = PrevPosition + new Vector3(0.5f,0,0);
+            Platforms.Add(spike);
+            PrevPosition = spike.transform.position;
+        }
+        return PrevPosition + new Vector3(0.5f,-0.11f);
+    }
+
+  
+
 
     public void Clear()
     {

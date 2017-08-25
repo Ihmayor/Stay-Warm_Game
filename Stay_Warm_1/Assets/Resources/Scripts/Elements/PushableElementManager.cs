@@ -54,12 +54,10 @@ public class PushableElementManager : PuzzleManager
 
     public override void Puzzle1(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
     }
 
     public override void Puzzle2(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
     }
 
     public override void Puzzle3(Vector3 StartPosition)

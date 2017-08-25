@@ -19,8 +19,6 @@ public class DeathTrigger : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
-            Debug.Log("Test");
             MenuManager.Instance.ShowGameOver();
         }
     }

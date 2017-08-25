@@ -11,7 +11,6 @@ public class WindCreation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
         InvokeRepeating("LoopWind", 0, Random.Range(repeatMinTime, repeatMaxTime));
     }
 
@@ -22,6 +21,11 @@ public class WindCreation : MonoBehaviour {
         GameObject SourceStart = this.gameObject;
         GameObject instance = Instantiate(Wind, null);
         instance.transform.position = SourceStart.transform.position - new Vector3(0.3f, Random.Range(HeightVariationMin, HeightVariationMax), 0);
+    }
+
+    public void StopLoop()
+    {
+        CancelInvoke("LoopWind");
     }
 
 }
