@@ -14,8 +14,12 @@ public class LevelManager : MonoBehaviour {
     private List<PuzzleManager> Managers;
     private Queue<Action> LevelQueue;
 
+    private GameObject Wall;
+
 	// Use this for initialization
 	void Start () {
+        Wall = GameObject.Find("PlatformWhiteSprite");
+
         Vector3 StartPosition = new Vector3(-45.5f, 3.3f, 0);
         Managers = new List<PuzzleManager>();
         //Call Platform Manager to build First Platforms
@@ -43,6 +47,7 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 1
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(50f, 0);
+            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-10f, 0));
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle1(StartPosition);
@@ -52,7 +57,8 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 2
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(35f, 0);
-           // Instantiate(Resources.Load<GameObject>("Prefabs/PropsAndNots/Exclaim")).transform.position = StartPosition;
+            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
+            // Instantiate(Resources.Load<GameObject>("Prefabs/PropsAndNots/Exclaim")).transform.position = StartPosition;
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle2(StartPosition);
@@ -62,6 +68,7 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 3
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(65f, 0);
+            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle3(StartPosition);
@@ -71,6 +78,7 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 4
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(65f, 0);
+            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle4(StartPosition);
@@ -80,6 +88,7 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 5
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(65f, 0);
+            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle5(StartPosition);

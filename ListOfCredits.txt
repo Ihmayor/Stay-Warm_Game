@@ -14,6 +14,7 @@ freesound.org:
 "paper flip 3.wav" by gynation
 "Moving with table" by nitramdoh
 "waterdrop.wav" by cubix 
+"Synth Thud" by D W
 
 Perspectives Kevin MacLeod (incompetech.com)
 Licensed under Creative Commons: By Attribution 3.0 License

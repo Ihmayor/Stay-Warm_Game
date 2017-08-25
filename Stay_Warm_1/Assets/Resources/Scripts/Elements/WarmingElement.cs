@@ -9,7 +9,7 @@ public class WarmingElement : MonoBehaviour
     public float WarmingFactor;
     public AudioClip Sound;
     public UnityEngine.Color Color;
-    public event EventHandler FirstVisit ; 
+    public event EventHandler FirstVisit; 
 
     // Use this for initialization
     void Start()
@@ -39,7 +39,7 @@ public class WarmingElement : MonoBehaviour
                 this.gameObject.GetComponent<SpriteRenderer>().color = Color;
                 this.GetComponent<AudioSource>().PlayOneShot(Sound);
                 this.GetComponent<AudioSource>().loop = false;
-                FirstVisit(null,null);
+                FirstVisit(gameObject, new EventArgs());
             }
         }
     }
