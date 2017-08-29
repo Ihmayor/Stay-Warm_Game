@@ -80,7 +80,7 @@ public class CharacterStatus : MonoBehaviour
     public string CharacterName;
     public bool isWarmingWithMatches { private set; get; }
     public bool isFirstWarming { get; private set; }
-    public float PushPower;
+
     public bool GameOver { private set; get; }
     #endregion
 
@@ -115,9 +115,6 @@ public class CharacterStatus : MonoBehaviour
 
         //Amount of Matches to restart life
         matchCount = 3;
-
-        //Amount character can push objects
-        PushPower = 0.3f;
 
         //Get Audio Source for later effect usage
         audioSource = this.GetComponent<AudioSource>();

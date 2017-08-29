@@ -14,35 +14,85 @@ public class LevelManager : MonoBehaviour {
     private List<PuzzleManager> Managers;
     private Queue<Action> LevelQueue;
 
+    //Wall Boundary Object
     private GameObject Wall;
 
-	// Use this for initialization
-	void Start () {
+    //Instance of level manager
+    private static LevelManager SingletonInstance { set; get; }
+
+    #region Init
+
+    /// <summary>
+    /// Init Level Manager
+    /// </summary>
+    void Start () {
+
+        //Check that we have singleton instance of the level manager
+        if (SingletonInstance == null)
+            SingletonInstance = this;
+        else
+            throw new InvalidOperationException("Error! More than one level manager exists!");
+
+        //Fetch Wall Boundary from scene. Moves forard as levels progress
         Wall = GameObject.Find("PlatformWhiteSprite");
 
+        //Init Starting Position of Game
         Vector3 StartPosition = new Vector3(-45.5f, 3.3f, 0);
+
+        //Init component managers and queue all level setup processes
+        InitManagers(StartPosition);
+        InitLevelQueue(StartPosition);
+      
+        //Load First Level
+        LevelQueue.Dequeue()();
+    }
+
+    /// <summary>
+    /// Init component managers for platforms and elements
+    /// </summary>
+    /// <param name="StartPosition">Start position of the game</param>
+    private void InitManagers(Vector3 StartPosition)
+    {
+        //Create Managers
         Managers = new List<PuzzleManager>();
-        //Call Platform Manager to build First Platforms
+
+        //Platform manager handles all step obstacles, moving platforms and spikes
         PlatformManager = new PlatformManager();
         Managers.Add(PlatformManager);
-        PlatformManager.Puzzle0(StartPosition);
 
-        ////Warming Elements Manager
+        //Warming Elements Manager Handles placement, colors,sounds
         WarmManager = new WarmingElementManager();
         Managers.Add(WarmManager);
-        WarmManager.Puzzle0(StartPosition);
 
+        //Pushable Manager handles pushable element resources pool
         PushableManager = new PushableElementManager();
-        PushableManager.Puzzle0(StartPosition);
         Managers.Add(PushableManager);
 
+        //Cooling Elements Manager handles cooling element resource pool
         CoolManager = new CoolingElementManager();
-        CoolManager.Puzzle0(StartPosition);
-        Managers.Add(CoolManager); 
+        Managers.Add(CoolManager);
 
+  
+    }
 
-        //Store Level Setup
+    /// <summary>
+    /// Init and queue level set up processes 
+    /// </summary>
+    /// <param name="StartPosition">Start position of the game</param>
+    private void InitLevelQueue(Vector3 StartPosition)
+    {
+        //Init Level Queue Setup
         LevelQueue = new Queue<Action>();
+
+        //Queue Levels
+        //Puzzle 0
+        LevelQueue.Enqueue(() =>
+        {
+            foreach (PuzzleManager m in Managers)
+            {
+                m.Puzzle0(StartPosition);
+            }
+        });
 
         //Puzzle 1
         LevelQueue.Enqueue(() => {
@@ -94,23 +144,20 @@ public class LevelManager : MonoBehaviour {
                 m.Puzzle5(StartPosition);
             }
         });
-
-
-
-        //Puzzle0(GameObject.Find("PlatformWhiteSprite").transform.position + new Vector3(6f, -1.45f, 0));
-        //Puzzle1(GameObject.Find("lightpoleBridge").transform.position + new Vector3(4f, 1.5f, 0));
-
-        //PushableElements 
-        //WindCreation
-        //Area Effects
-
-
     }
 
-    // Update is called once per frame
+    #endregion
+
+    #region Runtime Methods
+
+    /// <summary>
+    /// Check for Next Level Progression. Activate chaser when timer runs out
+    /// </summary>
     void Update () {
+        //Check if end point of level has been reached
         if (WarmManager.IsNextLevel)
         {
+            //Trigger to load the next level 
             WarmManager.ToggleIsNextLevel();
             NextArea();
         }
@@ -120,11 +167,10 @@ public class LevelManager : MonoBehaviour {
         {
             GameObject.Find("MainChar").transform.position = GameObject.FindGameObjectWithTag("EndPoint").transform.position;
         }
-		//Start Time of 15 minutes if still in warming element
-        //Activate Chaser
-        //Check if Next Level Reached
 
-	}
+        //TODO: Start Timer of 15 minutes if still in warming element
+        //TODO: Activate Chaser
+    }
 
     /// <summary>
     /// Triggered when Warming Element Manager 
@@ -138,12 +184,11 @@ public class LevelManager : MonoBehaviour {
         PushableManager.Clear();
         CoolManager.Clear();
 
-
         LevelQueue.Dequeue()();//Execute Level Set up
 
         //Instantiate Block => Area Effect "I can't go back" 
     }
 
-    
+    #endregion
 
 }

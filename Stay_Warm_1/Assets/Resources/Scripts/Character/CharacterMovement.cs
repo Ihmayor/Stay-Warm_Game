@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    #region Variables
+    #region Variables 
+    //Variables to handle Speed and Force of player
     public float MaxSpeed = 2f;
     public float moveForce = 10f;
+    public float pushForce { get; private set; }
+    public float jumpForce { get; private set; }
 
     private Animator animator;
     private Rigidbody2D rb2d;
     private bool jump;
     private string currentAnimation = null;
-    private float jumpForce;
 
     #endregion
 
@@ -23,7 +25,12 @@ public class CharacterMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
+        //Amount character can push objects
+        pushForce = 0.5f;
+
+        //Amount Character can jump up
         jumpForce = 200f;
+
     }
 
 
@@ -69,7 +76,6 @@ public class CharacterMovement : MonoBehaviour
             setAnimation("left");
         }
 
-
         // If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
         if (horizontal * rb2d.velocity.x < MaxSpeed)
             // ... add a force to the player.
@@ -80,10 +86,20 @@ public class CharacterMovement : MonoBehaviour
             // ... set the player's velocity to the maxSpeed in the x axis.
             rb2d.velocity = new Vector2(Mathf.Sign(rb2d.velocity.x) * MaxSpeed, rb2d.velocity.y);
 
-
-
         //Check IsOnGround to Trigger Jump
-        bool grounded = Physics2D.Linecast(transform.position, this.gameObject.transform.Find("GroundCheck").position, 1 << LayerMask.NameToLayer("Ground"));
+        bool grounded = false;
+        int childrenCount = transform.childCount;
+        for (int i = 0;i < childrenCount; i++)
+        {
+            Transform childCheck = gameObject.transform.GetChild(i);
+            if (childCheck.gameObject.name.Contains("GroundCheck"))
+            {
+                grounded = Physics2D.Linecast(transform.position, childCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+                if (grounded)
+                    break;
+            }
+        }
+
         bool platformed = Physics2D.Linecast(transform.position, this.gameObject.transform.Find("GroundCheck").position, 1 << LayerMask.NameToLayer("Platform"));
 
         if (Input.GetButtonUp("Jump") && (grounded || platformed))
@@ -98,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
         if (jump)
         {
             //animator.SetTrigger("Jump");
-            rb2d.AddForce(new Vector2(0f, jumpForce));
+            rb2d.AddForce(new Vector2(0f,jumpForce));
             jump = false;
         }
 

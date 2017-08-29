@@ -39,7 +39,14 @@ public class WarmingElement : MonoBehaviour
                 this.gameObject.GetComponent<SpriteRenderer>().color = Color;
                 this.GetComponent<AudioSource>().PlayOneShot(Sound);
                 this.GetComponent<AudioSource>().loop = false;
-                FirstVisit(gameObject, new EventArgs());
+                try
+                {
+                    FirstVisit(gameObject, new EventArgs());
+                }
+                catch(NullReferenceException ex)
+                {
+                    Debug.Log(ex.Message);
+                }
             }
         }
     }

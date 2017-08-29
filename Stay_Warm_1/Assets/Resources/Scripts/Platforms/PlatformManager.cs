@@ -56,7 +56,7 @@ public class PlatformManager: PuzzleManager{
         for (int i = 0; i <= HozPlatforms; i++)
         {
             bool DirectionVariance = false;
-            float DistanceMovementVariance = UnityEngine.Random.Range(0,1f);
+            float DistanceMovementVariance = UnityEngine.Random.Range(0,0.7f);
             Vector3 DistanceVariance = new Vector3(DistanceMovementVariance, 0, 0);
             Vector3 PlatformPosition = prevPlatformPosition + DistanceVariance + new Vector3(0.9f,0,0);
             float SpeedVariance = UnityEngine.Random.Range(2000, 7000);
@@ -76,11 +76,21 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 8, 5, true);
         LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 6, 6, false);
 
-        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(0.5f,1.2f), null,1, 500, false);
-        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(4f, 1.5f), null, 1.5f, 200, true);
-        LastPosition = CreateSpike(LastPosition + new Vector3(2f, 0, 0), 5);
-        LastPosition += new Vector3(0.9f, 0);
-        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(1.5f, 1.2f), null, 1, 500, false);
+        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(0.7f,1.2f), null,1, 500, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(4.2f, 1.5f), null, 1.5f, 200, true);
+        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(7.5f, 1.2f), null, 1, 500, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(10.5f, 1.2f), null, 1.3f, 700, false);
+        LastPosition = CreateSpike(LastPosition + new Vector3(2f, 0, 0), 20);
+
+        LastPosition = CreateStaircase(LastPosition + new Vector3(0.8f, 0), 5, 5, true);
+        float groundedY = LastPosition.y;
+        LastPosition = CreateStepTower(LastPosition - new Vector3(1.8f,0), 4,15);
+
+        LastPosition = CreateSpike(new Vector3(LastPosition.x + 0.7f, groundedY, 0), 5);
+        CreateStepTower(LastPosition, 1);
+        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(0.9f, 1f), null, 0.8f, 200, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.6f, 1f), null, 0.8f, 200, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(6f, 1f), null, 1.8f, 200, false);
     }
 
     //TODO:
@@ -127,6 +137,40 @@ public class PlatformManager: PuzzleManager{
         return PrevPosition;
     }
 
+    /// <summary>
+    /// Creates non-movable obstacle
+    /// </summary>
+    /// <param name="position">Starting position of obstacle</param>
+    /// <param name="stepCount">Height of obstacle</param>
+    /// <param name="widthFactor">Factor to increase width of tower</param>
+    /// <returns>Latest Position of Tower</returns>
+    private Vector3 CreateStepTower(Vector3 position, int stepCount, int widthFactor)
+    {
+        GameObject step = MonoBehaviour.Instantiate(Step, null);
+        step.transform.position = position;
+        step.transform.localScale *= widthFactor;
+        Platforms.Add(step);
+        Vector3 PrevPosition = step.transform.position;
+        for (int i = 0; i < stepCount; i++)
+        {
+            step = MonoBehaviour.Instantiate(Step, null);
+            step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+            step.transform.localScale *= widthFactor;
+            PrevPosition = step.transform.position;
+            Platforms.Add(step);//Keep Track of ALl platforms for later puzzle clearence
+        }
+
+        return PrevPosition + new Vector3(widthFactor * 0.5f,0);
+    }
+
+    /// <summary>
+    /// Create stair case of steps
+    /// </summary>
+    /// <param name="GroundPosition">Grounded Position of stair case</param>
+    /// <param name="height">Peak of height of stair case</param>
+    /// <param name="width">Total Width of Stair Case</param>
+    /// <param name="isDecayed">Bool to decide whether stair case ascends or descends</param>
+    /// <returns></returns>
     private Vector3 CreateStaircase(Vector3 GroundPosition, int height, float width, bool isDecayed)
     {
         if (height == 0)
@@ -230,9 +274,6 @@ public class PlatformManager: PuzzleManager{
         }
         return PrevPosition + new Vector3(0.5f,-0.11f);
     }
-
-  
-
 
     public void Clear()
     {

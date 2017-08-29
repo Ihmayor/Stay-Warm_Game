@@ -9,6 +9,7 @@ public class CoolingElement : MonoBehaviour {
     private float FadeFactor;
     private float DriftSpeed;
     public bool isRightDirection;
+
 	// Use this for initialization
 	void Start () {
         FadeFactor = 0.016f;
@@ -30,12 +31,39 @@ public class CoolingElement : MonoBehaviour {
         }
         else
         {
-            Destroy(this.gameObject.GetComponent<Collider2D>());
-            Destroy(gameObject, Resources.Load<AudioClip>("Audio/wind_gust").length);
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
+            Invoke("Deactivate", Resources.Load<AudioClip>("Audio/wind_gust").length);
+//            Destroy(this.gameObject.GetComponent<Collider2D>());
+//            Destroy(gameObject, Resources.Load<AudioClip>("Audio/wind_gust").length);
         }
 	}
+    
+    /// <summary>
+    /// Instead of Destroying/Creating Wind instances which slows down the game's runtime, I'll simple deactivate reposition.
+    /// </summary>
+    /// <returns></returns>
+    private void Deactivate()
+    {
+        Color oldColor = this.GetComponent<SpriteRenderer>().color;
+        this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, 0);
+        this.gameObject.SetActive(false);
+    }
 
-   
+    /// <summary>
+    /// Reactivate cooling element after deactivation
+    /// </summary>
+    public void Reactivate()
+    {
+
+        Color oldColor = this.GetComponent<SpriteRenderer>().color;
+        if (oldColor.a == 0)
+        {
+            this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, 1);
+            this.gameObject.GetComponent<Collider2D>().enabled = true;
+        }
+        this.gameObject.SetActive(true);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && 

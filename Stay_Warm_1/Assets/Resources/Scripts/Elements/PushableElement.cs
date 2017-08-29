@@ -35,7 +35,7 @@ public class PushableElement : MonoBehaviour {
         if (collision.gameObject.tag.Contains("Player"))
         {
             Rigidbody2D rb2d = this.GetComponent<Rigidbody2D>();
-            rb2d.AddForce(Vector2.one*collision.gameObject.GetComponent<CharacterStatus>().PushPower);
+            rb2d.AddForce(Vector2.one*collision.gameObject.GetComponent<CharacterMovement>().pushForce);
             collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = true;
         }
 

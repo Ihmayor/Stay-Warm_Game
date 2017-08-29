@@ -99,6 +99,11 @@ public class WarmingElementManager : PuzzleManager
         {
             PrevLightPole = CurrentLightPole;
             PrevLightPole.gameObject.tag = "Untagged";
+            foreach (GameObject midPoint in AllMidPointPoles)
+            {
+                if (midPoint.transform.position.x > PrevLightPole.transform.position.x)
+                    MonoBehaviour.Destroy(midPoint);
+            }
             CurrentLightPole = gObj;
         }
         else
