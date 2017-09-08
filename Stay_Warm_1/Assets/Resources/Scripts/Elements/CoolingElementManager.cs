@@ -11,7 +11,7 @@ public class CoolingElementManager : PuzzleManager
     /// Resources Pool for WindSources
     /// </summary>
     private GameObject[] WindSourceInstances;
-
+    
     /// <summary>
     /// Total Number of Wind Sources
     /// </summary>
@@ -22,12 +22,28 @@ public class CoolingElementManager : PuzzleManager
     /// </summary>
     private int WindSourceIndex;
 
+
+    /// <summary>
+    /// Resources Pool for DropSources
+    /// </summary>
+    private GameObject[] DropSourceInstances;
+
+    /// <summary>
+    /// Total Number of Drop Sources
+    /// </summary>
+    private readonly int NumDropSourceInstances = 6;
+
+    /// <summary>
+    /// Drop Source Index
+    /// </summary>
+    private int DropSourceIndex;
+
     public CoolingElementManager()
     {
         //Load Wind Source Prefab
         GameObject WindSource = Resources.Load<GameObject>("Prefabs/Elements/WindSource");
 
-        //Store all wind source instances in a resources pool
+        //Create Wind Source Resource Pool Storage
         WindSourceInstances = new GameObject[NumWindSourceInstances];
 
         //Populate resources pool
@@ -37,8 +53,22 @@ public class CoolingElementManager : PuzzleManager
             WindSourceInstances[i].SetActive(false);
         }
 
+        //Load DropSource Prefab
+        GameObject DropSource = Resources.Load<GameObject>("Prefabs/Elements/DropSource");
+
+        //Create Drop Source Resource Pool Storage
+        DropSourceInstances = new GameObject[NumDropSourceInstances];
+
+        //Populate resources pool
+        for (int i =0; i<NumDropSourceInstances;i++)
+        {
+            DropSourceInstances[i] = MonoBehaviour.Instantiate(DropSource);
+            DropSourceInstances[i].SetActive(false);
+        }
+        
         //Init
         WindSourceIndex = 0;
+        DropSourceIndex = 0;
     }
 
     /// <summary>
@@ -65,7 +95,8 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle2(Vector3 StartPosition)
     {
-       CreateWindSource(StartPosition + new Vector3(28f, 0.8f, 0));
+       CreateWindSource(StartPosition + new Vector3(61f, 0.8f, 0));
+       
     }
 
     /// <summary>
@@ -74,7 +105,9 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle3(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
+       Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(2f, 0));
+       LastPosition = CreateDropSource(LastPosition + new Vector3(1f, 0));
+       LastPosition = CreateDropSource(LastPosition + new Vector3(3f, 0));
     }
 
     /// <summary>
@@ -96,6 +129,14 @@ public class CoolingElementManager : PuzzleManager
     }
 
     #region Helper Methods
+
+    private Vector3 CreateDropSource(Vector3 DropPosition)
+    {
+
+
+
+        return DropPosition + new Vector3(0.5f, 0);
+    }
 
     /// <summary>
     /// Place a wind source resource at specified position
@@ -159,6 +200,7 @@ public class CoolingElementManager : PuzzleManager
             Source.SetActive(true);
             Source.GetComponent<WindCreation>().RestartLoop();
             PreviousPosition = Source.transform.position;
+            WindSourceIndex++;
         }
     }
 

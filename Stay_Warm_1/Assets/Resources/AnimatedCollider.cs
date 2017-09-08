@@ -29,10 +29,5 @@ public class AnimatedCollider : MonoBehaviour {
             localCollider.pathCount = 2;
             localCollider.SetPath(1, AnimationFrameCollider[frame].GetPath(1));
         }
-        Debug.Log("==================================================");
-        Debug.Log(AnimationFrameCollider[frame].name);
-        Debug.Log(gameObject.GetComponent<SpriteRenderer>().sprite.name);
-        Debug.Log("Frame" + frame);
-        Debug.Log("==================================================");
     }
 }

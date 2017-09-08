@@ -5,66 +5,13 @@ using UnityEngine.UI;
 
 public class CoolingElement : MonoBehaviour {
 
-    [Range(0.026f, 0.036f)]
-    private float FadeFactor;
-    private float DriftSpeed;
-    public bool isRightDirection;
+    internal AudioClip CoolingSound;
 
-	// Use this for initialization
-	void Start () {
-        FadeFactor = 0.016f;
-        DriftSpeed = 0.01f;
-        isRightDirection = false;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        float exponentIncrease = 1.5f; //How fast it fades. This is the ideal value found.
-        Color oldColor = this.GetComponent<SpriteRenderer>().color;
-        if (oldColor.a > 0)
-        {
-            this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, oldColor.a - Mathf.Pow(FadeFactor, exponentIncrease));
-            Vector3 PositionChange = new Vector3(DriftSpeed, 0, 0);
-            if (isRightDirection)
-                PositionChange *= -1;
-            this.gameObject.transform.position -= PositionChange;
-        }
-        else
-        {
-            this.gameObject.GetComponent<Collider2D>().enabled = false;
-            Invoke("Deactivate", Resources.Load<AudioClip>("Audio/wind_gust").length);
-//            Destroy(this.gameObject.GetComponent<Collider2D>());
-//            Destroy(gameObject, Resources.Load<AudioClip>("Audio/wind_gust").length);
-        }
-	}
-    
-    /// <summary>
-    /// Instead of Destroying/Creating Wind instances which slows down the game's runtime, I'll simple deactivate reposition.
-    /// </summary>
-    /// <returns></returns>
-    private void Deactivate()
-    {
-        Color oldColor = this.GetComponent<SpriteRenderer>().color;
-        this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, 0);
-        this.gameObject.SetActive(false);
-    }
+    public virtual void Start() { }
 
-    /// <summary>
-    /// Reactivate cooling element after deactivation
-    /// </summary>
-    public void Reactivate()
-    {
+    public virtual void Update() { }
 
-        Color oldColor = this.GetComponent<SpriteRenderer>().color;
-        if (oldColor.a == 0)
-        {
-            this.GetComponent<SpriteRenderer>().color = new Color(oldColor.r, oldColor.g, oldColor.b, 1);
-            this.gameObject.GetComponent<Collider2D>().enabled = true;
-        }
-        this.gameObject.SetActive(true);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && 
             !collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock)
@@ -74,31 +21,20 @@ public class CoolingElement : MonoBehaviour {
                 collision.gameObject.GetComponent<CharacterStatus>().ToggleOffFirstCooling();
 
             collision.gameObject.GetComponent<CharacterStatus>().SetHeartCooling(true);
-            this.GetComponent<AudioSource>().PlayOneShot(Resources.Load<AudioClip>("Audio/wind_gust"));
+            this.GetComponent<AudioSource>().PlayOneShot(CoolingSound);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player") &&
            !collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock)
         {
-            Vector3 WindPositionChange = new Vector3(DriftSpeed*4f, 0, 0);
-            if (isRightDirection)
-                WindPositionChange *= -1;
-            collision.gameObject.transform.position -= WindPositionChange;
-
-            //Jitter player if they are fighting against it.
-            Vector3 JitterPositionChange = new Vector3(0, Random.Range(-DriftSpeed, DriftSpeed), 0);
-            var horizontal = Input.GetAxis("Horizontal");
-            if ((horizontal > 0 && !isRightDirection) || (horizontal < 0 && isRightDirection))
-                collision.gameObject.transform.position += JitterPositionChange;
-
             collision.gameObject.GetComponent<CharacterStatus>().IncreaseCoolingStrength();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

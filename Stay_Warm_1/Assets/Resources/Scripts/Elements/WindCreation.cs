@@ -10,7 +10,7 @@ public class WindCreation : MonoBehaviour {
     public float repeatMaxTime = 6f;
 
     [Range(8,15)]
-    public int NumWindInstances = 8;
+    public int NumWindInstances = 14;
 
     private GameObject[] totalWindInstances; //Increase iff repeat MinTime and repeatMaxTime have been changed
 
@@ -40,11 +40,11 @@ public class WindCreation : MonoBehaviour {
         if (!instance.activeSelf)
         {
           //  instance.SetActive(true);
-            instance.GetComponent<CoolingElement>().Reactivate();
+            instance.GetComponent<WindElement>().Reactivate();
         }
 
         WindIndex++;
-        WindIndex%=NumWindInstances-1;
+        WindIndex%=(NumWindInstances-1);
     }
 
     public void RestartLoop()

@@ -84,13 +84,13 @@ public class PlatformManager: PuzzleManager{
 
         LastPosition = CreateStaircase(LastPosition + new Vector3(0.8f, 0), 5, 5, true);
         float groundedY = LastPosition.y;
-        LastPosition = CreateStepTower(LastPosition - new Vector3(1.8f,0), 4,15);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(1.28f,0f), 4,11);
 
-        LastPosition = CreateSpike(new Vector3(LastPosition.x + 0.7f, groundedY, 0), 5);
+        LastPosition = CreateSpike(new Vector3(LastPosition.x + 2.4f, groundedY, 0), 5);
         CreateStepTower(LastPosition, 1);
-        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(0.9f, 1f), null, 0.8f, 200, false);
-        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.6f, 1f), null, 0.8f, 200, false);
-        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(6f, 1f), null, 1.8f, 200, false);
+        CreatePlatform(VerticalPlatform, LastPosition + new Vector3(1.1f, 1f), null, 0.8f, 200, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(3.5f, 1f), null, 0.8f, 200, false);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(7f, 1f), null, 1.8f, 200, false);
     }
 
     //TODO:
@@ -148,19 +148,23 @@ public class PlatformManager: PuzzleManager{
     {
         GameObject step = MonoBehaviour.Instantiate(Step, null);
         step.transform.position = position;
-        step.transform.localScale *= widthFactor;
+        step.transform.localScale = new Vector3(step.transform.localScale.x * widthFactor,
+                                                    step.transform.localScale.y,
+                                                    step.transform.localScale.z);
         Platforms.Add(step);
         Vector3 PrevPosition = step.transform.position;
         for (int i = 0; i < stepCount; i++)
         {
             step = MonoBehaviour.Instantiate(Step, null);
             step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
-            step.transform.localScale *= widthFactor;
+            step.transform.localScale = new Vector3(step.transform.localScale.x* widthFactor,            
+                                                    step.transform.localScale.y, 
+                                                    step.transform.localScale.z);
             PrevPosition = step.transform.position;
             Platforms.Add(step);//Keep Track of ALl platforms for later puzzle clearence
         }
 
-        return PrevPosition + new Vector3(widthFactor * 0.5f,0);
+        return PrevPosition + new Vector3(widthFactor * 0.1f,0);
     }
 
     /// <summary>
@@ -258,9 +262,15 @@ public class PlatformManager: PuzzleManager{
         float OffsetMidPoint = (OffsetEndPoint - OffsetStartPoint) / 2;
     }
 
+    /// <summary>
+    /// Create a length of spikes 
+    /// </summary>
+    /// <param name="GroundPosition"></param>
+    /// <param name="count"></param>
+    /// <returns></returns>
     private Vector3 CreateSpike(Vector3 GroundPosition, int count)
     {
-        GroundPosition += new Vector3(0, 0.11f);
+        GroundPosition += new Vector3(0, 0.9f);
         GameObject spike = MonoBehaviour.Instantiate(Spike);
         spike.transform.position = GroundPosition;
         Platforms.Add(spike);

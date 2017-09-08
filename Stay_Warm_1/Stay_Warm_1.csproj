@@ -87,13 +87,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnimatedCollider.cs" />
     <Compile Include="Assets\Custom\NewScripts\Coin.cs" />
     <Compile Include="Assets\Custom\NewScripts\PlatformFall.cs" />
     <Compile Include="Assets\Custom\NewScripts\SimplePlatformController.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnCoin.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnManager.cs" />
-    <Compile Include="Assets\FadeIn.cs" />
+    <Compile Include="Assets\Resources\AnimatedCollider.cs" />
+    <Compile Include="Assets\Resources\FadeIn.cs" />
     <Compile Include="Assets\Resources\Scripts\ButtonGroupFocus.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\Camera2DFollow.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\CharacterMovement.cs" />
@@ -102,11 +102,13 @@
     <Compile Include="Assets\Resources\Scripts\Elements\CoolingElement.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\CoolingElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\DeployFog.cs" />
+    <Compile Include="Assets\Resources\Scripts\Elements\DropElement.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\PushableElement.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\PushableElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WarmingElement.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WarmingElementManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Elements\WindCreation.cs" />
+    <Compile Include="Assets\Resources\Scripts\Elements\WindElement.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\DeathTrigger.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\LevelManager.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\MenuManager.cs" />

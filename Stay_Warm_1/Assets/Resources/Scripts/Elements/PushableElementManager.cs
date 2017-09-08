@@ -84,15 +84,12 @@ public class PushableElementManager : PuzzleManager
             Pushables.Add(pushObj);
         }
         pushObj = MonoBehaviour.Instantiate(Pushable, null);
-        pushObj.transform.position = StartPosition + new Vector3(54, 2f, 0);
+        pushObj.transform.position = StartPosition + new Vector3(52.9f, 2f, 0);
         Pushables.Add(pushObj);
 
         pushObj = MonoBehaviour.Instantiate(Pushable, null);
-        pushObj.transform.position = StartPosition + new Vector3(54.3f, 2f, 0);
+        pushObj.transform.position = StartPosition + new Vector3(53f, 2f, 0);
         Pushables.Add(pushObj);
-
-
-
     }
 
     public override void Puzzle3(Vector3 StartPosition)
