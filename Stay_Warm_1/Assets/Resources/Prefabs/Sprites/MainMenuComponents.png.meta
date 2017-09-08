@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1c0f6e5491d805d4c819b13956eee1df
-timeCreated: 1504840446
+timeCreated: 1504843141
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: MainMenuComponents_3
     21300008: MainMenuComponents_4
     21300010: MainMenuComponents_5
+    21300012: MainMenuComponents_6
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -121,7 +122,7 @@ TextureImporter:
         width: 92
         height: 83
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -130,12 +131,12 @@ TextureImporter:
       name: MainMenuComponents_1
       rect:
         serializedVersion: 2
-        x: 753
-        y: 414
-        width: 169
-        height: 105
+        x: 688
+        y: 12
+        width: 221
+        height: 721
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,7 +150,7 @@ TextureImporter:
         width: 348
         height: 138
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,7 +164,7 @@ TextureImporter:
         width: 348
         height: 275
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,7 +178,7 @@ TextureImporter:
         width: 459
         height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -190,6 +191,20 @@ TextureImporter:
         y: 22
         width: 245
         height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MainMenuComponents_6
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 879
+        width: 169
+        height: 105
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
