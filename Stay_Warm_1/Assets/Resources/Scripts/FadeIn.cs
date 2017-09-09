@@ -19,8 +19,6 @@ public class FadeIn : MonoBehaviour
 
     public void MoveObject(Vector3 NewPosition)
     {
-        Debug.Log("SCREEEEEEEEEEEEEEEEEEEEE");
-        Debug.Log(NewPosition);
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
         this.gameObject.SetActive(false);
         this.gameObject.transform.position = new Vector3(NewPosition.x, this.gameObject.transform.position.y, 0);
