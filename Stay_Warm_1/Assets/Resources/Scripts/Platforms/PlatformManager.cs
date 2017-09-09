@@ -68,6 +68,7 @@ public class PlatformManager: PuzzleManager{
     public override void Puzzle2(Vector3 GroundedStartPosition)
     {
         Vector3 LastPosition = CreateStaircase(GroundedStartPosition + new Vector3(2.5f, 0), 10, 4, false);
+        float groundedY = GroundedStartPosition.y;
         LastPosition = CreateSpike(LastPosition + new Vector3(0.2f, 0, 0), 2);
         LastPosition = CreateStaircase(LastPosition + new Vector3(0f, 0), 4, 2, true);
         LastPosition = CreateStaircase(LastPosition + new Vector3(-0.5f, 0), 6, 3, false);
@@ -83,7 +84,6 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateSpike(LastPosition + new Vector3(2f, 0, 0), 20);
 
         LastPosition = CreateStaircase(LastPosition + new Vector3(0.8f, 0), 5, 5, true);
-        float groundedY = LastPosition.y;
         LastPosition = CreateStepTower(LastPosition + new Vector3(1.28f,0f), 4,11);
 
         LastPosition = CreateSpike(new Vector3(LastPosition.x + 2.4f, groundedY, 0), 5);
@@ -270,7 +270,7 @@ public class PlatformManager: PuzzleManager{
     /// <returns></returns>
     private Vector3 CreateSpike(Vector3 GroundPosition, int count)
     {
-        GroundPosition += new Vector3(0, 0.9f);
+        GroundPosition += new Vector3(0, 0.09f);
         GameObject spike = MonoBehaviour.Instantiate(Spike);
         spike.transform.position = GroundPosition;
         Platforms.Add(spike);
@@ -282,7 +282,7 @@ public class PlatformManager: PuzzleManager{
             Platforms.Add(spike);
             PrevPosition = spike.transform.position;
         }
-        return PrevPosition + new Vector3(0.5f,-0.11f);
+        return PrevPosition + new Vector3(0.5f,-0.09f);
     }
 
     public void Clear()

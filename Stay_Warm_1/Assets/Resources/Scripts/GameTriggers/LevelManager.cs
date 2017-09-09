@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour {
         LevelQueue.Enqueue(() => 
         {
             StartPosition += new Vector3(50f, 0);
-            //Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-10f, 0));
+            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-10f, 0));
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle1(StartPosition);

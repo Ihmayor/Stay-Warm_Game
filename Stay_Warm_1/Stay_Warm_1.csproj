@@ -93,7 +93,6 @@
     <Compile Include="Assets\Custom\NewScripts\SpawnCoin.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnManager.cs" />
     <Compile Include="Assets\Resources\Scripts\AnimatedCollider.cs" />
-    <Compile Include="Assets\Resources\Scripts\ButtonGroupFocus.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\Camera2DFollow.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\CharacterMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\CharacterStatus.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="Assets\Resources\Scripts\GameTriggers\MenuManager.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\PuzzleManager.cs" />
     <Compile Include="Assets\Resources\Scripts\GameTriggers\WinTrigger.cs" />
+    <Compile Include="Assets\Resources\Scripts\MainMenuButtonGroup.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\HorizontalPlatformMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformMovement.cs" />
