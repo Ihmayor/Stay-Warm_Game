@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeIn : MonoBehaviour {
+public class FadeIn : MonoBehaviour
+{
 
     public float FadeInSpeed = 0.1f;
 
@@ -11,13 +12,15 @@ public class FadeIn : MonoBehaviour {
         while (this.gameObject.GetComponent<SpriteRenderer>().color.a < 255)
         {
             yield return new WaitForSeconds(FadeInSpeed);
-            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, this.gameObject.GetComponent<SpriteRenderer>().color.a+FadeInSpeed);
+            this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, this.gameObject.GetComponent<SpriteRenderer>().color.a + FadeInSpeed);
         }
         yield return null;
     }
 
-    public void MoveWall(Vector3 NewPosition)
+    public void MoveObject(Vector3 NewPosition)
     {
+        Debug.Log("SCREEEEEEEEEEEEEEEEEEEEE");
+        Debug.Log(NewPosition);
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0);
         this.gameObject.SetActive(false);
         this.gameObject.transform.position = new Vector3(NewPosition.x, this.gameObject.transform.position.y, 0);
@@ -25,5 +28,6 @@ public class FadeIn : MonoBehaviour {
         StartCoroutine(DoFadeIn());
         this.gameObject.GetComponent<AudioSource>().Play();
     }
+
 
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
@@ -16,6 +17,9 @@ public class LevelManager : MonoBehaviour {
 
     //Wall Boundary Object
     private GameObject Wall;
+
+    //SignPost labelling start of puzzle
+    private GameObject SignPost;
 
     //Instance of level manager
     private static LevelManager SingletonInstance { set; get; }
@@ -33,8 +37,11 @@ public class LevelManager : MonoBehaviour {
         else
             throw new InvalidOperationException("Error! More than one level manager exists!");
 
-        //Fetch Wall Boundary from scene. Moves forard as levels progress
+        //Fetch Wall Boundary from scene. Moves forward as levels progress
         Wall = GameObject.Find("PlatformWhiteSprite");
+
+        //Fetch SignPost from scene. Moves forward as levels progress.
+        SignPost = GameObject.Find("SignPost");
 
         //Init Starting Position of Game
         Vector3 StartPosition = new Vector3(-45.5f, 3.3f, 0);
@@ -84,6 +91,11 @@ public class LevelManager : MonoBehaviour {
         //Init Level Queue Setup
         LevelQueue = new Queue<Action>();
 
+        int PuzzleNum = 0;
+        float WallDistance = -3f;
+        float SignPostDistance = 2f;
+        float SignPostHeightAdjustment = 0.8f;
+
         //Queue Levels
         //Puzzle 0
         LevelQueue.Enqueue(() =>
@@ -92,13 +104,21 @@ public class LevelManager : MonoBehaviour {
             {
                 m.Puzzle0(StartPosition);
             }
+            PuzzleNum++;
         });
 
         //Puzzle 1
         LevelQueue.Enqueue(() => 
         {
             StartPosition += new Vector3(50f, 0);
-            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-10f, 0));
+
+            //Puzzle Start Position Starts a little further out than expected
+            WallDistance = -10f;
+            SignPostDistance = -2f;
+
+            Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(-10f, 0));
+            SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));
+            PuzzleNum++;
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle1(StartPosition);
@@ -108,7 +128,14 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 2
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(35f, 0);
-            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
+            
+            //Reset WallDistance Value.
+            WallDistance = -3f;
+            SignPostDistance = 2f;
+
+            Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(WallDistance, 0));
+            SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));
+            PuzzleNum++;
             // Instantiate(Resources.Load<GameObject>("Prefabs/PropsAndNots/Exclaim")).transform.position = StartPosition;
             foreach (PuzzleManager m in Managers)
             {
@@ -119,7 +146,9 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 3
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(65f, 0);
-            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
+            Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(WallDistance, 0));
+            SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));
+            PuzzleNum++;
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle3(StartPosition);
@@ -129,7 +158,9 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 4
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(65f, 0);
-            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
+            Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(WallDistance, 0));
+            SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));
+            PuzzleNum++;
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle4(StartPosition);
@@ -139,7 +170,9 @@ public class LevelManager : MonoBehaviour {
         //Puzzle 5
         LevelQueue.Enqueue(() => {
             StartPosition += new Vector3(65f, 0);
-            Wall.GetComponent<FadeIn>().MoveWall(StartPosition + new Vector3(-3f, 0));
+            Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(WallDistance, 0));
+            SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));
+            PuzzleNum++;
             foreach (PuzzleManager m in Managers)
             {
                 m.Puzzle5(StartPosition);
