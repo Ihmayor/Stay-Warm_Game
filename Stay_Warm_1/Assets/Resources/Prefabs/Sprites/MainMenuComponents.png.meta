@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1c0f6e5491d805d4c819b13956eee1df
-timeCreated: 1504895839
+timeCreated: 1504958622
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,7 @@ TextureImporter:
     21300012: MainMenuComponents_6
     21300014: MainMenuComponents_7
     21300016: MainMenuComponents_8
+    21300018: MainMenuComponents_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -237,6 +238,20 @@ TextureImporter:
         height: 153
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MainMenuComponents_9
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 112
+        width: 245
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
