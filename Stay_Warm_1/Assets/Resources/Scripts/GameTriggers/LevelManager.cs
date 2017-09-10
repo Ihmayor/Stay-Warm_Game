@@ -114,7 +114,7 @@ public class LevelManager : MonoBehaviour {
 
             //Puzzle Start Position Starts a little further out than expected
             WallDistance = -10f;
-            SignPostDistance = -2f;
+            SignPostDistance = -3f;
 
             Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(-10f, 0));
             SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));

@@ -18,7 +18,7 @@ public class GrowIn : MonoBehaviour {
     public void MoveObject(int puzzleNum, Vector3 newPosition)
     {
         this.gameObject.transform.localScale = Vector2.zero;
-        this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "Puzzle" + puzzleNum;
+        this.gameObject.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "Stage" + puzzleNum;
         this.gameObject.transform.position = newPosition - new Vector3(0,0.3f);
         this.gameObject.GetComponent<Animator>().SetTrigger("Shrink");
         StartCoroutine(TriggerGrowAnimation(newPosition));
