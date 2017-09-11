@@ -35,38 +35,38 @@ public class CharacterStatus : MonoBehaviour
     private int Debate;
     private int FightCount;
     private string[] CannedFightResponses = {
-        "...Let's not leave.",
-        "Not ready to leave. Wait, please",
-        "Let me have a little break.",
-        "I want to stay here longer.",
-        "I'm not ready to leave yet",
-        "I want to stay.",
-        "Let me catch my breath",
-        "I don't want to leave.",
-        "It's warm here. Let's stay.",
-        "Please, I don't want to move anymore.",
-        "I don't want to go.",
-        "No. Please...No.",
-        "I cannot move on.",
-        "Let me just stay here, where it's warm.",
-        "I don't want to move.",
-        "There is no point.",
-        "What will even happen at the end?",
-        "Just a little nap.",
-        "Let me sleep here. Just a little bit.",
-        "It's...so...warm...here...",
-        "...I can't go on.",
-        "WHY SHOULD I EVEN TRY!? I AM A POINTLESS SPECK WHO WILL AMOUNT TO NOTHING!",
-        "Please, let me stay here a little longer. Please.",
-        "I can't do this! I just CAN'T!" };
+        "They did not want to leave.",
+        "They were not ready to leave quite yet.",
+        "They decided to take a break.",
+        "Just a little longer, they decided.",
+        "They were not ready to leave.",
+        "They wanted to stay.",
+        "They needed to catch their breath",
+        "They urged themselves to stay.",
+        "It was so warm. They wanted to stay.",
+        "Their body could not move another inch forward.",
+        "They did not want to go on.",
+        "No. They did not want to leave.",
+        "They could not move on.",
+        "They wanted to stay where it was warm.",
+        "Their body did not want to move.",
+        "They lost faith in any point in all this.",
+        "They questioned what would even happen at the end.",
+        "They took a little nap.",
+        "They slept for a little bit in the nice warmth.",
+        "Warmth bathed them and it made them feel weak like jelly.",
+        "...They did not want to leave the warmth.",
+        "They screamed to the void about the pointlessness of it all.",
+        "They stayed a little longer still.",
+        "They no longer believed that they could do it." };
     private string[] CannedMotivationResponses = {
-        "Alright, just a little more",
-        "Okay, one more checkpoint.",
-        "No. I can do this.",
-        "Okay, I can move just a little bit further.",
-        "Nope. I can feel that I'm almost there.",
-        "No. I can make it.",
-        "No...I will not give up! I can move my feet a little bit more" };
+        "They found the ability to move another step forward.",
+        "They set their eyes on the next warm light in the distance.",
+        "They urged themselves to move.",
+        "They convinced their body to move a little mroe.",
+        "They felt like they were close.",
+        "They found renewed belief that they could make it.",
+        "They refused to give up!" };
 
     private int matchCount;
 
@@ -140,13 +140,13 @@ public class CharacterStatus : MonoBehaviour
     /// </summary>
     public void ToggleOffFirstWarming()
     {
-        MenuManager.Instance.SetThought(CharacterName, "Huh, it's really nice here. I should stay a little while to warm up.");
+        MenuManager.Instance.SetThought(CharacterName, "It felt warm underneath the light. They stayed there for a little while.");
         isFirstWarming = false;
     }
 
     public void ToggleOffFirstCooling()
     {
-        MenuManager.Instance.SetThought(CharacterName, "It's cold. I shouldn't stay in this for too long. Maybe if I could find some cover...");
+        MenuManager.Instance.SetThought(CharacterName, "It was cold. They knew they shouldn't stay in the wind too long.");
         isFirstCooling = false;
     }
 
@@ -192,7 +192,7 @@ public class CharacterStatus : MonoBehaviour
         else if (HealthAmount <= 0.2f)
         {
             if (setThought)
-                MenuManager.Instance.SetThought(CharacterName, "There is no point in carrying on. Why bother? I should have never tried in the first place. This was stupid. I am stupid. I cannot believe that I thought that I could ever do this. The pain is far too great.");
+                MenuManager.Instance.SetThought(CharacterName, "They felt stupid. There was no pointing in moving on. They regretted even trying in the first place.");
 
             //Increase chance of character backtalk
             isFightingPlayer = true;
@@ -202,7 +202,7 @@ public class CharacterStatus : MonoBehaviour
         else if (HealthAmount <= 0.333f)
         {
             if (setThought)
-                MenuManager.Instance.SetThought(CharacterName, "I don't want to move on.");
+                MenuManager.Instance.SetThought(CharacterName, "They did not want to move.");
             //Character will start fighting player when they try to leave a warming element
             isFightingPlayer = true;
             ResetFightLevels(); //If we have healed from a previous encounter, we don't want to still have the same fight levels
@@ -210,7 +210,7 @@ public class CharacterStatus : MonoBehaviour
         else if (HealthAmount <= 0.5f)
         {
             if (setThought)
-                MenuManager.Instance.SetThought(CharacterName, "I'm so exhausted. I don't want to move anymore.");
+                MenuManager.Instance.SetThought(CharacterName, "They were exhausted. They could barely urge the will to move.");
             if (!audioSource.isPlaying)
             {
                 AudioClip audio = Resources.Load<AudioClip>("Audio/heartbeat");
@@ -225,7 +225,7 @@ public class CharacterStatus : MonoBehaviour
         else if (HealthAmount <= 0.7f)
         {
             if (setThought)
-                MenuManager.Instance.SetThought(CharacterName, "It's getting hard to breathe. Why am I even doing this?");
+                MenuManager.Instance.SetThought(CharacterName, "They found it hard to breathe. They wondered why they were even doing this?");
             AudioClip audio = Resources.Load<AudioClip>("Audio/double_cough");
             this.GetComponent<AudioSource>().loop = false;
             this.GetComponent<AudioSource>().PlayOneShot(audio);
@@ -321,11 +321,11 @@ public class CharacterStatus : MonoBehaviour
                 MenuManager.Instance.ShowGameOver();
             else if (HeartAmount <= 0.1f && UnityEngine.Random.Range(0,20) <= 0)
             {
-                MenuManager.Instance.SetThought(CharacterName, "The heart is getting so cold. Isn't there anything I can do?");
+                MenuManager.Instance.SetThought(CharacterName, "The heart was getting cold. They wished there was something they could do.");
             }
             else if (HeartAmount <= 0.5f && UnityEngine.Random.Range(0, 35) <= 0)
             {
-                MenuManager.Instance.SetThought(CharacterName, "The heart is getting really cold. I should find someplace warm soon.");
+                MenuManager.Instance.SetThought(CharacterName, "The heart was freezing. They really had to find someplace warm very soon or else.");
             }
         }
     }
@@ -351,7 +351,7 @@ public class CharacterStatus : MonoBehaviour
         if (FightCount >= 3)
         {
             MenuManager.Instance.ShowGameOver();
-            MenuManager.Instance.SetThought(CharacterName, "It's better to stay here after all");
+            MenuManager.Instance.SetThought(CharacterName, "They decided to just stay in place.");
             return;
         }
 

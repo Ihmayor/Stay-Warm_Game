@@ -7,6 +7,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(ParticleSystem))]
 public class UIParticleSystem : MaskableGraphic
 {
+    //Credited to glennpow: https://forum.unity3d.com/threads/free-script-particle-systems-in-ui-screen-space-overlay.406862/
 
     public Texture particleTexture;
     public Sprite particleSprite;

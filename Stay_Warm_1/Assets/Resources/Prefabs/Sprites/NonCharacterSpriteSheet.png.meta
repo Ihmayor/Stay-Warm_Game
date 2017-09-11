@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 88bc09362cce5cc41b01f573611e7b14
-timeCreated: 1504134660
+timeCreated: 1505076655
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -17,6 +17,7 @@ TextureImporter:
     21300020: NonCharacterSpriteSheet_10
     21300022: NonCharacterSpriteSheet_11
     21300024: NonCharacterSpriteSheet_12
+    21300026: NonCharacterSpriteSheet_13
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -294,6 +295,20 @@ TextureImporter:
         x: 675
         y: 236
         width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: NonCharacterSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 583
+        width: 49
         height: 50
       alignment: 0
       pivot: {x: 0, y: 0}

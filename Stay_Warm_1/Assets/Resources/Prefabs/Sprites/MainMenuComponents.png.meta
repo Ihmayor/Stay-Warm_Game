@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1c0f6e5491d805d4c819b13956eee1df
-timeCreated: 1504984899
+timeCreated: 1505103374
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,9 @@ TextureImporter:
     21300016: MainMenuComponents_8
     21300018: MainMenuComponents_9
     21300020: MainMenuComponents_10
+    21300022: MainMenuComponents_11
+    21300024: MainMenuComponents_12
+    21300026: MainMenuComponents_13
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -267,6 +270,48 @@ TextureImporter:
         height: 108
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MainMenuComponents_11
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 939
+        width: 52
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MainMenuComponents_12
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 939
+        width: 191
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MainMenuComponents_13
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 397
+        width: 138
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

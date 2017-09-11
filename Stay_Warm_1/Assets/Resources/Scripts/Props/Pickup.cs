@@ -8,10 +8,10 @@ public class Pickup : MonoBehaviour {
 
 
     public static Dictionary<string, string> PropThoughts = new Dictionary<string, string>() {
-        {"Note #1","There's nothing on it, but it feels warm. ... Oh!"},
-        {"Note #2","Another one..."},
-        {"Note #3","It's nice not being alone."},
-        {"Glass Heart","This...heart. It feels important. I...I should take care of it."}
+        {"Note #1","There was nothing on the not, but it felt warm."},
+        {"Note #2","They found another one..."},
+        {"Note #3","They liked not being alone."},
+        {"Glass Heart","The heart felt important to them, somehow. They cradled it as they marched onwards."}
     };
 
     // Use this for initialization

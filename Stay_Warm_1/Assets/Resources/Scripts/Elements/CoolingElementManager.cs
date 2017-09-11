@@ -86,7 +86,7 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle1(Vector3 StartPosition)
     {
-        CreateBlizzard(StartPosition + new Vector3(6f, 0.8f, 0), new float[] { 5, 3, 3, 2, 2, 3, 3, 3, 1});
+        CreateBlizzard(StartPosition + new Vector3(6f, 0.8f, 0), new float[] { 5, 3, 3, 2, 2, 3, 3});
     }
 
     /// <summary>

@@ -7,10 +7,9 @@ Essentially WarmHeart(+0.1) where Heart Meter is 0 and goal is 1
 
 ================================= LATEST===========================================
 Most important:
-- Finish Drop element resources. DO NOT REFACTOR INHERTANCE QUITE YET
 - FINISH MENU SYSTEM FIRST!!!
-- FINISH CHAR RESPAW NOW!!!
- 
+- FINISH CHAR RESPAWN NOW!!!
+- REFACTOR INHERTANCE FOR DROP SOURCE YET
 
 2) PLEASE OPTIMIZE INSTEAD OF INSTATIATING AND DESTROYING KEEP TRACK OF AN OBJECT POOL DEACTIVATE AND MOVE THE POSITION
     Update: Finished Wind Resources Managing 
