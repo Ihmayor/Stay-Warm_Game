@@ -61,6 +61,15 @@ public class PlatformManager: PuzzleManager{
             Vector3 PlatformPosition = prevPlatformPosition + DistanceVariance + new Vector3(0.9f,0,0);
             float SpeedVariance = UnityEngine.Random.Range(2000, 7000);
             CreatePlatform(HorizontalPlatform, PlatformPosition, null, DistanceMovementVariance, SpeedVariance, DirectionVariance);
+            if (i == 4)
+            {
+                Platforms[i].gameObject.AddComponent<NotifyPropScript>();
+                NotifyPropScript script = Platforms[i].gameObject.GetComponent<NotifyPropScript>();
+                script.AddExclaim(Platforms[i].transform);
+                script.optionalThoughtMessage = "They had noticed something paper on the ground and tried to pick it up. It broke apart as their fingers grazed it.";
+                script.notificationMessage = "Found 'Dust'";
+            }
+
             prevPlatformPosition = PlatformPosition+new Vector3(DistanceMovementVariance, 0)+new Vector3(0.9f,0,0);
         }
     }

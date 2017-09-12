@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
     private GameObject WinMenu;
     private GameObject ThoughtBox;
     private GameObject Status;
+    private GameObject PauseMenu;
 
     /// <summary>
     /// UI Helper variables
@@ -48,7 +49,7 @@ public class MenuManager : MonoBehaviour
         GameOverText = MainMenuSystem.transform.Find("GameOver").gameObject;
         WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
         ThoughtBox = MainMenuSystem.transform.Find("Thoughts").gameObject;
-
+        PauseMenu = MainMenuSystem.transform.Find("PauseMenu").gameObject;
         //InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         // AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
@@ -80,6 +81,21 @@ public class MenuManager : MonoBehaviour
         GameOver = true;
     }
 
+
+    public void ExitStage()
+    {
+        //TODO: Should trigger confirmation popup.
+
+
+        int sceneIndex = 0;
+        StartCoroutine(LoadScene(sceneIndex));
+    }
+
+    private IEnumerator LoadScene(int sceneIndex)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneIndex);
+    }
+
     /// <summary>
     /// Changes Contents of thought box. 
     /// </summary>
@@ -105,6 +121,20 @@ public class MenuManager : MonoBehaviour
     {
         ThoughtBox.transform.Find("ThoughtText").GetComponent<Text>().text = "";
     }
+
+
+    public void TogglePauseMenu(bool pause)
+    {
+        if (pause)
+        {
+            PauseMenu.transform.Find("Panel").GetComponent<Animator>().SetTrigger("Open");
+        }
+        else
+        {
+            PauseMenu.transform.Find("Panel").GetComponent<Animator>().SetTrigger("Close");
+        }
+    }
+
 
     /// <summary>
     /// Open Interaction Box

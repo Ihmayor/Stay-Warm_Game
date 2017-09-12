@@ -94,11 +94,11 @@ public class CharacterStatus : MonoBehaviour
         hasHeart = false;
 
         //Init Heart Cooling Factors
-        HeartCoolingFactor = 0.002f;
+        HeartCoolingFactor = 0.004f;
         OriginalHeartCoolingFactor = HeartCoolingFactor;
         CoolStrength = 0.0005f;
         isHeartCooling = false;
-        HeartWait = 0.001f;
+        HeartWait = 0.005f;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
         //Init sacrifice factor
@@ -146,7 +146,7 @@ public class CharacterStatus : MonoBehaviour
 
     public void ToggleOffFirstCooling()
     {
-        MenuManager.Instance.SetThought(CharacterName, "It was cold. They knew they shouldn't stay in the wind too long.");
+        MenuManager.Instance.SetThought(CharacterName, "It was cold. They knew that they shouldn't stay in the wind too long. They had to find cover of some sort.");
         isFirstCooling = false;
     }
 
@@ -321,7 +321,7 @@ public class CharacterStatus : MonoBehaviour
                 MenuManager.Instance.ShowGameOver();
             else if (HeartAmount <= 0.1f && UnityEngine.Random.Range(0,20) <= 0)
             {
-                MenuManager.Instance.SetThought(CharacterName, "The heart was getting cold. They wished there was something they could do.");
+                MenuManager.Instance.SetThought(CharacterName, "The heart was getting cold. They wished that there was something they could do.");
             }
             else if (HeartAmount <= 0.5f && UnityEngine.Random.Range(0, 35) <= 0)
             {

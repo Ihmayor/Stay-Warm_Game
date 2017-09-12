@@ -7,20 +7,17 @@ Essentially WarmHeart(+0.1) where Heart Meter is 0 and goal is 1
 
 ================================= LATEST===========================================
 Most important:
-- FINISH MENU SYSTEM FIRST!!!
 - FINISH CHAR RESPAWN NOW!!!
+- FINISH LEVEL LOADING ONCE RESPAWN POINT CODE IS COMPLETE
 - REFACTOR INHERTANCE FOR DROP SOURCE YET
 
 2) PLEASE OPTIMIZE INSTEAD OF INSTATIATING AND DESTROYING KEEP TRACK OF AN OBJECT POOL DEACTIVATE AND MOVE THE POSITION
     Update: Finished Wind Resources Managing 
 	Todo PlatformerManager.cs: 200 steps as resource pool. 30 spikes. If this lags run time then gradual population can be used. 
-
-
               
 
 3) Finish Cooling Element => Inherit. Create Wind Element and Drop Element both to inherit from the cooling element
 
-4) Refactor Wind Creation. Refactor Cooling Element Manager to handle drop elements.             
 
 
 

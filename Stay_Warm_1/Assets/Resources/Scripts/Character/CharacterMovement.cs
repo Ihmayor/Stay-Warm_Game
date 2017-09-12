@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb2d;
     private bool jump;
+    private bool pause;
     private string currentAnimation = null;
 
     #endregion
@@ -30,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
 
         //Amount Character can jump up
         jumpForce = 200f;
-
+        pause = false;
     }
 
 
@@ -40,7 +41,15 @@ public class CharacterMovement : MonoBehaviour
     {
         //if (MenuManager.MenuManager.Instance.GameOver)
         //    return;
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            pause = !pause;
+            MenuManager.Instance.TogglePauseMenu(pause);
+        }
 
+        if (pause)
+            return;
+ 
         if (this.GetComponent<CharacterStatus>().isWarmingWithMatches)
             return;
 
