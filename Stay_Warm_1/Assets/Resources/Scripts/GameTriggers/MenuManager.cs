@@ -28,10 +28,11 @@ public class MenuManager : MonoBehaviour
     private GameObject InteractionBox;
     private GameObject GameOverText;
     private GameObject WinMenu;
+    private GameObject RespawnMenu;
     private GameObject ThoughtBox;
     private GameObject Status;
     private GameObject PauseMenu;
-
+    
     /// <summary>
     /// UI Helper variables
     /// </summary>
@@ -50,6 +51,7 @@ public class MenuManager : MonoBehaviour
         WinMenu = MainMenuSystem.transform.Find("WinMenu").gameObject;
         ThoughtBox = MainMenuSystem.transform.Find("Thoughts").gameObject;
         PauseMenu = MainMenuSystem.transform.Find("PauseMenu").gameObject;
+        RespawnMenu = ThoughtBox.transform.Find("Respawning").gameObject;
         //InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         // AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
@@ -79,6 +81,11 @@ public class MenuManager : MonoBehaviour
     {
         WinMenu.SetActive(true);
         GameOver = true;
+    }
+
+    public void ShowRespawn()
+    {
+        RespawnMenu.GetComponent<FadeIn>().ReactivateMomentarily(3.5f);
     }
 
 

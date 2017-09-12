@@ -18,6 +18,8 @@ public class CharacterStatus : MonoBehaviour
     public bool isFirstCooling { get; private set; }
     public bool hasHeart;
     public bool isBehindCoolingBlock;
+    public bool canRespawn { get; private set; }
+    public bool Respawning { get; private set; }
     #endregion
 
     #region Health Sacrfice Variables
@@ -116,6 +118,9 @@ public class CharacterStatus : MonoBehaviour
         //Amount of Matches to restart life
         matchCount = 3;
 
+        //Ability to respawn. Toggled off in roguelike setting
+        canRespawn = true;
+
         //Get Audio Source for later effect usage
         audioSource = this.GetComponent<AudioSource>();
     }
@@ -188,7 +193,12 @@ public class CharacterStatus : MonoBehaviour
     {
         float HealthAmount = HealthBar.GetComponent<Image>().fillAmount;
         if (HealthAmount <= 0)
-            MenuManager.Instance.ShowGameOver();
+        {
+            if (canRespawn)
+                Respawn();
+            else
+                MenuManager.Instance.ShowGameOver();
+        }
         else if (HealthAmount <= 0.2f)
         {
             if (setThought)
@@ -318,8 +328,13 @@ public class CharacterStatus : MonoBehaviour
         if (!isWarmingWithMatches)
         {
             if (HeartBar.GetComponent<Image>().fillAmount <= 0)
-                MenuManager.Instance.ShowGameOver();
-            else if (HeartAmount <= 0.1f && UnityEngine.Random.Range(0,20) <= 0)
+            {
+                if (canRespawn)
+                    Respawn();
+                else
+                    MenuManager.Instance.ShowGameOver();
+            }
+            else if (HeartAmount <= 0.1f && UnityEngine.Random.Range(0, 20) <= 0)
             {
                 MenuManager.Instance.SetThought(CharacterName, "The heart was getting cold. They wished that there was something they could do.");
             }
@@ -408,5 +423,27 @@ public class CharacterStatus : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Respawn Methods
+
+    public void Respawn()
+    {
+        Respawning = true;
+        MenuManager.Instance.SetThought("", "They ached all over. Their eyes faded out into the dark");
+        MenuManager.Instance.ShowRespawn();
+        
+        if (HealthBar != null)
+            HealthBar.GetComponent<Image>().fillAmount = 1;
+        if (HeartBar != null)
+            HeartBar.GetComponent<Image>().fillAmount = 1;
+
+        Vector3 ClosestWarmingElement =  LevelManager.SingletonInstance.GetClosestWarmingElement(gameObject.transform.position);
+        if (ClosestWarmingElement != null)
+        {
+            gameObject.transform.position = ClosestWarmingElement + new Vector3(0, 0.8f);
+        }
+        Respawning = false;
+    }
     #endregion
 }

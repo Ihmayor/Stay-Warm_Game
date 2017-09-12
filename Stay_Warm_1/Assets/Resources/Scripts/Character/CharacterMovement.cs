@@ -52,10 +52,12 @@ public class CharacterMovement : MonoBehaviour
  
         if (this.GetComponent<CharacterStatus>().isWarmingWithMatches)
             return;
+        if (this.GetComponent<CharacterStatus>().Respawning)
+            return;
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            // setAnimation("notFire");
+            this.GetComponent<CharacterStatus>().Respawn();
         }
 
         if (Input.GetKeyDown(KeyCode.K))

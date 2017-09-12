@@ -19,7 +19,13 @@ public class DeathTrigger : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            MenuManager.Instance.ShowGameOver();
+            if (other.gameObject.GetComponent<CharacterStatus>().canRespawn)
+            {
+                other.gameObject.GetComponent<CharacterStatus>().Respawn();
+            }
+            {
+                MenuManager.Instance.ShowGameOver();
+            }
         }
     }
 }

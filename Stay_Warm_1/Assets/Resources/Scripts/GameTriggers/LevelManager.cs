@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour {
     private GameObject SignPost;
 
     //Instance of level manager
-    private static LevelManager SingletonInstance { set; get; }
+    public static LevelManager SingletonInstance { private set; get; }
 
     #region Init
 
@@ -204,6 +204,27 @@ public class LevelManager : MonoBehaviour {
 
         //TODO: Start Timer of 15 minutes if still in warming element
         //TODO: Activate Chaser
+    }
+
+    public Vector3 GetClosestWarmingElement(Vector3 MainCharPosition)
+    {
+        GameObject[] WarmingElements = GameObject.FindGameObjectsWithTag("WarmPoint");
+        if (WarmingElements.Length != 0)
+        {
+            float Distance = Mathf.Abs(Vector2.Distance(MainCharPosition, WarmingElements[0].transform.position));
+            int indexClosest = 0;
+            for (int i = 0;i < WarmingElements.Length;i++) 
+            {
+                GameObject warmElem = WarmingElements[i];
+                float checkDistance = Mathf.Abs(Vector2.Distance(MainCharPosition, warmElem.transform.position));
+                if (Distance > checkDistance)
+                {
+                    indexClosest = i;
+                }
+            }
+            return WarmingElements[indexClosest].transform.position;
+        }
+        return MainCharPosition;
     }
 
     /// <summary>

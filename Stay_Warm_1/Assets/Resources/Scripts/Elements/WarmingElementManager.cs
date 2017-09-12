@@ -98,7 +98,7 @@ public class WarmingElementManager : PuzzleManager
         else if (PrevLightPole == null)
         {
             PrevLightPole = CurrentLightPole;
-            PrevLightPole.gameObject.tag = "Untagged";
+            PrevLightPole.gameObject.tag = "WarmPoint";
             foreach (GameObject midPoint in AllMidPointPoles)
             {
                 if (midPoint.transform.position.x > PrevLightPole.transform.position.x)
@@ -111,7 +111,7 @@ public class WarmingElementManager : PuzzleManager
 
             MonoBehaviour.Destroy(PrevLightPole);
             PrevLightPole = CurrentLightPole;
-            PrevLightPole.gameObject.tag = "Untagged";
+            PrevLightPole.gameObject.tag = "WarmPoint";
             CurrentLightPole = gObj;
 
             foreach (GameObject midPoint in AllMidPointPoles)
@@ -139,6 +139,7 @@ public class WarmingElementManager : PuzzleManager
         gObj.transform.position = GroundedStartPosition + new Vector3(0, 0.681f, 0);
         gObj.GetComponent<WarmingElement>().Color = FetchNextColor();
         gObj.GetComponent<WarmingElement>().Sound = FetchRandomChime();
+        gObj.tag = "WarmPoint";
         AllMidPointPoles.Add(gObj);
         return GroundedStartPosition;
     }
