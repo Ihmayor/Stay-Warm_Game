@@ -16,6 +16,7 @@ freesound.org:
 "waterdrop.wav" by cubix 
 "Synth Thud" by D W
 "Falling branch.wav" by marcolo91
+"FIREPLACE" https://freesound.org/people/leosalom/sounds/234288/
 "stream sound"" https://freesound.org/people/Calvi19/sounds/385798/
 
 Perspectives Kevin MacLeod (incompetech.com)
