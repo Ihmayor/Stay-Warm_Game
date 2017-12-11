@@ -23,6 +23,7 @@ public class DeathTrigger : MonoBehaviour {
             {
                 other.gameObject.GetComponent<CharacterStatus>().Respawn();
             }
+            else
             {
                 MenuManager.Instance.ShowGameOver();
             }

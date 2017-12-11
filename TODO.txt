@@ -1,7 +1,3 @@
-
-
-
-
 What can we do? 
 
 1) Remove Float and Follow Mechanic. This should be the other version of this game where the player must collect
@@ -12,6 +8,10 @@ Essentially WarmHeart(+0.1) where Heart Meter is 0 and goal is 1
 ================================= LATEST===========================================
 Most important:
 - FINISH CHAR RESPAWN NOW!!!< ===== FIX RESPAWNING FADE IN MENU ARRRRRRRRRGH
+- FINISH STAGE 4 AND STAGE 5 
+	Stage 4: 3 drop sources 
+
+
 - FINISH LEVEL LOADING ONCE RESPAWN POINT CODE IS COMPLETE
 - REFACTOR INHERTANCE FOR DROP SOURCE YET
 
