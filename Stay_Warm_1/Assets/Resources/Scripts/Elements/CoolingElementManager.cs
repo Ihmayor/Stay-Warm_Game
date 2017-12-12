@@ -105,9 +105,9 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle3(Vector3 StartPosition)
     {
-       Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(2f, 0));
-       LastPosition = CreateDropSource(LastPosition + new Vector3(1f, 0));
-       LastPosition = CreateDropSource(LastPosition + new Vector3(3f, 0));
+       Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(5.6f, 1.69f));
+       LastPosition = CreateDropSource(LastPosition + new Vector3(9, 0));
+       LastPosition = CreateDropSource(LastPosition + new Vector3(9f, 0));
     }
 
     /// <summary>
@@ -116,7 +116,10 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle4(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
+        Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(2f, 0));
+        LastPosition = CreateDropSource(LastPosition + new Vector3(1f, 2f));
+        LastPosition = CreateDropSource(LastPosition + new Vector3(6f, 0));
+//        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -130,12 +133,19 @@ public class CoolingElementManager : PuzzleManager
 
     #region Helper Methods
 
+    /// <summary>
+    /// Place a drop soruce at a specified position
+    /// </summary>
+    /// <param name="DropPosition">Position for Drop Source</param>
+    /// <returns>Drop Source Position</returns>
     private Vector3 CreateDropSource(Vector3 DropPosition)
     {
-
-
-
-        return DropPosition + new Vector3(0.5f, 0);
+        GameObject Source = DropSourceInstances[DropSourceIndex];
+        //Activate and Place
+        Source.SetActive(true);
+        Source.transform.position = DropPosition;
+        WindSourceIndex++;
+        return Source.transform.position;
     }
 
     /// <summary>

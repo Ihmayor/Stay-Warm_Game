@@ -105,6 +105,12 @@ public class PlatformManager: PuzzleManager{
     //TODO:
     public override void Puzzle3(Vector3 GroundedStartPosition)
     {
+
+        CreatePlatform(VerticalPlatform, GroundedStartPosition + new Vector3(6.2f,1.1f), null,1, 200, false);
+        Vector3 LastPosition = CreateStaircase(GroundedStartPosition + new Vector3(8f, 0), 10, 4, true);
+
+        LastPosition = CreateStaircase(LastPosition + new Vector3(10, 0), 8, 4, true);
+
     }
 
     //TODO:
