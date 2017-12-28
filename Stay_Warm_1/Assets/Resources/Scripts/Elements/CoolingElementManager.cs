@@ -105,9 +105,10 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle3(Vector3 StartPosition)
     {
-       Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(5.6f, 1.69f));
-       LastPosition = CreateDropSource(LastPosition + new Vector3(9, 0));
-       LastPosition = CreateDropSource(LastPosition + new Vector3(9f, 0));
+       Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(14, 0.68f));
+       LastPosition = CreateDropSource(StartPosition + new Vector3(16.6f, 0.68f));
+
+       LastPosition = CreateDropSource(StartPosition + new Vector3(24.6f, 1.69f));
     }
 
     /// <summary>
@@ -144,7 +145,7 @@ public class CoolingElementManager : PuzzleManager
         //Activate and Place
         Source.SetActive(true);
         Source.transform.position = DropPosition;
-        WindSourceIndex++;
+        DropSourceIndex++;
         return Source.transform.position;
     }
 

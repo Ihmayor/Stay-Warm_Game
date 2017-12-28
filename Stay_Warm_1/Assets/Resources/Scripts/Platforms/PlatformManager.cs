@@ -102,14 +102,16 @@ public class PlatformManager: PuzzleManager{
         CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(7f, 1f), null, 1.8f, 200, false);
     }
 
-    //TODO:
     public override void Puzzle3(Vector3 GroundedStartPosition)
     {
 
         CreatePlatform(VerticalPlatform, GroundedStartPosition + new Vector3(6.2f,1.1f), null,1, 200, false);
         Vector3 LastPosition = CreateStaircase(GroundedStartPosition + new Vector3(8f, 0), 10, 4, true);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x+0.4f, GroundedStartPosition.y + 0.7f), 1);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(0.85f,0.2f), 1);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(2.1f, -0.2f), 1);
 
-        LastPosition = CreateStaircase(LastPosition + new Vector3(10, 0), 8, 4, true);
+        LastPosition = CreateStaircase(new Vector3(LastPosition.x + 9 , GroundedStartPosition.y), 8, 4, true);
 
     }
 
