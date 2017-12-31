@@ -108,7 +108,7 @@ public class CoolingElementManager : PuzzleManager
        Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(14, 0.68f));
        LastPosition = CreateDropSource(StartPosition + new Vector3(16.6f, 0.68f));
 
-       LastPosition = CreateDropSource(StartPosition + new Vector3(24.6f, 1.69f));
+       LastPosition = CreateDropSource(StartPosition + new Vector3(28.6f, 1.69f));
     }
 
     /// <summary>
@@ -119,8 +119,7 @@ public class CoolingElementManager : PuzzleManager
     {
         Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(2f, 0));
         LastPosition = CreateDropSource(LastPosition + new Vector3(1f, 2f));
-        LastPosition = CreateDropSource(LastPosition + new Vector3(6f, 0));
-//        throw new NotImplementedException();
+        LastPosition = CreateDropSource(LastPosition + new Vector3(9f, 0));
     }
 
     /// <summary>

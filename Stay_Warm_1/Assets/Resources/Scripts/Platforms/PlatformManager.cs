@@ -111,8 +111,18 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStepTower(LastPosition + new Vector3(0.85f,0.2f), 1);
         LastPosition = CreateStepTower(LastPosition + new Vector3(2.1f, -0.2f), 1);
 
-        LastPosition = CreateStaircase(new Vector3(LastPosition.x + 9 , GroundedStartPosition.y), 8, 4, true);
+        CreateStaircase(new Vector3(LastPosition.x +3, GroundedStartPosition.y), 10, 3, false);
+        CreateStaircase(new Vector3(LastPosition.x + 6, GroundedStartPosition.y), 8, 3, true);
+        CreateStaircase(new Vector3(LastPosition.x + 1, GroundedStartPosition.y+2.1f), 9, 3, true);
+        CreatePlatform(HorizontalPlatform, new Vector3(LastPosition.x+6 , GroundedStartPosition.y +2.1f), null, 2, 300, true);
 
+        CreatePlatform(HorizontalPlatform, new Vector3(LastPosition.x + 5.2f, GroundedStartPosition.y + 4.1f), null, 4.4f, 400, true);
+        CreateStepTower(new Vector3(LastPosition.x + 10.3f, GroundedStartPosition.y + 4.6f), 1);
+        CreateStepTower(new Vector3(LastPosition.x + 10.8f, GroundedStartPosition.y + 4.1f), 1);
+
+        LastPosition = CreateStaircase(new Vector3(LastPosition.x + 11 , GroundedStartPosition.y), 8, 4, true);
+
+        LastPosition = CreateStaircase(new Vector3(LastPosition.x + 5, GroundedStartPosition.y), 100, 40, false);
     }
 
     //TODO:
