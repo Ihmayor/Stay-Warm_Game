@@ -1,7 +1,12 @@
 Immediate
 ========================================================================================================================
-- FINISH CHAR RESPAWN NOW!!!< ===== FIX RESPAWNING FADE IN MENU ARRRRRRRRRGH
+- FINISH CHAR RESPAWN NOW!!!< ===== FIX RESPAWNING FADE IN MENU 
 - Test this? I believe the above was fixed. 
+- Bugs Found. Misplaced Mid-Point WARMING element and invalid respawn to earliest reached mid-point.
+- Charge_01 mimic. For when we've reached warming element.
+- Glowing orb follow when heart gained as a replacement. Mimic as well.
+- Discard Libraries.
+- Figure out if we want to pursue adding these textures in the first placew with the 3d party resources. 
 ================================= LATEST===========================================
 Most important:
 
