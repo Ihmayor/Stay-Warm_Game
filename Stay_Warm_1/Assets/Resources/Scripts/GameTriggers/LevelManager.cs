@@ -206,9 +206,10 @@ public class LevelManager : MonoBehaviour {
         //TODO: Activate Chaser
     }
 
-    public Vector3 GetClosestWarmingElement(Vector3 MainCharPosition)
+    public Vector3 GetClosestWarmingElementPosition(Vector3 MainCharPosition)
     {
         GameObject[] WarmingElements = GameObject.FindGameObjectsWithTag("WarmPoint");
+        WarmingElements = FilterOutNotVisited(WarmingElements);
         if (WarmingElements.Length != 0)
         {
             float Distance = Mathf.Abs(Vector2.Distance(MainCharPosition, WarmingElements[0].transform.position));
@@ -225,6 +226,18 @@ public class LevelManager : MonoBehaviour {
             return WarmingElements[indexClosest].transform.position;
         }
         return MainCharPosition;
+    }
+
+    private GameObject[] FilterOutNotVisited(GameObject[] toFilter)
+    {
+
+        List<GameObject> filteredList = new List<GameObject>();
+        foreach(GameObject g in toFilter)
+        {
+            if (g.GetComponent<SpriteRenderer>().color != Color.white)
+                filteredList.Add(g);
+        }
+        return filteredList.ToArray();
     }
 
     /// <summary>

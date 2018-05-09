@@ -336,6 +336,7 @@
     <Compile Include="Assets\Resources\Scripts\Props\PickupHeart.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\PickupPaper.cs" />
     <Compile Include="Assets\Resources\Scripts\Props\ToggleImage.cs" />
+    <Compile Include="Assets\SmokeScript.cs" />
     <Compile Include="Assets\UIParticleSystem.cs" />
   </ItemGroup>
   <ItemGroup>

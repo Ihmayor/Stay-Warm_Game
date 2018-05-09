@@ -19,6 +19,6 @@ public class PickupHeart : Pickup {
         base.PickUpAction(arg);
         Collider2D collider = (Collider2D)arg[0];
         MenuManager.Instance.ActivateHeartMeter();
-        collider.gameObject.GetComponent<CharacterStatus>().hasHeart = true;
+        collider.gameObject.GetComponent<CharacterStatus>().ActivateHeartEffect();
     }
 }

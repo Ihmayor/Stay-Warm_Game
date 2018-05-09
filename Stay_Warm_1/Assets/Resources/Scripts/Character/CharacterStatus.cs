@@ -26,6 +26,7 @@ public class CharacterStatus : MonoBehaviour
 
     private float SacrificeFactor;
 
+ 
     #endregion
 
     #region Character Fighting Variables
@@ -132,12 +133,21 @@ public class CharacterStatus : MonoBehaviour
     {
         if (isHeartCooling && hasHeart)
         {
+            this.GetComponentInChildren<SmokeScript>().ShrinkSmoke(HeartCoolingFactor * 10);
             CoolHeart(HeartCoolingFactor);
         }
         else if (!isWarmingWithMatches && !isHeartWarming && hasHeart)
         {
+            this.GetComponentInChildren<SmokeScript>().ShrinkSmoke(HeartWait*1000);
             CoolHeart(HeartWait);
         }
+    }
+
+    public void ActivateHeartEffect()
+    {
+        hasHeart = true;
+        this.transform.Find("Smoke").gameObject.SetActive(true);
+        this.GetComponentInChildren<SmokeScript>().ActivateSmoke();
     }
 
     /// <summary>
@@ -275,7 +285,7 @@ public class CharacterStatus : MonoBehaviour
         WarmHeart(SacrificeFactor / SacrificeEfficiency);
         Hurt(SacrificeFactor);
     }
-
+    
     #endregion
 
     #region Heart Methods
@@ -351,6 +361,7 @@ public class CharacterStatus : MonoBehaviour
     /// <param name="AmountToWarm">Amount to warm heart by. 1 = 100%</param>
     public void WarmHeart(float AmountToWarm)
     {
+        this.GetComponentInChildren<SmokeScript>().GrowSmoke(AmountToWarm);
         HeartBar.GetComponent<Image>().fillAmount += AmountToWarm;
     }
 
@@ -438,7 +449,7 @@ public class CharacterStatus : MonoBehaviour
         if (HeartBar != null)
             HeartBar.GetComponent<Image>().fillAmount = 1;
 
-        Vector3 ClosestWarmingElement =  LevelManager.SingletonInstance.GetClosestWarmingElement(gameObject.transform.position);
+        Vector3 ClosestWarmingElement =  LevelManager.SingletonInstance.GetClosestWarmingElementPosition(gameObject.transform.position);
         if (ClosestWarmingElement != null)
         {
             gameObject.transform.position = ClosestWarmingElement + new Vector3(0, 0.8f);

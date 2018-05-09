@@ -33,6 +33,7 @@ public class WarmingElement : MonoBehaviour
 
             charStatus.SetHeartCooling(false);
             charStatus.isHeartWarming = true;
+            charStatus.GetComponentInChildren<SmokeScript>().SetSmokeColor(Color);
 
             if (this.gameObject.GetComponent<SpriteRenderer>().color == Color.white)
             {

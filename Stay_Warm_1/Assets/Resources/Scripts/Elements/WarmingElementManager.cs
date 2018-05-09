@@ -60,14 +60,14 @@ public class WarmingElementManager : PuzzleManager
     {
         CreateEndPoint(PuzzleStartPosition + new Vector3(65f, 0, 0));
         Vector3 LastPosition = CreateMidPoint(PuzzleStartPosition + new Vector3(21.31f, 2.08f));
-        CreateMidPoint(LastPosition + new Vector3(25f, -2.08f, 0));
+        CreateMidPoint(LastPosition + new Vector3(25f, -1.06f, 0));
 
     }
 
     public override void Puzzle3(Vector3 PuzzleStartPosition)
     {
         CreateEndPoint(PuzzleStartPosition + new Vector3(82f, 0, 0));
-        CreateMidPoint(PuzzleStartPosition + new Vector3(25.85f, 6, 0));
+        CreateMidPoint(PuzzleStartPosition + new Vector3(25.65f, 4.98f, 0));
         CreateMidPoint(PuzzleStartPosition + new Vector3(71.345f, 19.5f, 0));
 
     }
