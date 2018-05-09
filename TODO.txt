@@ -1,18 +1,25 @@
-What can we do? 
-
-1) Remove Float and Follow Mechanic. This should be the other version of this game where the player must collect
-as many of these from puzzles as they can to complete a piece of a heart. 
-
-Essentially WarmHeart(+0.1) where Heart Meter is 0 and goal is 1
-
+Immediate
+========================================================================================================================
+- FINISH CHAR RESPAWN NOW!!!< ===== FIX RESPAWNING FADE IN MENU 
+- Test this? I believe the above was fixed. 
+- Bugs Found. Misplaced Mid-Point WARMING element and invalid respawn to earliest reached mid-point.
+- Charge_01 mimic. For when we've reached warming element.
+- Glowing orb follow when heart gained as a replacement. Mimic as well.
+- Discard Libraries.
+- Figure out if we want to pursue adding these textures in the first placew with the 3d party resources. 
 ================================= LATEST===========================================
 Most important:
-- FINISH CHAR RESPAWN NOW!!!< ===== FIX RESPAWNING FADE IN MENU ARRRRRRRRRGH
-- FINISH STAGE 4 AND STAGE 5 
-	Stage 4: 3 drop sources 
 
+- FINISH STAGE 4 AND STAGE 5 
+	Stage 4: 3 drop sources + Staircases 
+        Stage 5: Play more with stair cases
+      => Publish and see if you can get some testers at this point
+
+- Refurbish Heat Points 
+      - On levels > 8 make them only work once.
 
 - FINISH LEVEL LOADING ONCE RESPAWN POINT CODE IS COMPLETE
+
 - REFACTOR INHERTANCE FOR DROP SOURCE YET
 
 2) PLEASE OPTIMIZE INSTEAD OF INSTATIATING AND DESTROYING KEEP TRACK OF AN OBJECT POOL DEACTIVATE AND MOVE THE POSITION
@@ -22,6 +29,10 @@ Most important:
 
 3) Finish Cooling Element => Inherit. Create Wind Element and Drop Element both to inherit from the cooling element
 
+Misc Notes
+=========================================
+Other version of this game will be where the player must collect as many of these pieces of paper which will use the follow & float code.
+They will get them from puzzles so they can complete a piece of a heart. 
 
-
+Essentially WarmHeart(+0.1) where Heart Meter is 0 and goal is 1
 

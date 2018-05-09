@@ -49,27 +49,27 @@ public class CharacterStatus : MonoBehaviour
         "It was so warm. They wanted to stay.",
         "Their body could not move another inch forward.",
         "They did not want to go on.",
-        "No. They did not want to leave.",
-        "They could not move on.",
+        "No. They refused to leave.",
+        "They could not bear to step out in the cold.",
         "They wanted to stay where it was warm.",
         "Their body did not want to move.",
-        "They lost faith in any point in all this.",
+        "They lost more faith in moving on.",
         "They questioned what would even happen at the end.",
-        "They took a little nap.",
-        "They slept for a little bit in the nice warmth.",
-        "Warmth bathed them and it made them feel weak like jelly.",
+        "They wanted to take a longer nap instead of moving.",
+        "They stepped back again to embrace the nice warmth.",
+        "Warmth bathed them and they body shook weakly like jelly.",
         "...They did not want to leave the warmth.",
         "They screamed to the void about the pointlessness of it all.",
         "They stayed a little longer still.",
         "They no longer believed that they could do it." };
     private string[] CannedMotivationResponses = {
-        "They found the ability to move another step forward.",
+        "They discovered the hope to move another step forward.",
         "They set their eyes on the next warm light in the distance.",
-        "They urged themselves to move.",
-        "They convinced their body to move a little mroe.",
+        "They urged themselves to take the next step.",
+        "They convinced their body to move a little more.",
         "They felt like they were close.",
         "They found renewed belief that they could make it.",
-        "They refused to give up!" };
+        "Though hesistant, they refused to give up!" };
 
     private int matchCount;
 
@@ -370,6 +370,9 @@ public class CharacterStatus : MonoBehaviour
 
     #region Character Motivation Methods
 
+    /// <summary>
+    /// Handles character to fight against user/player's controls.
+    /// </summary>
     public void FightPlayer()
     {
         if (!isFightingPlayer)
@@ -415,6 +418,10 @@ public class CharacterStatus : MonoBehaviour
         isWarmingWithMatches = false;
         SwitchCharacterStates();
     }
+
+    /// <summary>
+    ///Switch Normal Character Animation with Warming Character Animation via Character Object substitution
+    /// </summary>
 
     private void SwitchCharacterStates()
     {
