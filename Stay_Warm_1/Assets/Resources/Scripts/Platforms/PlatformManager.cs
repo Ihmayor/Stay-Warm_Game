@@ -116,7 +116,7 @@ public class PlatformManager: PuzzleManager{
         CreateStaircase(new Vector3(LastPosition.x + 1, GroundedStartPosition.y+2.1f), 9, 3, true);
         CreatePlatform(HorizontalPlatform, new Vector3(LastPosition.x+6 , GroundedStartPosition.y +2.1f), null, 2, 300, true);
 
-        CreatePlatform(HorizontalPlatform, new Vector3(LastPosition.x + 5.2f, GroundedStartPosition.y + 4.1f), null, 4.4f, 400, true);
+        CreatePlatform(HorizontalPlatform, new Vector3(LastPosition.x + 5.3f, GroundedStartPosition.y + 4.1f), null, 4.2f, 500, true);
         CreateStepTower(new Vector3(LastPosition.x + 10.3f, GroundedStartPosition.y + 4.6f), 1);
         CreateStepTower(new Vector3(LastPosition.x + 10.8f, GroundedStartPosition.y + 4.1f), 1);
 
@@ -125,9 +125,12 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStaircase(new Vector3(LastPosition.x + 5, GroundedStartPosition.y), 100, 40, false);
     }
 
-    //TODO:
     public override void Puzzle4(Vector3 GroundedStartPosition)
     {
+        Vector3 LastPosition = GroundedStartPosition;
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4f, 0), 5);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(3.5f, 0), 3);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(1.5f, 0), 1);
     }
 
     //TODO:

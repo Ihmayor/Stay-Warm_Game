@@ -98,7 +98,13 @@ public class PushableElementManager : PuzzleManager
 
     public override void Puzzle4(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
+        GameObject pushObj;
+        for (int i = 0; i < 5; i++)
+        {
+            pushObj = MonoBehaviour.Instantiate(Pushable, null);
+            pushObj.transform.position = StartPosition + new Vector3(0.8f, 2f, 0);
+            Pushables.Add(pushObj);
+        }
     }
 
     public override void Puzzle5(Vector3 StartPosition)

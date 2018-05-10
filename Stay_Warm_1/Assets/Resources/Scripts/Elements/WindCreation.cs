@@ -18,19 +18,23 @@ public class WindCreation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        WindIndex = 0;
-        GameObject WindPrefab = Resources.Load<GameObject>("Prefabs/Elements/wind");
-        totalWindInstances = new GameObject[NumWindInstances];
 
-        for (int i = 0; i< NumWindInstances;i ++)
+        if (totalWindInstances == null || totalWindInstances.Length <= NumWindInstances)
         {
-            GameObject instance = Instantiate(WindPrefab, null);
-            instance.SetActive(false);
-            totalWindInstances[i] = instance;
-        }
-        InvokeRepeating("LoopWind", 0, Random.Range(repeatMinTime, repeatMaxTime));
-    }
+            WindIndex = 0;
+            GameObject WindPrefab = Resources.Load<GameObject>("Prefabs/Elements/wind");
+            totalWindInstances = new GameObject[NumWindInstances];
 
+            for (int i = 0; i < NumWindInstances; i++)
+            {
+                GameObject instance = Instantiate(WindPrefab, null);
+                instance.SetActive(false);
+                totalWindInstances[i] = instance;
+            }
+            InvokeRepeating("LoopWind", 0, Random.Range(repeatMinTime, repeatMaxTime));
+        }
+    }
+    
     private void LoopWind()
     {
         //Instantiate Platforms
@@ -49,11 +53,30 @@ public class WindCreation : MonoBehaviour {
 
     public void RestartLoop()
     {
+        if (totalWindInstances == null)
+            return;
+        //Restore amount to half
+        GameObject WindPrefab = Resources.Load<GameObject>("Prefabs/Elements/wind");
+        for (int i = 0; i < NumWindInstances; i++)
+        {
+            GameObject instance = Instantiate(WindPrefab, null);
+            instance.SetActive(false);
+            totalWindInstances[i] = instance;
+        }
+
         InvokeRepeating("LoopWind", 0, Random.Range(repeatMinTime, repeatMaxTime));
     }
 
     public void StopLoop()
     {
+        //Destroy Half
+        if (totalWindInstances != null)
+        {
+            for (int i = 0; i < NumWindInstances; i++)
+            {
+                Destroy(totalWindInstances[i]);
+            }
+        }
         CancelInvoke("LoopWind");
     }
 

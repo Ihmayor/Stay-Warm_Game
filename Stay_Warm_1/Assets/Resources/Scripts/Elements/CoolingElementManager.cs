@@ -108,7 +108,7 @@ public class CoolingElementManager : PuzzleManager
        Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(14, 0.68f));
        LastPosition = CreateDropSource(StartPosition + new Vector3(16.6f, 0.68f));
 
-       LastPosition = CreateDropSource(StartPosition + new Vector3(28.6f, 1.69f));
+       LastPosition = CreateDropSource(StartPosition + new Vector3(28.47f, 1.69f));
     }
 
     /// <summary>
@@ -223,6 +223,7 @@ public class CoolingElementManager : PuzzleManager
         {
             source.GetComponent<WindCreation>().StopLoop();
             source.SetActive(false);
+
         }
         WindSourceIndex = 0;
     }
