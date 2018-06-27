@@ -31,7 +31,7 @@ public class CoolingElementManager : PuzzleManager
     /// <summary>
     /// Total Number of Drop Sources
     /// </summary>
-    private readonly int NumDropSourceInstances = 6;
+    private readonly int NumDropSourceInstances = 15;
 
     /// <summary>
     /// Drop Source Index
@@ -117,9 +117,12 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle4(Vector3 StartPosition)
     {
-        Vector3 LastPosition = CreateDropSource(StartPosition + new Vector3(2f, 0));
-        LastPosition = CreateDropSource(LastPosition + new Vector3(1f, 2f));
-        LastPosition = CreateDropSource(LastPosition + new Vector3(9f, 0));
+        Vector3 BeginRow = StartPosition + new Vector3(25.7f,0);
+        for (int i =0; i<10;i++)
+        {
+            CreateDropSource(BeginRow + new Vector3(i*0.7f, 0.68f));
+        }
+        CreateBlizzard(StartPosition + new Vector3(98f, 0.8f, 0), new float[] { 5, 3, 3, 2, 2, 3, 3 });
     }
 
     /// <summary>
@@ -144,7 +147,11 @@ public class CoolingElementManager : PuzzleManager
         //Activate and Place
         Source.SetActive(true);
         Source.transform.position = DropPosition;
-        DropSourceIndex++;
+        if (DropSourceIndex < NumDropSourceInstances-1)
+            DropSourceIndex++;
+        else
+            Debug.Log("No New Drop Source Instance Left. Pool Empty.");
+
         return Source.transform.position;
     }
 

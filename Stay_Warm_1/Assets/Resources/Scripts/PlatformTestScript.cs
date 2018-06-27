@@ -16,13 +16,26 @@ public class PlatformTestScript : MonoBehaviour {
         Step = Resources.Load<GameObject>("Prefabs/Platforms/step");
         Spike = Resources.Load<GameObject>("Prefabs/Platforms/Spike");
         Vector3 GroundedStartPosition = new Vector3(0, 0);
-        Vector3 LastPosition = CreateStepTower(GroundedStartPosition, 2);
-        Debug.Log("Tower 1: " + LastPosition.x);
-        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(9, 0), 6);
-        Debug.Log("Tower 2: " + LastPosition.x);
-        GameObject Platform  = CreatePlatform(HorizontalPlatform, GroundedStartPosition, LastPosition, 0.15f, null, 400, false);
-        Debug.Log("Move Back: " + Platform.GetComponent<PlatformMovement>().MoveNegativeMax);
-        Debug.Log("Move Forward: " + Platform.GetComponent<PlatformMovement>().MovePositiveMax);
+
+        Vector3 LastPosition = GroundedStartPosition;
+
+        CreatePlatform(VerticalPlatform, GroundedStartPosition + new Vector3(15f, 2f), null, 2, 100, true);
+
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4.6f, 0.68f),25);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 0f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 1.3f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 2.4f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 3.6f), 0);
+
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0.68f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 1.9f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 3.0f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 4.2f), 0);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(7f, 0.68f), 18);
+        CreateSpike(new Vector3(LastPosition.x+0.4f, GroundedStartPosition.y), 10);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.2f, 0), null, 2, 100, true);
+
     }
 
     // Update is called once per frame
@@ -97,5 +110,22 @@ public class PlatformTestScript : MonoBehaviour {
 
         return CreatePlatform(prefab, MidPoint, parentTransform, OffsetMidPoint, speed, reverseDirection);
     }
+    private Vector3 CreateSpike(Vector3 GroundPosition, int count)
+    {
+        GroundPosition += new Vector3(0, 0.09f);
+        GameObject spike = MonoBehaviour.Instantiate(Spike);
+        spike.transform.position = GroundPosition;
+//        Platforms.Add(spike);
+        Vector3 PrevPosition = spike.transform.position;
+        for (int i = 0; i < count; i++)
+        {
+            spike = MonoBehaviour.Instantiate(Spike);
+            spike.transform.position = PrevPosition + new Vector3(0.5f, 0, 0);
+  //          Platforms.Add(spike);
+            PrevPosition = spike.transform.position;
+        }
+        return PrevPosition + new Vector3(0.5f, -0.09f);
+    }
+
 
 }
