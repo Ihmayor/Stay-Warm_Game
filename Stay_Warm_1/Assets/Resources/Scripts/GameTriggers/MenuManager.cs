@@ -119,6 +119,14 @@ public class MenuManager : MonoBehaviour
         Invoke("ClearThought", 10f);
     }
 
+    //Plays Secondary Level Sound
+    public void SetSound(AudioClip audio)
+    {
+        AudioSource secondStream = transform.Find("SecondSoundStream").GetComponent<AudioSource>();
+        secondStream.clip = audio;
+        secondStream.Play();
+    }
+
     private IEnumerator Delay(float seconds)
     {
         yield return new WaitForSeconds(seconds);

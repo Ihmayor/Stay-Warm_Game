@@ -122,7 +122,7 @@ public class CoolingElementManager : PuzzleManager
         {
             CreateDropSource(BeginRow + new Vector3(i*0.7f, 0.68f));
         }
-        CreateBlizzard(StartPosition + new Vector3(98f, 0.8f, 0), new float[] { 5, 3, 3, 2, 2, 3, 3 });
+        CreateBlizzard(StartPosition + new Vector3(65f, 0.8f, 0), new float[] { 5, 3, 3, 2, 2, 3, 3 });
     }
 
     /// <summary>
@@ -131,7 +131,6 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle5(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
     }
 
     #region Helper Methods

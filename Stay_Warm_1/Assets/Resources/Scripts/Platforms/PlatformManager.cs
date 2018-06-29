@@ -148,9 +148,38 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(7f, 0.68f), 18);
 
         CreateSpike(new Vector3(LastPosition.x + 0.4f, GroundedStartPosition.y), 10);
-
         CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.25f, 0), null, 2, 100, true);
+
+
+        for (int i = 1; i <=6; i++)
+        {
+            CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(13.5f+(i*1.5f), (i*0.68f)+0.68f), 0);
+        }
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(27f,1f), null, 2.8f, 100, false);
+        //TODO RECREATE INTO NEW FUNCTION
+        for (int i = 0; i <= 10; i++)
+        {
+            CreateSpike(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(24f + (i * 0.5f), 4.76f), 1);
+            CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(24f+(i*0.5f), 4.59f), 0);
+        }
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(29.5f, 4.59f), 0);//Add Interaction
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(30f, 4.59f), 0);//Add Interaction
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(31f, 4.59f), 0);//Add Interaction
+        GameObject step = Platforms[Platforms.Count - 1].gameObject;
+        step.AddComponent<NotifyPropScript>();
+
+        //Added Prop 
+        NotifyPropScript script = step.GetComponent<NotifyPropScript>();
+        script.AddExclaim(Platforms[Platforms.Count - 1].transform);
+        script.optionalThoughtMessage = "It looks like sheet music...with a sad melody on it.";
+        script.notificationMessage = "Found 'Sad Melody'";
+        script.SetSound(Resources.Load<AudioClip>("Audio/sadsonggirl"));
+
+
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(20f, 0f), 2);
+        CreateSpike(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(89f, 0f), 4);
+        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(92f, 0f), 2);
+
 
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class NotifyPropScript : MonoBehaviour {
     public string notificationMessage = "";
     public string optionalThoughtMessage = "";
+    private AudioClip Sound = null;
 
     // Use this for initialization
     void Start () {
@@ -29,6 +30,10 @@ public class NotifyPropScript : MonoBehaviour {
             {
                 MenuManager.Instance.SetThought("",optionalThoughtMessage);
             }
+            if (Sound != null)
+            {
+                MenuManager.Instance.SetSound(Sound);
+            }
             Destroy(transform.Find("Exclaim(Clone)").gameObject);
             Destroy(this);
         }
@@ -37,6 +42,10 @@ public class NotifyPropScript : MonoBehaviour {
     public void SetNotification(string message)
     {
         notificationMessage = message;
+    }
+    public void SetSound(AudioClip audio)
+    {
+        Sound = audio;
     }
 
     #region Trigger Scripts

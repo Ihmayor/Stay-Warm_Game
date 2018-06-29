@@ -169,7 +169,7 @@ public class LevelManager : MonoBehaviour {
 
         //Puzzle 5
         LevelQueue.Enqueue(() => {
-            StartPosition += new Vector3(165f, 0);
+            StartPosition += new Vector3(132f, 0);
             Wall.GetComponent<FadeIn>().MoveObject(StartPosition + new Vector3(WallDistance, 0));
             SignPost.GetComponent<GrowIn>().MoveObject(PuzzleNum, StartPosition + new Vector3(SignPostDistance, SignPostHeightAdjustment));
             PuzzleNum++;

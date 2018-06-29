@@ -120,12 +120,12 @@ public class PushableElementManager : PuzzleManager
 
         pushObj = MonoBehaviour.Instantiate(Pushable, null);
         pushObj.transform.position = StartPosition + new Vector3(110f, 2f, 0);
-
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(110f, 2f, 0);
     }
 
     public override void Puzzle5(Vector3 StartPosition)
     {
-        throw new NotImplementedException();
     }
 
     public void Clear()
