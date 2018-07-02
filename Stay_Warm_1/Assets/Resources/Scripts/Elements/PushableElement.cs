@@ -36,7 +36,7 @@ public class PushableElement : MonoBehaviour {
         {
             Rigidbody2D rb2d = this.GetComponent<Rigidbody2D>();
             rb2d.AddForce(Vector2.one*collision.gameObject.GetComponent<CharacterMovement>().pushForce);
-            transform.position = Vector2.MoveTowards(transform.position,collision.gameObject.transform.position, 0.001f);
+            transform.position = Vector2.MoveTowards(transform.position,collision.gameObject.transform.position, 0.003f);
             collision.gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock = true;
         }
 

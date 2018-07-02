@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
         pushForce = 1.2f;
 
         //Amount Character can jump up
-        jumpForce = 220f;
+        jumpForce = 270f;
         pause = false;
     }
 

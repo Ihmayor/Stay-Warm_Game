@@ -147,7 +147,7 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(7f, 0.68f), 18);
 
         CreateSpike(new Vector3(LastPosition.x + 0.4f, GroundedStartPosition.y), 10);
-        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.25f, 0), null, 2, 100, true);
+        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.5f, 0), null, 2, 100, true);
 
 
         for (int i = 1; i <=6; i++)
