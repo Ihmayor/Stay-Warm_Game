@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     #region Variables 
     //Variables to handle Speed and Force of player
     public float MaxSpeed = 2f;
-    public float moveForce = 10f;
+    public float moveForce = 14f;
     public float pushForce { get; private set; }
     public float jumpForce { get; private set; }
 
@@ -27,10 +27,10 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         //Amount character can push objects
-        pushForce = 0.5f;
+        pushForce = 1.2f;
 
         //Amount Character can jump up
-        jumpForce = 200f;
+        jumpForce = 220f;
         pause = false;
     }
 

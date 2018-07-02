@@ -133,18 +133,17 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6f, 0), 4);
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(3.5f, 0), 3);
 
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4.6f, 0.68f), 25);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4.6f, 0.86f), 25);
         CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 0f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 1.3f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 2.4f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 3.6f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 1.6f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 2.9f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 4.2f), 0);
 
         CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0.68f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 1.9f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 3.0f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 4.2f), 0);
-
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0.86f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 2.1f), 0);
+        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 3.8f), 0);
+  
         LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(7f, 0.68f), 18);
 
         CreateSpike(new Vector3(LastPosition.x + 0.4f, GroundedStartPosition.y), 10);
