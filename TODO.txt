@@ -1,18 +1,12 @@
 Immediate
 ========================================================================================================================
-- FINISH CHAR RESPAWN NOW!!!< ===== FIX RESPAWNING FADE IN MENU 
-- Test this? I believe the above was fixed. 
-- Bugs Found. Misplaced Mid-Point WARMING element and invalid respawn to earliest reached mid-point.
-- Charge_01 mimic. For when we've reached warming element.
-- Glowing orb follow when heart gained as a replacement. Mimic as well.
-- Discard Libraries.
-- Figure out if we want to pursue adding these textures in the first placew with the 3d party resources. 
+- FINISH CHAR RESPAWN NOW!!!<===== FIX RESPAWNING FADE IN MENU => Revisit if I still need this???
 ================================= LATEST===========================================
 Most important:
 
-- FINISH STAGE 4 AND STAGE 5 
-	Stage 4: 3 drop sources + Staircases 
-        Stage 5: Play more with stair cases
+- FINISH STAGE 5
+        Stage 5: Decide between REALLY AHRD PUZZLE or Boss end. 
+			IF bOSS END fINISH aNIMATION.
       => Publish and see if you can get some testers at this point
 
 - Refurbish Heat Points 
@@ -21,6 +15,8 @@ Most important:
 - FINISH LEVEL LOADING ONCE RESPAWN POINT CODE IS COMPLETE
 
 - REFACTOR INHERTANCE FOR DROP SOURCE YET
+
+- Finish Jump, Push animation. Create Animator Model to handle them. 
 
 2) PLEASE OPTIMIZE INSTEAD OF INSTATIATING AND DESTROYING KEEP TRACK OF AN OBJECT POOL DEACTIVATE AND MOVE THE POSITION
     Update: Finished Wind Resources Managing 
