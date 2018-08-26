@@ -55,7 +55,7 @@ public class CharacterMovement : MonoBehaviour
         if (this.GetComponent<CharacterStatus>().Respawning)
             return;
 
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.U))
         {
             this.GetComponent<CharacterStatus>().Respawn();
         }
@@ -67,24 +67,41 @@ public class CharacterMovement : MonoBehaviour
 
         var vertical = Input.GetAxis("Vertical");
         var horizontal = Input.GetAxis("Horizontal");
+        bool setIdle = false;
 
         if (vertical > 0)
         {
-            setAnimation("up");
-            rb2d.AddForce(Vector2.up);
+            //setAnimation("Walk");
+            //rb2d.AddForce(Vector2.up);
         }
         else if (vertical < 0)
         {
-            setAnimation("forward");
-            rb2d.AddForce(Vector2.down * 10f);
+            //setAnimation("Walk");
+            //rb2d.AddForce(Vector2.down * 10f);
         }
         else if (horizontal > 0)
         {
-            setAnimation("right");
+            if (!jump)
+            {
+                if (gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock)
+                    setAnimation("Push");
+                else
+                    setAnimation("Walk");
+            }
         }
         else if (horizontal < 0)
         {
-            setAnimation("left");
+            if (!jump)
+            {
+                if (gameObject.GetComponent<CharacterStatus>().isBehindCoolingBlock)
+                    setAnimation("Push");
+                else
+                    setAnimation("Walk");
+            }
+        }
+        else if (horizontal == 0)
+        {
+            setIdle = true;
         }
 
         // If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
@@ -115,16 +132,22 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && (grounded || platformed))
         {
+            setAnimation("Jump");
             //Set Animation Jump. TODO: Jump animation clip.
             jump = true;
         }
+        else if ((grounded || platformed) & setIdle)
+        {
+            setAnimation("Idle");
+        }
+       
     }
 
     private void FixedUpdate()
     {
         if (jump)
         {
-            //animator.SetTrigger("Jump");
+            setAnimation("Jump");
             rb2d.AddForce(new Vector2(0f,jumpForce));
             jump = false;
         }
@@ -135,19 +158,20 @@ public class CharacterMovement : MonoBehaviour
     //http://answers.unity3d.com/questions/801875/mecanim-trigger-getting-stuck-in-true-state.html
     public void setAnimation(string stringInput)
     {
-        //    Animator anim = transform.GetComponent<Animator>();
-        //    if (currentAnimation == stringInput)
-        //    {
-        //    }
-        //    else
-        //    {
-        //        if (currentAnimation != null)
-        //        {
-        //            anim.ResetTrigger(currentAnimation);
-        //        }
-        //        anim.SetTrigger(stringInput);
-        //        currentAnimation = stringInput;
-        //    }
+
+        Animator anim = transform.GetComponent<Animator>();
+        if (currentAnimation == stringInput)
+        {
+        }
+        else
+        {
+            if (currentAnimation != null)
+            {
+                anim.ResetTrigger(currentAnimation);
+            }
+            anim.SetTrigger(stringInput);
+            currentAnimation = stringInput;
+        }
     }
 
     /// <summary>
