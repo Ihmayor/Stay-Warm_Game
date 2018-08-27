@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Resources/Scenes/AnimationTest.unity
+- path: Assets/Resources/Scenes/Timeline.unity
   isLoaded: 1
   isActive: 1
