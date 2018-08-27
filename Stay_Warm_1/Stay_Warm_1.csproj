@@ -368,6 +368,7 @@
     <Compile Include="Assets\FlipSet.cs" />
     <Compile Include="Assets\LoadLevelButtonScript.cs" />
     <Compile Include="Assets\MainMenu.cs" />
+    <Compile Include="Assets\Resources\Prefabs\Character\ReactivateGravity.cs" />
     <Compile Include="Assets\Resources\Scripts\AnimatedCollider.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\Camera2DFollow.cs" />
     <Compile Include="Assets\Resources\Scripts\Character\CharacterMovement.cs" />
