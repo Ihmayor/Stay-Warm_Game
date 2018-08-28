@@ -155,6 +155,7 @@ public class PlatformManager: PuzzleManager{
             CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(13.5f+(i*1.5f), (i*0.68f)+0.68f), 0);
         }
         CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(27f,1f), null, 2.8f, 100, false);
+       
         //TODO RECREATE INTO NEW FUNCTION
         for (int i = 0; i <= 10; i++)
         {
