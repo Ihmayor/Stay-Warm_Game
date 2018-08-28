@@ -21,7 +21,8 @@ public class DeathTrigger : MonoBehaviour {
         {
             if (other.gameObject.GetComponent<CharacterStatus>().canRespawn)
             {
-                other.gameObject.GetComponent<CharacterStatus>().Respawn();
+
+                StartCoroutine(other.gameObject.GetComponent<CharacterStatus>().Respawn());
             }
             else
             {

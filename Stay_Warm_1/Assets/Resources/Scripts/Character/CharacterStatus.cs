@@ -161,6 +161,7 @@ public class CharacterStatus : MonoBehaviour
 
     public void ToggleOffFirstCooling()
     {
+
         MenuManager.Instance.SetThought(CharacterName, "It was cold. They knew that they shouldn't stay in the wind too long. They had to find cover of some sort.");
         isFirstCooling = false;
     }
@@ -205,7 +206,7 @@ public class CharacterStatus : MonoBehaviour
         if (HealthAmount <= 0)
         {
             if (canRespawn)
-                Respawn();
+                StartCoroutine(Respawn());
             else
                 MenuManager.Instance.ShowGameOver();
         }
@@ -340,7 +341,7 @@ public class CharacterStatus : MonoBehaviour
             if (HeartBar.GetComponent<Image>().fillAmount <= 0)
             {
                 if (canRespawn)
-                    Respawn();
+                    StartCoroutine(Respawn());
                 else
                     MenuManager.Instance.ShowGameOver();
             }
@@ -445,23 +446,25 @@ public class CharacterStatus : MonoBehaviour
 
     #region Respawn Methods
 
-    public void Respawn()
+    public IEnumerator Respawn()
     {
         Respawning = true;
         MenuManager.Instance.SetThought("", "They ached all over. Their eyes faded out into the dark");
         MenuManager.Instance.ShowRespawn();
-        
         if (HealthBar != null)
             HealthBar.GetComponent<Image>().fillAmount = 1;
         if (HeartBar != null)
             HeartBar.GetComponent<Image>().fillAmount = 1;
 
-        Vector3 ClosestWarmingElement =  LevelManager.SingletonInstance.GetClosestWarmingElementPosition(gameObject.transform.position);
+        Vector3 ClosestWarmingElement = LevelManager.SingletonInstance.GetClosestWarmingElementPosition(gameObject.transform.position);
         if (ClosestWarmingElement != null)
         {
             gameObject.transform.position = ClosestWarmingElement + new Vector3(0, 0.8f);
         }
+        yield return new WaitForSeconds(7f);
         Respawning = false;
     }
+
+   
     #endregion
 }

@@ -85,7 +85,7 @@ public class MenuManager : MonoBehaviour
 
     public void ShowRespawn()
     {
-        RespawnMenu.GetComponent<FadeIn>().ReactivateMomentarily(3.5f);
+        RespawnMenu.GetComponent<FadeIn>().ReactivateMomentarily(5.2f);
     }
 
 

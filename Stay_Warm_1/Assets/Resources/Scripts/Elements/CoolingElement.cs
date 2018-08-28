@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CoolingElement : MonoBehaviour {
 
     internal AudioClip CoolingSound;
+    internal string CoolingThought;
 
     public virtual void Start() { }
 

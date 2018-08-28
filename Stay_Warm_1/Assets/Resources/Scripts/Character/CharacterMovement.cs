@@ -57,7 +57,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.U))
         {
-            this.GetComponent<CharacterStatus>().Respawn();
+            StartCoroutine(this.GetComponent<CharacterStatus>().Respawn());
         }
 
         if (Input.GetKeyDown(KeyCode.K))

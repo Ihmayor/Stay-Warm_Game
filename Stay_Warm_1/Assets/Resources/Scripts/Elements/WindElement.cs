@@ -19,6 +19,7 @@ public class WindElement : CoolingElement
         DriftSpeed = 0.01f;
         isRightDirection = false;
         CoolingSound = Resources.Load<AudioClip>("Audio/wind_gust");//Default
+        CoolingThought = "It was cold. They knew that they shouldn't stay in the wind too long. They had to find cover of some sort for the heart's sake.";//Default
     }
 
     public override void Update()
