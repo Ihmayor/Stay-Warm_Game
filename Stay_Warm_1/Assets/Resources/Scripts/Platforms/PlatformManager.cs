@@ -183,10 +183,34 @@ public class PlatformManager: PuzzleManager{
 
     }
 
-    //TODO:
     public override void Puzzle5(Vector3 GroundedStartPosition)
     {
         Clear();
+        GroundedStartPosition += new Vector3(1.1f, 0);
+        CreateSpike(GroundedStartPosition + new Vector3(5f, 0), 20);
+    
+        CreatePlatform(VerticalPlatform, GroundedStartPosition + new Vector3(3.3f, 2.1f), null, 2f, 1000, false);
+        CreatePlatform(VerticalPlatform, GroundedStartPosition + new Vector3(18.3f, 3.5f), null, 3.5f, 1000, false);
+        CreatePlatform(HorizontalPlatform, GroundedStartPosition + new Vector3(22.6f, 6f), null, 2.8f, 1200, true);
+        CreatePlatform(HorizontalPlatform, GroundedStartPosition + new Vector3(32f, 6f), null, 4.9f, 900, false);
+        CreatePlatform(HorizontalPlatform, GroundedStartPosition + new Vector3(41f, 6f), null, 8f, -3000, false);
+        CreatePlatform(HorizontalPlatform, GroundedStartPosition + new Vector3(41f, 6f), null, 8f, 900, true);
+        CreatePlatform(HorizontalPlatform, GroundedStartPosition + new Vector3(39f, 6f), null, 7f, 900, false);
+
+        Vector3 LastPosition = CreateStepTower(GroundedStartPosition + new Vector3(5.5f, 3.4f), 1, 4);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(2.3f, -1.5f), 1, 4);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(1.5f, 0.5f), 1, 4);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(1.1f, 0.5f), 1, 4);
+        CreateStepTower(LastPosition + new Vector3(2.9f, 0.5f), 1, 5);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(-2.8f, 0.5f), 0);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(-1.6f, 0.57f), 0);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(-0.8f, 0.8f), 0, 2);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(1.1f, 1.2f), 0, 2);
+        LastPosition = CreateStepTower(LastPosition + new Vector3(1.1f, 1.2f), 0, 2);
+        LastPosition = CreateStepTower(GroundedStartPosition + new Vector3(35f, 7.1f), 0, 10);
+        CreateStepTower(LastPosition + new Vector3(10f, 0), 0, 9);
+        CreateStaircase(GroundedStartPosition + new Vector3(28.3f, 0f), 5, 4, false);
+        CreateStaircase(GroundedStartPosition + new Vector3(31.3f, 0f), 5, 4, true);
     }
 
     #endregion
@@ -246,6 +270,7 @@ public class PlatformManager: PuzzleManager{
 
         return PrevPosition + new Vector3(widthFactor * 0.1f,0);
     }
+
 
     /// <summary>
     /// Create stair case of steps

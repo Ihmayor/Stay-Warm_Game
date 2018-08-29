@@ -1,6 +1,6 @@
-Immediate
-========================================================================================================================
-- FINISH CHAR RESPAWN NOW!!!<===== FIX RESPAWNING FADE IN MENU => Revisit if I still need this???
+ImmediatE
+nOTES: tO dELAY dROP source animation activate at different times 
+
 ================================= LATEST===========================================
 Most important:
 

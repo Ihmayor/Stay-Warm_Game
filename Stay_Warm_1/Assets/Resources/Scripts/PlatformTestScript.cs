@@ -8,6 +8,10 @@ public class PlatformTestScript : MonoBehaviour {
     private GameObject HorizontalPlatform;
     private GameObject Step;
     private GameObject Spike;
+    public GameObject MainChar;
+
+    private readonly float StepGapMin = 0.3f;
+    private readonly float StepGapMax = 0.53f;
 
     // Use this for initialization
     void Start () {
@@ -15,26 +19,40 @@ public class PlatformTestScript : MonoBehaviour {
         HorizontalPlatform = Resources.Load<GameObject>("Prefabs/Platforms/HorizontalPlatform");
         Step = Resources.Load<GameObject>("Prefabs/Platforms/step");
         Spike = Resources.Load<GameObject>("Prefabs/Platforms/Spike");
-        Vector3 GroundedStartPosition = new Vector3(0, 0);
 
+
+
+        GameObject LightPole = Resources.Load<GameObject>("Prefabs/Elements/lightpole");
+        GameObject Pushable = Resources.Load<GameObject> ("Prefabs/Platforms/PushableBox");
+
+        Vector3 GroundedStartPosition = MainChar.gameObject.transform.position;
+        GroundedStartPosition.y = 0;
         Vector3 LastPosition = GroundedStartPosition;
 
-        CreatePlatform(VerticalPlatform, GroundedStartPosition + new Vector3(15f, 2f), null, 2, 100, true);
+        //Create Spike
+        CreateSpike(GroundedStartPosition + new Vector3(5f,0),20);
 
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(4.6f, 0.68f),25);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 0f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 1.3f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 2.4f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(5, 3.6f), 0);
 
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 0.68f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 1.9f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 3.0f), 0);
-        CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(6.5f, 4.2f), 0);
-        LastPosition = CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(7f, 0.68f), 18);
-        CreateSpike(new Vector3(LastPosition.x+0.4f, GroundedStartPosition.y), 10);
-        CreatePlatform(HorizontalPlatform, LastPosition + new Vector3(2.2f, 0), null, 2, 100, true);
+        ///Warming Element Position
+        GameObject lightInstance = Instantiate(LightPole, null);
+        lightInstance.transform.position = GroundedStartPosition + new Vector3(15.6f,5.3f);
+
+        //Create Pushables
+        GameObject pushInstance = Instantiate(Pushable, null);
+        pushInstance.transform.position = GroundedStartPosition + new Vector3(27f, 5.3f);
+        pushInstance = Instantiate(Pushable, null);
+        pushInstance.transform.position = GroundedStartPosition + new Vector3(27f, 5.3f);
+        pushInstance = Instantiate(Pushable, null);
+        pushInstance.transform.position = GroundedStartPosition + new Vector3(27f, 5.3f);
+        pushInstance = Instantiate(Pushable, null);
+        pushInstance.transform.position = GroundedStartPosition + new Vector3(27f, 5.3f);
+        pushInstance = Instantiate(Pushable, null);
+        pushInstance.transform.position = GroundedStartPosition + new Vector3(35f, 9.3f);
+        pushInstance = Instantiate(Pushable, null);
+        pushInstance.transform.position = GroundedStartPosition + new Vector3(45f, 10.4f);
+
+
+     
 
     }
 
@@ -62,6 +80,85 @@ public class PlatformTestScript : MonoBehaviour {
             PrevPosition = step.transform.position;
         }
         return PrevPosition;
+    }
+
+
+    /// <summary>
+    /// Creates non-movable obstacle
+    /// </summary>
+    /// <param name="position">Starting position of obstacle</param>
+    /// <param name="stepCount">Height of obstacle</param>
+    /// <param name="widthFactor">Factor to increase width of tower</param>
+    /// <returns>Latest Position of Tower</returns>
+    private Vector3 CreateStepTower(Vector3 position, int stepCount, int widthFactor)
+    {
+        GameObject step = MonoBehaviour.Instantiate(Step, null);
+        step.transform.position = position;
+        step.transform.localScale = new Vector3(step.transform.localScale.x * widthFactor,
+                                                    step.transform.localScale.y,
+                                                    step.transform.localScale.z);
+        Vector3 PrevPosition = step.transform.position;
+        for (int i = 0; i < stepCount; i++)
+        {
+            step = MonoBehaviour.Instantiate(Step, null);
+            step.transform.position = PrevPosition + new Vector3(0, 0.2124999f);
+            step.transform.localScale = new Vector3(step.transform.localScale.x * widthFactor,
+                                                    step.transform.localScale.y,
+                                                    step.transform.localScale.z);
+            PrevPosition = step.transform.position;
+        }
+
+        return PrevPosition + new Vector3(widthFactor * 0.1f, 0);
+    }
+
+    /// <summary>
+    /// Create stair case of steps
+    /// </summary>
+    /// <param name="GroundPosition">Grounded Position of stair case</param>
+    /// <param name="height">Peak of height of stair case</param>
+    /// <param name="width">Total Width of Stair Case</param>
+    /// <param name="isDecayed">Bool to decide whether stair case ascends or descends</param>
+    /// <returns></returns>
+    private Vector3 CreateStaircase(Vector3 GroundPosition, int height, float width, bool isDecayed)
+    {
+        if (height == 0)
+        {
+            Debug.Log("Error. Height is 0. Cannot Produce Stairs");
+            return Vector3.zero;
+        }
+
+        Vector3 EndPosition = GroundPosition + new Vector3(width, 0, 0);
+        float stepGap = (EndPosition.x - GroundPosition.x) / height;
+
+        if (stepGap < StepGapMin)
+        {
+            Debug.Log("Gap not large enough for player, given height width ratio");
+            Debug.Log(height / width);
+            return Vector3.zero;
+        }
+        else if (stepGap > StepGapMax)
+        {
+            stepGap = StepGapMax;
+        }
+
+        Vector3 CurrentPosition = GroundPosition;
+        if (isDecayed)
+        {
+            for (int i = height; i > 0; i--)
+            {
+                CreateStepTower(CurrentPosition, i);
+                CurrentPosition += new Vector3(stepGap, 0);
+            }
+        }
+        else
+        {
+            for (int i = 0; i <= height; i++)
+            {
+                CreateStepTower(CurrentPosition, i);
+                CurrentPosition += new Vector3(stepGap, 0);
+            }
+        }
+        return CurrentPosition;
     }
 
     /// <summary>

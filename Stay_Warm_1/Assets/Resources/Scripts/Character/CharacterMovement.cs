@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
         pushForce = 1.2f;
 
         //Amount Character can jump up
-        jumpForce = 270f;
+        jumpForce = 250f;
         pause = false;
     }
 
@@ -180,8 +180,10 @@ public class CharacterMovement : MonoBehaviour
     /// <param name="other">Platform</param>
     private void OnTriggerStay2D(Collider2D other)
     {
+        print(other.gameObject.name);
         if (other.gameObject.name.Contains("Platform"))
         {
+            print("OnPlatform");
             transform.parent = other.transform;
         }
     }

@@ -126,6 +126,21 @@ public class PushableElementManager : PuzzleManager
 
     public override void Puzzle5(Vector3 StartPosition)
     {
+        Clear();
+        //Create Pushables
+        GameObject pushObj;
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(27f, 5.3f);
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(27f, 5.3f);
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(27f, 5.3f);
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(27f, 5.3f);
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(35f, 9.3f);
+        pushObj = MonoBehaviour.Instantiate(Pushable, null);
+        pushObj.transform.position = StartPosition + new Vector3(45f, 10.4f);
     }
 
     public void Clear()

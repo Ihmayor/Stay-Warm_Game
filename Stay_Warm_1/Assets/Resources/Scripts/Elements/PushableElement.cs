@@ -68,4 +68,25 @@ public class PushableElement : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Code to stay on platforms
+    /// </summary>
+    /// <param name="other">Platform</param>
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.name.Contains("Platform"))
+        {
+            transform.parent = other.transform;
+            transform.localScale = new Vector3( 0.5521048f, 0.5634046f, 0.3373984f);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.name.Contains("Platform"))
+        {
+            transform.parent = null;
+
+        }
+    }
 }

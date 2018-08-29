@@ -131,6 +131,8 @@ public class CoolingElementManager : PuzzleManager
     /// <param name="StartPosition">Start Position of Puzzle</param>
     public override void Puzzle5(Vector3 StartPosition)
     {
+        CreateDropSource(StartPosition + new Vector3(2.6f, 0.68f));
+        CreateWindSource(StartPosition + new Vector3(58f, 0.9f));
     }
 
     #region Helper Methods
