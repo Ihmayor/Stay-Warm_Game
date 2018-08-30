@@ -20,6 +20,7 @@ public class CharacterStatus : MonoBehaviour
     public bool isBehindCoolingBlock;
     public bool canRespawn { get; private set; }
     public bool Respawning { get; private set; }
+    private bool isInCutscene;
     #endregion
 
     #region Health Sacrfice Variables
@@ -101,6 +102,7 @@ public class CharacterStatus : MonoBehaviour
         OriginalHeartCoolingFactor = HeartCoolingFactor;
         CoolStrength = 0.0005f;
         isHeartCooling = false;
+        isInCutscene = false;
         HeartWait = 0.005f;
         InvokeRepeating("CheckHeart", 0, 0.2f);
 
@@ -131,12 +133,13 @@ public class CharacterStatus : MonoBehaviour
     /// </summary>
     private void CheckHeart()
     {
+        print(isHeartCooling);
         if (isHeartCooling && hasHeart)
         {
             this.GetComponentInChildren<SmokeScript>().ShrinkSmoke(HeartCoolingFactor * 10);
             CoolHeart(HeartCoolingFactor);
         }
-        else if (!isWarmingWithMatches && !isHeartWarming && hasHeart)
+        else if (!isWarmingWithMatches && !isHeartWarming && hasHeart && !isInCutscene)
         {
             this.GetComponentInChildren<SmokeScript>().ShrinkSmoke(HeartWait*1000);
             CoolHeart(HeartWait);
@@ -297,9 +300,19 @@ public class CharacterStatus : MonoBehaviour
     /// <param name="heartCooling"></param>
     public void SetHeartCooling(bool heartCooling)
     {
+        print("Yeah I'm changing it: " + heartCooling);
         isHeartCooling = heartCooling;  
         if (!heartCooling)
             ResetCoolingStrength();
+    }
+
+    /// <summary>
+    /// Pause Cooling For Cutscenes. 
+    /// </summary>
+    /// <param name="heartCooling"></param>
+    public void SetInCutscene(bool isPaused)
+    {
+        isInCutscene = isPaused;
     }
 
     /// <summary>

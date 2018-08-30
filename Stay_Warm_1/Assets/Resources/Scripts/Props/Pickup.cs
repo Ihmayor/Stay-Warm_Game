@@ -11,7 +11,9 @@ public class Pickup : MonoBehaviour {
         {"Note #1","There was nothing on the note, but it felt warm."},
         {"Note #2","They found another one..."},
         {"Note #3","They liked not being alone."},
-        {"Glass Heart","The heart felt important to them, somehow. They cradled it as they marched onwards. It slowly cooled with every step."}
+        {"Note #4", "This one says 'Be wary of shortcuts'" },
+        {"Note #5", "This one read 'Keep pushing, even if there is no immediate use'" },
+        {"Glass Heart","The heart felt important to them, somehow. Some hole in their chest filled up. It cooled with every step."}
     };
 
     // Use this for initialization
