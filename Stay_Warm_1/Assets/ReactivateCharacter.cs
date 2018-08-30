@@ -9,6 +9,7 @@ public class ReactivateCharacter : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Character.GetComponent<CharacterMovement>().enabled = false;
+        timeline = GetComponent<PlayableDirector>();
         timeline.stopped += Timeline_stopped;
     }
 

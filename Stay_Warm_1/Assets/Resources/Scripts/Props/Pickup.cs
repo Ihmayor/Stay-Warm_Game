@@ -23,18 +23,23 @@ public class Pickup : MonoBehaviour {
     {
         if (collision.tag.Contains("Player"))
         {
+            Destroy(this.gameObject.GetComponent<BoxCollider2D>());
             MenuManager.Instance.OpenInteractionMenu("Picked up '" + PickupName + "'");
             MenuManager.Instance.SetThought(collision.GetComponent<CharacterStatus>().CharacterName, PropThoughts[PickupName]);
             PickUpAction(new object[] { collision });
              if (Sound != null)
             {
-                Destroy(this.gameObject.GetComponent<BoxCollider2D>());
                 DestroyPickupObject();
             }
             else
+            {
                 Destroy(this.gameObject);
-            Destroy(this);
+            }
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
     }
 
     public virtual void PickUpAction(object[] arg){
@@ -45,6 +50,8 @@ public class Pickup : MonoBehaviour {
     public virtual void DestroyPickupObject(){
         this.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         Destroy(this.gameObject, this.GetComponent<AudioSource>().clip.length);
+        Destroy(this);
+
     }
 
 

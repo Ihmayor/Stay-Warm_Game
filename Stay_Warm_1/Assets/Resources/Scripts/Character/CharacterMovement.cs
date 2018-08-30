@@ -180,10 +180,8 @@ public class CharacterMovement : MonoBehaviour
     /// <param name="other">Platform</param>
     private void OnTriggerStay2D(Collider2D other)
     {
-        print(other.gameObject.name);
         if (other.gameObject.name.Contains("Platform"))
         {
-            print("OnPlatform");
             transform.parent = other.transform;
         }
     }

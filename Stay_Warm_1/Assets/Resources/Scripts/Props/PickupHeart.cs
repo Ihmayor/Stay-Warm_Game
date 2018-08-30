@@ -16,9 +16,29 @@ public class PickupHeart : Pickup {
 
     public override void PickUpAction(object[] arg)
     {
+        print("test");
+        StartCoroutine(DelaySecondsPickupAction(arg));
+    }
+    public override void DestroyPickupObject()
+    {
+        print("test2");
+        StartCoroutine(DelayDestroyObject());
+    }
+
+    IEnumerator DelayDestroyObject()
+    {
+        yield return new WaitForSeconds(3.5f);
+        base.DestroyPickupObject();
+        print("Done");
+    }
+
+    IEnumerator DelaySecondsPickupAction(object[] arg)
+    {
         base.PickUpAction(arg);
+        yield return new WaitForSeconds(0.5f);
         Collider2D collider = (Collider2D)arg[0];
         MenuManager.Instance.ActivateHeartMeter();
         collider.gameObject.GetComponent<CharacterStatus>().ActivateHeartEffect();
+        print("done2");
     }
 }

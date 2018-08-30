@@ -16,23 +16,33 @@ public class CutSceneTrigger : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D c)
     {
-        GetComponent<BoxCollider2D>().enabled = false;
+        if (c.gameObject.CompareTag("Player"))
+        {
+
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D c)
     {
         if (c.gameObject.CompareTag("Player"))
         {
-            timeline.Stop(); // Make sure the timeline is stopped before starting it
-            timeline.Play();
             player = c.gameObject;
             player.GetComponent<CharacterMovement>().enabled = false;
             player.GetComponent<CharacterMovement>().setAnimation("Idle");
+            timeline.Play();
         }
+
     }
 
     private void Timeline_stopped(PlayableDirector obj)
     {
         player.GetComponent<CharacterMovement>().enabled = true;
+        player.GetComponent<CharacterMovement>().setAnimation("Idle");
+    }
+
+    public void SetTimeline(PlayableDirector cutsceneLoaded)
+    {
+        timeline = cutsceneLoaded;
     }
 }
