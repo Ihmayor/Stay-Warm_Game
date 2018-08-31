@@ -9,7 +9,8 @@ public class ToggleImage : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	}
+      
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -30,7 +31,6 @@ public class ToggleImage : MonoBehaviour {
         gameObject.SetActive(false);
         gameObject.SetActive(true);
         this.GetComponent<Animator>().SetTrigger("Normal");
-
     }
 
 

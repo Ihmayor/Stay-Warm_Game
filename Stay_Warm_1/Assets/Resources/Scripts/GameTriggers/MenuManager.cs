@@ -55,6 +55,8 @@ public class MenuManager : MonoBehaviour
         //InstructionBox = MainMenuSystem.transform.Find("GoofyPlaceHolderUI").transform.Find("InstructionsPanel").gameObject;
         // AudioSources = InstructionBox.GetComponents<AudioSource>();
         Screen.SetResolution(965, 600, false);
+
+
     }
 
     /// <summary>

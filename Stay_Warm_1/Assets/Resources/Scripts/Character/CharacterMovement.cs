@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     #region Variables 
     //Variables to handle Speed and Force of player
     public float MaxSpeed = 2f;
-    public float moveForce = 14f;
+    public float moveForce = 12f;
     public float pushForce { get; private set; }
     public float jumpForce { get; private set; }
 
@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
         pushForce = 1.2f;
 
         //Amount Character can jump up
-        jumpForce = 250f;
+        jumpForce = 220f;
         pause = false;
     }
 
@@ -133,7 +133,6 @@ public class CharacterMovement : MonoBehaviour
         if (Input.GetButtonUp("Jump") && (grounded || platformed))
         {
             setAnimation("Jump");
-            //Set Animation Jump. TODO: Jump animation clip.
             jump = true;
         }
         else if ((grounded || platformed) & setIdle)
