@@ -5,13 +5,12 @@ nOTES: tO dELAY dROP source animation activate at different times
 Most important:
 
 - FINISH STAGE 5
-        Stage 5: Decide between REALLY AHRD PUZZLE or Boss end. 
-			IF bOSS END fINISH aNIMATION.
-      => Publish and see if you can get some testers at this point
+        Stage 5: Finish Monster Behaviour and funct.
+      => Publish and see if you 	can get some testers at this point
 
 - Refurbish Heat Points 
       - On levels > 8 make them only work once.
-
+	
 - FINISH LEVEL LOADING ONCE RESPAWN POINT CODE IS COMPLETE
 
 - REFACTOR INHERTANCE FOR DROP SOURCE YET

@@ -364,6 +364,7 @@
     <Compile Include="Assets\Custom\NewScripts\SimplePlatformController.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnCoin.cs" />
     <Compile Include="Assets\Custom\NewScripts\SpawnManager.cs" />
+    <Compile Include="Assets\EnemyBehaviour.cs" />
     <Compile Include="Assets\FlipSet.cs" />
     <Compile Include="Assets\LoadLevelButtonScript.cs" />
     <Compile Include="Assets\MainMenu.cs" />

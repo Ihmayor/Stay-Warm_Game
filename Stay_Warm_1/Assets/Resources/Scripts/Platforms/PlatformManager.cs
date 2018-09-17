@@ -165,6 +165,7 @@ public class PlatformManager: PuzzleManager{
         CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(29.5f, 4.59f), 0);//Add Interaction
         CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(30f, 4.59f), 0);//Add Interaction
         CreateStepTower(new Vector3(LastPosition.x, GroundedStartPosition.y) + new Vector3(31f, 4.59f), 0);//Add Interaction
+
         GameObject step = Platforms[Platforms.Count - 1].gameObject;
         step.AddComponent<NotifyPropScript>();
 
@@ -210,7 +211,17 @@ public class PlatformManager: PuzzleManager{
         LastPosition = CreateStepTower(GroundedStartPosition + new Vector3(35f, 7.1f), 0, 10);
         CreateStepTower(LastPosition + new Vector3(10f, 0), 0, 9);
         CreateStaircase(GroundedStartPosition + new Vector3(28.3f, 0f), 5, 4, false);
-        CreateStaircase(GroundedStartPosition + new Vector3(31.3f, 0f), 5, 4, true);
+        LastPosition = CreateStaircase(GroundedStartPosition + new Vector3(31.3f, 0f), 5, 4, true);
+
+        //Added Prop 
+        GameObject placeProp = new GameObject("Notification");
+        placeProp.transform.position = LastPosition + new Vector3(5f, 0);
+        NotifyPropScript script = placeProp.GetComponent<NotifyPropScript>();
+        script.AddExclaim(Platforms[Platforms.Count - 1].transform);
+        script.optionalThoughtMessage = "It's head is weak. Look above. Drop Below.";
+        script.notificationMessage = "Found 'Scrawled Text'";
+        script.SetSound(Resources.Load<AudioClip>("Audio/movingtable"));
+
     }
 
     #endregion

@@ -462,8 +462,12 @@ public class CharacterStatus : MonoBehaviour
     public IEnumerator Respawn()
     {
         Respawning = true;
-        MenuManager.Instance.SetThought("", "They ached all over. Their eyes faded out into the dark");
-        MenuManager.Instance.ShowRespawn();
+        
+        //Respawns with fade out screen.
+        //  MenuManager.Instance.SetThought("", "They ached all over. Their eyes faded out into the dark");
+        //  MenuManager.Instance.ShowRespawn();
+
+
         if (HealthBar != null)
             HealthBar.GetComponent<Image>().fillAmount = 1;
         if (HeartBar != null)
@@ -474,10 +478,11 @@ public class CharacterStatus : MonoBehaviour
         {
             gameObject.transform.position = ClosestWarmingElement + new Vector3(0, 0.8f);
         }
-        yield return new WaitForSeconds(7f);
+        //        yield return new WaitForSeconds(7f);
         Respawning = false;
+        yield return null;
     }
 
-   
+
     #endregion
 }
