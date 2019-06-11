@@ -217,11 +217,11 @@ public class PlatformManager: PuzzleManager{
         GameObject placeProp = new GameObject("Notification");
         placeProp.transform.position = LastPosition + new Vector3(5f, 0);
         NotifyPropScript script = placeProp.GetComponent<NotifyPropScript>();
-        script.AddExclaim(Platforms[Platforms.Count - 1].transform);
+/*        script.AddExclaim(Platforms[Platforms.Count - 1].transform);
         script.optionalThoughtMessage = "It's head is weak. Look above. Drop Below.";
         script.notificationMessage = "Found 'Scrawled Text'";
         script.SetSound(Resources.Load<AudioClip>("Audio/movingtable"));
-
+        */
     }
 
     #endregion
