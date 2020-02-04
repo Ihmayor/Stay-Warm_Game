@@ -12,16 +12,20 @@ public class MonsterBehavior : MonoBehaviour {
     private bool isPlayerInView = false;
     private bool isPlayerNearby = false;
 
-    private float currentPos = gameObject.transform.position.x;
-    private float startPoint = StartingPoint.x;
-    private float endRange = gameObject.transform.position.x - walkingRange;
-    private float movementIncrement = walkingRange / 1000;
+    private float currentPos;
+    private float startPoint;
+    private float endRange;
+    private float movementIncrement ;
 
 
     // Use this for initialization
     void Start () {
         StartingPoint = gameObject.transform.position;
-	}
+        currentPos = gameObject.transform.position.x;
+        startPoint = StartingPoint.x;
+        endRange = gameObject.transform.position.x - walkingRange;
+        movementIncrement = walkingRange / 1000;
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
@@ -23,6 +24,14 @@ public class LevelManager : MonoBehaviour {
 
     //Instance of level manager
     public static LevelManager SingletonInstance { private set; get; }
+
+
+    //Debugging Mode
+    public BoolVariable IsDebuggingModeOn;
+
+    //Loaded Level Variables
+    public IntVariable LoadedStageIndex;
+    public GameObject IntroScene;
 
     #region Init
 
@@ -49,9 +58,9 @@ public class LevelManager : MonoBehaviour {
         //Init component managers and queue all level setup processes
         InitManagers(StartPosition);
         InitLevelQueue(StartPosition);
-      
-        //Load First Level
-        LevelQueue.Dequeue()();
+
+        //Load Stage via Index
+        LoadingStage(LoadedStageIndex.Value);
     }
 
     /// <summary>
@@ -197,8 +206,9 @@ public class LevelManager : MonoBehaviour {
         }
 
         //For Debugging Only
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) && IsDebuggingModeOn.Value)
         {
+            NextArea();
             GameObject.Find("MainChar").transform.position = GameObject.FindGameObjectWithTag("EndPoint").transform.position;
         }
 
@@ -252,9 +262,55 @@ public class LevelManager : MonoBehaviour {
         PushableManager.Clear();
         CoolManager.Clear();
 
-        LevelQueue.Dequeue()();//Execute Level Set up
+        if (LevelQueue.Count > 0)
+            LevelQueue.Dequeue()();//Execute Level Set up
 
         //Instantiate Block => Area Effect "I can't go back" 
+    }
+
+    public void LoadingStage(int stageIndex)
+    {
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (stageIndex == -1)
+        {
+            IntroScene.SetActive(true);
+            playerObj.GetComponent<CharacterStatus>().InitFirstPassVars();
+            playerObj.GetComponent<CharacterMovement>().enabled = false;
+            LevelQueue.Dequeue()();
+        }
+        else
+        {
+            //TEMP Copy-Paste
+            IntroScene.SetActive(true);
+            playerObj.GetComponent<CharacterStatus>().InitFirstPassVars();
+            playerObj.GetComponent<CharacterMovement>().enabled = false;
+            LevelQueue.Dequeue()();
+
+            /*
+             * TODO: Handle Loading Scenes != 0
+             * IntroScene.SetActive(false);
+                        for (int i = 0; i <= stageIndex; i++)
+                        {
+                            NextArea();
+                        }
+
+                        playerObj.GetComponent<Rigidbody2D>().gravityScale = 1f;
+                        playerObj.GetComponent<CharacterMovement>().enabled = true;
+
+                        MenuManager.Instance.ActivateHeartMeter();
+                        playerObj.GetComponent<CharacterStatus>().SetInCutscene(false);
+                        playerObj.GetComponent<CharacterStatus>().SetHeartCooling(true);
+                        playerObj.GetComponent<CharacterStatus>().ActivateHeartEffect();
+
+                        playerObj.transform.position = SignPost.transform.position;
+
+            */
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        LoadedStageIndex.Value = -1;  
     }
 
     #endregion

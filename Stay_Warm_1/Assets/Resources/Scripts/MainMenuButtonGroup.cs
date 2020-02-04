@@ -4,20 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuButtonGroup : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public IntVariable StageIndex;
 
     public void NewGameStayWarm()
     {
         int sceneIndex = 1;
+        StageIndex.Value = -1;
         StartCoroutine(LoadScene(sceneIndex));
     }
 
@@ -26,9 +18,11 @@ public class MainMenuButtonGroup : MonoBehaviour {
         yield return SceneManager.LoadSceneAsync(sceneIndex);
     }
 
-    public void LoadGameStayWarm()
+    public void LoadGameStayWarm(int stageNum)
     {
-
+        StageIndex.Value = stageNum;
+        int sceneIndex = 1;
+        StartCoroutine(LoadScene(sceneIndex));
     }
 
 

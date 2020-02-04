@@ -393,6 +393,7 @@
     <Compile Include="Assets\Resources\Scripts\GameTriggers\WinTrigger.cs" />
     <Compile Include="Assets\Resources\Scripts\GrowIn.cs" />
     <Compile Include="Assets\Resources\Scripts\MainMenuButtonGroup.cs" />
+    <Compile Include="Assets\Resources\Scripts\Monster\MonsterBehavior.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\HorizontalPlatformMovement.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformManager.cs" />
     <Compile Include="Assets\Resources\Scripts\Platforms\PlatformMovement.cs" />

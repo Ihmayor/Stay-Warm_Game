@@ -10,7 +10,8 @@ public class WarmingElementManager : PuzzleManager
     private GameObject CurrentLightPole;
     private GameObject PrevLightPole;
     private List<GameObject> AllMidPointPoles;
-    public bool IsNextLevel;
+ 
+    public bool IsNextLevel { get; set; }
 
     private Color[] ColorsToChangeTo = {
         new Color(0.90588235294f,0.41176470588f,0.30196078431f),
@@ -109,6 +110,7 @@ public class WarmingElementManager : PuzzleManager
         {
             PrevLightPole = CurrentLightPole;
             PrevLightPole.gameObject.tag = "WarmPoint";
+            PrevLightPole.GetComponent<WarmingElement>().FirstVisit -= WarmingScript_FirstVisit;
             foreach (GameObject midPoint in AllMidPointPoles)
             {
                 if (midPoint.transform.position.x > PrevLightPole.transform.position.x)

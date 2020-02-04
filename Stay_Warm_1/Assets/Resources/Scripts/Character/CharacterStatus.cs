@@ -16,7 +16,9 @@ public class CharacterStatus : MonoBehaviour
     private float OriginalHeartCoolingFactor; //Store original cooling factor to reset when out of cooling elements
     private float HeartWait;
     public bool isFirstCooling { get; private set; }
-    public bool hasHeart;
+
+    public bool hasHeart { get; set; }
+
     public bool isBehindCoolingBlock;
     public bool canRespawn { get; private set; }
     public bool Respawning { get; private set; }
@@ -92,10 +94,7 @@ public class CharacterStatus : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //Init First Pass Variables
-        isFirstWarming = true;
-        isFirstCooling = true;
-        hasHeart = false;
+       
 
         //Init Heart Cooling Factors
         HeartCoolingFactor = 0.004f;
@@ -128,12 +127,18 @@ public class CharacterStatus : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
     }
 
+    public void InitFirstPassVars()
+    {
+        //Init First Pass Variables
+        isFirstWarming = true;
+        isFirstCooling = true;
+        hasHeart = false;
+    }
     /// <summary>
     /// Repeatedly cool the heart. if heart is near cooling factors, then cool faster
     /// </summary>
     private void CheckHeart()
     {
-        print(isHeartCooling);
         if (isHeartCooling && hasHeart)
         {
             this.GetComponentInChildren<SmokeScript>().ShrinkSmoke(HeartCoolingFactor * 10);
@@ -300,7 +305,6 @@ public class CharacterStatus : MonoBehaviour
     /// <param name="heartCooling"></param>
     public void SetHeartCooling(bool heartCooling)
     {
-        print("Yeah I'm changing it: " + heartCooling);
         isHeartCooling = heartCooling;  
         if (!heartCooling)
             ResetCoolingStrength();

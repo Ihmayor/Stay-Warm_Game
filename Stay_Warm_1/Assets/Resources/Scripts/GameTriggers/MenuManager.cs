@@ -93,9 +93,7 @@ public class MenuManager : MonoBehaviour
 
     public void ExitStage()
     {
-        //TODO: Should trigger confirmation popup.
-
-
+        
         int sceneIndex = 0;
         StartCoroutine(LoadScene(sceneIndex));
     }
