@@ -9,3 +9,14 @@ A Simple 2D Platformer game made with the Unity engine. This was a self-motivate
 # Playable Link
 
 [Play now on Itch.io](https://ihmayor.itch.io/stay-warm-01) 
+
+# Repo Organization
+
+
+## Main Managers
+
+## Elements
+
+## Player Character 
+
+## External Credits (Audio)
