@@ -17,6 +17,8 @@ A Simple 2D Platformer game made with the Unity engine. This was a self-motivate
 
 ## Environmental Elements
 
+## Gameflow Triggers
+
 ## Player Character 
 
 ## External Credits (Audio)
