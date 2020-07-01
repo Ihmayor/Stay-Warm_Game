@@ -15,7 +15,7 @@ A Simple 2D Platformer game made with the Unity engine. This was a self-motivate
 
 ## Main Manager Scripts
 
-## Elements
+## Environmental Elements
 
 ## Player Character 
 
